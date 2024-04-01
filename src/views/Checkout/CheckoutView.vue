@@ -42,19 +42,7 @@
           />
         </div>
       </div>
-      <div class="payment-info">
-        <InputText
-          v-model="userInfo.creditCardNumber"
-          placeholder="Enter your credit card number"
-        />
-        <InputText
-          v-model="userInfo.expirationDate"
-          placeholder="Enter your expiration date (MM/YY)"
-        />
-        <InputText v-model="userInfo.cvv" placeholder="Enter your CVV" />
-      </div>
     </div>
-    <div class="card-info"></div>
   </form>
   <div class="total-price">
     <h2>Total Price: €{{ totalPrice.toFixed(2) }}</h2>
@@ -104,19 +92,6 @@ const userInfo = ref({
     cvv: "", // New field
   },
 });
-
-const validateForm = () => {
-  // New validation logic
-  userInfo.value.errors.creditCardNumber = userInfo.value.creditCardNumber
-    ? ""
-    : "Credit card number is required";
-  userInfo.value.errors.expirationDate = userInfo.value.expirationDate
-    ? ""
-    : "Expiration date is required";
-  userInfo.value.errors.cvv = userInfo.value.cvv ? "" : "CVV is required";
-
-  userInfo.value.valid = Object.values(userInfo.value.errors).every((x) => !x);
-};
 const { t } = useI18n();
 </script>
 
@@ -142,7 +117,7 @@ const { t } = useI18n();
   padding-left: 10px;
 }
 .button {
-  display: flex;
+  display: relative;
   justify-content: center;
   align-items: center;
   width: 140px;
