@@ -7,8 +7,19 @@ import i18n from './config/18n.config';
 import { createPinia } from 'pinia'
 import PrimeVue from "primevue/config";
 import SelectButton from "primevue/selectbutton";
+import { createElement, createElements, initStripe } from './stripe-elements'
+import StripeElement from './components/StripeElement.vue'
+import StripeElements from './components/StripeElements.vue'
 
 
+export {
+    createElement,
+    createElements,
+    initStripe,
+    StripeElement,
+    StripeElements,
+  }
+  
 const app = createApp(App);
 
 app.component('SelectButton', SelectButton);
@@ -22,3 +33,4 @@ app.use(i18n)
 app.mount('#app');
 	
 app.use(createPinia())
+

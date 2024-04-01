@@ -41,6 +41,9 @@
             placeholder="Lisainfo"
           />
         </div>
+        <div class="payment-info">
+          <div id="card-element" />
+        </div>
       </div>
     </div>
   </form>
@@ -55,13 +58,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import NavBarComp from "@/components/NavBarComp.vue";
 import Button from "primevue/button";
 import { useCartStore } from "@/stores/cart";
 import InputText from "primevue/inputtext";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const cart = useCartStore();
 
@@ -72,6 +77,27 @@ const totalPrice = computed(() => {
   );
 });
 
+let stripe, elements, cardElement;
+
+onMounted(async () => {
+  stripe = await loadStripe("your-publishable-key");
+  elements = stripe.elements();
+  cardElement = elements.create("card");
+  cardElement.mount("#card-element");
+});
+
+const handlePayment = async () => {
+  const { paymentMethod, error } = await stripe.createPaymentMethod({
+    type: "card",
+    card: cardElement,
+  });
+
+  if (error) {
+    // Handle error...
+  } else {
+    // Send paymentMethod.id to your server...
+  }
+};
 
 const { t } = useI18n();
 </script>
