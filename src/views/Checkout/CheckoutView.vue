@@ -105,7 +105,13 @@ const { t } = useI18n();
 <style scoped>
 .info-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: 5px;
+}
+.payment-info{
+  margin-top: 24px;
 }
 .container {
   display: flex;
@@ -149,7 +155,7 @@ const { t } = useI18n();
 .input-container {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 450px;
   gap: 15px;
 }
 .checkout-title {
