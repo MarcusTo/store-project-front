@@ -72,26 +72,7 @@ const totalPrice = computed(() => {
   );
 });
 
-const userInfo = ref({
-  name: "",
-  email: "",
-  phoneNumber: "",
-  address: "",
-  info: "",
-  creditCardNumber: "", // New field
-  expirationDate: "", // New field
-  cvv: "", // New field
-  errors: {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    info: "",
-    creditCardNumber: "", // New field
-    expirationDate: "", // New field
-    cvv: "", // New field
-  },
-});
+
 const { t } = useI18n();
 </script>
 
