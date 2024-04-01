@@ -69,6 +69,7 @@ body,html{
 
 /* Inside your <style scoped lang="scss"> block */
 .dropdown-content a {
+  -webkit-text-fill-color: black;
   color: black; 
   padding: 10px; 
   display: block; 
@@ -80,6 +81,7 @@ body,html{
 
 /* Adjusting the hover state for visual feedback */
 .dropdown-content a:hover {
+  -webkit-text-fill-color: black;
   background-color: #f1f1f1; 
   color: black; 
   border-radius: 10px; 
@@ -87,17 +89,7 @@ body,html{
 }
 
 .dropdown-content {
-  display: none; 
-  position: absolute;
-  background-color: #f9f9f9; 
-  min-width: 100px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
-  padding: 20px; 
-  border-radius: 10px; 
-  z-index: 1;
-}
-
-.dropdown-content {
+  -webkit-text-fill-color: black;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -106,6 +98,8 @@ body,html{
   padding: 20px;
   border-radius: 10px;
   z-index: 1;
+  transition: background-color 0.4s ease;
+  
 }
 
 .dropdown-trigger:hover + .dropdown-content {
@@ -119,4 +113,11 @@ body,html{
 
 .dropdown:hover .dropdown-content {
   display: block; 
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

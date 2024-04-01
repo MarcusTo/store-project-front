@@ -6,24 +6,103 @@
           <RouterLink to="/">{{ $t("navbar.home") }}</RouterLink>
         </li>
         <li class="custom-list-item">
-          <div
-            @click="handleClick"
-            class="custom-summary"
-            style="color: #c5c5c5; cursor: pointer"
-          >
-            Apple Tooted
-          </div>
+          <div @click="handleClick" class="custom-summary" style="color: #c5c5c5; cursor: pointer">
+            Meie tooted
+      </div>
+          <p></p>
+          
           <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item">
-              <RouterLink to="/iphone">{{ $t("navbar.iphone") }}</RouterLink>
-            </li>
-            <li class="custom-list-item">
-              <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
-            </li>
-            <li class="custom-list-item">
-              <RouterLink to="/mac">{{ $t("navbar.mac") }}</RouterLink>
+            <li class="custom-list-item dropdown">
+              <span class="dropdown-trigger" style="color: white;">Apple devices</span> 
+                <div class="dropdown-content">
+                 <RouterLink to="/iphone">iPhone</RouterLink>
+                  <p></p>
+                  <RouterLink to="/airpods">AirPods</RouterLink>
+                  <p></p>
+                  <RouterLink to="/mac">Mac</RouterLink>
+                  <p></p>
+                  <RouterLink to="/ipad">iPad</RouterLink>
+                  <p></p>
+                  <RouterLink to="/AppleAccessories">Accessories</RouterLink>
+                </div>
             </li>
           </ul>
+
+          <ul class="dropdown-ul" v-show="isDropdownOpen">
+            <li class="custom-list-item dropdown">
+              <span class="dropdown-trigger" style="color: white;">Android devices</span> 
+                <div class="dropdown-content">
+                 <RouterLink to="/iphone">Smartphones</RouterLink>
+                  <p></p>
+                  <RouterLink to="/airpods">Earphones</RouterLink>
+                  <p></p>
+                  <RouterLink to="/mac">Tablets</RouterLink>
+                  <p></p>
+                  <RouterLink to="/AppleAccessories">Accessories</RouterLink>
+                </div>
+            </li>
+          </ul>
+
+          <ul class="dropdown-ul" v-show="isDropdownOpen">
+            <li class="custom-list-item dropdown">
+              <span class="dropdown-trigger" style="color: white;">Business class computers</span> 
+                <div class="dropdown-content">
+                 <RouterLink to="/iphone">Desktops</RouterLink>
+                  <p></p>
+                  <RouterLink to="/airpods">Laptops</RouterLink>
+                </div>
+            </li>
+          </ul>
+
+          <ul class="dropdown-ul" v-show="isDropdownOpen">
+            <li class="custom-list-item dropdown">
+              <span class="dropdown-trigger" style="color: white;">Gaming computers</span> 
+                <div class="dropdown-content">
+                 <RouterLink to="/iphone">Desktops</RouterLink>
+                  <p></p>
+                  <RouterLink to="/airpods">Laptops</RouterLink>
+                </div>
+            </li>
+          </ul>
+
+          <ul class="dropdown-ul" v-show="isDropdownOpen">
+            <li class="custom-list-item dropdown">
+              <span class="dropdown-trigger" style="color: white;">Computer components</span> 
+                <div class="dropdown-content">
+                 <RouterLink to="/iphone">CPU</RouterLink>
+                  <p></p>
+                  <RouterLink to="/airpods">GPU</RouterLink>
+                  <p></p>
+                  <RouterLink to="/mac">Motherboards</RouterLink>
+                  <p></p>
+                  <RouterLink to="/ipad">RAM</RouterLink>
+                  <p></p>
+                  <RouterLink to="/ipad">Power supplying unit</RouterLink>
+                  <p></p>
+                  <RouterLink to="/AppleAccessories">Cases</RouterLink>
+                  <p></p>
+                  <RouterLink to="/ipad">Other</RouterLink>
+                </div>
+            </li>
+          </ul>
+
+          <ul class="dropdown-ul" v-show="isDropdownOpen">
+            <li class="custom-list-item dropdown">
+              <span class="dropdown-trigger" style="color: white;">Computer gear</span> 
+                <div class="dropdown-content">
+                 <RouterLink to="/iphone">Monitors</RouterLink>
+                  <p></p>
+                  <RouterLink to="/airpods">Computer mouse</RouterLink>
+                  <p></p>
+                  <RouterLink to="/mac">Mousepads</RouterLink>
+                  <p></p>
+                  <RouterLink to="/ipad">Keyboards</RouterLink>
+                  <p></p>
+                  <RouterLink to="/ipad">Other</RouterLink>
+                </div>
+            </li>
+          </ul>
+
         </li>
         <li class="custom-list-item">
           <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
