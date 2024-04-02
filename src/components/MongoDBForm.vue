@@ -73,7 +73,7 @@ export default {
       return 'text';
     },
     isRequiredField(header) {
-      return ['Product name:', 'Product price:', 'Category:'].includes(header);
+      return ['Product name:', 'Product price:', 'Category:', 'Path to .png file:'].includes(header);
     },
     inputChanged(header, value) {
       this.formData[header] = value;
@@ -87,10 +87,10 @@ export default {
     this.formData[header] = '';
     },
     submitForm() {
-      if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:']) {
-        this.showRequiredFieldMessage = true;
-        return;
-      }
+    if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Path to .png file:']) {
+    this.showRequiredFieldMessage = true;
+    return;
+    }
       
       const productData = {
         name: this.formData['Product name:'],
