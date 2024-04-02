@@ -2,38 +2,50 @@
     <div class="container">
       <div v-for="(header, index) in headers" :key="index" class="input-group">
         <h3>{{ header }}</h3>
-        <div v-if="header === 'Color:'" class="color-input-group">
+        <div v-if="header === 'Memory:'" class="memory-input-group">
+          <input 
+            list="memory-options" 
+            v-model="formData[header]"
+            placeholder="Enter or select memory size"
+            class="text-input"
+          />
+          <datalist id="memory-options">
+            <option v-for="memorySize in memoryOptions" :key="memorySize" :value="memorySize">{{ memorySize }} GB</option>
+          </datalist>
+        </div>
+        <div v-else-if="header === 'Color:'" class="color-input-group">
           <select 
             v-model="formData[header]" 
             class="text-input"
-            @change="colorChanged(header, $event.target.value)"
           >
-            <option disabled value="" :selected="formData[header] === ''">-</option>
+            <option disabled value="">Select color</option>
             <option v-for="color in colors" :key="color" :value="color">{{ color }}</option>
           </select>
-          <button v-if="formData[header]" @click="formData[header] = ''" class="remove-color-btn">Remove</button>
+          <button 
+            v-if="formData[header]" 
+            @click="removeColor(header)" 
+            class="remove-color-btn"
+          >Remove</button>
         </div>
-        <input 
-          v-else-if="header === 'Path to .png file:'"
-          type="file" 
-          @change="onFileChange" 
-          accept=".png"
-          class="text-input"
-        />
         <input 
           v-else
           :type="getInputType(header)" 
           v-model="formData[header]"
-          @input="validateInput(header, $event.target.value)" 
+          :required="isRequiredField(header)"
+          @input="inputChanged(header, $event.target.value)" 
           class="text-input"
         />
       </div>
-      <button class="insert-btn">Insert</button>
+      <button @click="submitForm" class="insert-btn">Insert</button>
+      <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
+      <div v-if="showRequiredFieldMessage" class="required-field-message">Please fill in all required fields.</div>
     </div>
   </template>
   
 
-<script>
+  <script>
+import axios from 'axios';
+
 export default {
   name: 'MongoDBForm',
   data() {
@@ -48,29 +60,60 @@ export default {
         'Path to .png file:': '',
       },
       colors: ['Red', 'Green', 'Blue', 'Yellow', 'Black', 'White'],
+      memoryOptions: [64, 128, 256, 512, 1024],
+      showInsertionComplete: false,
+      showRequiredFieldMessage: false,
     };
   },
   methods: {
     getInputType(header) {
-      if (header === 'Product price:' || header === 'Memory:') {
+      if (header === 'Product price:') {
         return 'number';
       }
       return 'text';
     },
-    validateInput(header, value) {
-      if (header === 'Product price:' || header === 'Memory:') {
-        this.formData[header] = value.replace(/[^0-9]/g, '');
+    isRequiredField(header) {
+      return ['Product name:', 'Product price:', 'Category:'].includes(header);
+    },
+    inputChanged(header, value) {
+      this.formData[header] = value;
+      if (this.isRequiredField(header) && value === '') {
+        this.showRequiredFieldMessage = true;
+      } else {
+        this.showRequiredFieldMessage = false;
       }
     },
-    onFileChange(e) {
-      const file = e.target.files[0];
-      this.formData['Path to .png file:'] = file ? file.name : '';
+    removeColor(header) {
+    this.formData[header] = '';
     },
-    colorChanged(header, value) {
-      this.formData[header] = value;
-    },
+    submitForm() {
+      if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:']) {
+        this.showRequiredFieldMessage = true;
+        return;
+      }
+      
+      const productData = {
+        name: this.formData['Product name:'],
+        price: this.formData['Product price:'],
+        memory: this.formData['Memory:'],
+        color: this.formData['Color:'], 
+        category: this.formData['Category:'],
+        image: this.formData['Path to .png file:'],
+      };
+  
+      axios.post('http://localhost:3000/', productData)
+        .then(response => {
+          this.showInsertionComplete = true;
+          setTimeout(() => this.showInsertionComplete = false, 3000);
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   },
 };
+
 </script>
   
 <style scoped>
@@ -108,8 +151,8 @@ export default {
   
   .insert-btn {
     position: absolute;
-    bottom: 20px; /* Adjusted to place a bit higher */
-    right: 20px;
+    bottom: 50px; /* Adjusted to place a bit higher */
+    right: 350px;
     padding: 10px 20px;
     border-radius: 15px;
     border: none;
@@ -137,6 +180,20 @@ export default {
 s
 .remove-color-btn:hover {
   background-color: #e6e6e6;
+}
+
+.insertion-complete {
+  position: absolute;
+  top: 20px;
+  background-color: lightgreen;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid green;
+}
+
+.required-field-message {
+  color: red;
+  margin-top: 10px;
 }
 
 </style>

@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors")
 const Product = require("./models/product.model.js");
@@ -8,7 +9,6 @@ const authRoute = require("./routes/auth.js");
 const cartRoute = require("./routes/cart.routes.js");
 const orderRoute = require("./routes/order.routes.js");
 const stripeRoute = require("./routes/stripe.js");
-const app = express();
 
 // middleware
 app.use(express.json());
@@ -24,6 +24,13 @@ app.use("/api/checkout", stripeRoute);
 app.use("/api/products", productRoute);
 
 
+app.post('/', (req, res) => {
+  const requestData = req.body; 
+  console.log('Received data:', requestData);
+  res.status(200).send('Data received successfully');
+});
+
+
 app.get("/", (req, res) => {
   res.send("Hello from Node API Server Updated");
 });
@@ -35,7 +42,7 @@ mongoose
   .then(() => {
     console.log("Connected to database!");
     app.listen(3000, () => {
-      console.log("Server is running on port 3000");
+      console.log("Server is running on http://localhost:3000");
     });
   })
   .catch(() => {

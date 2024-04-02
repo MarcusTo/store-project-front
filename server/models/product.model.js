@@ -22,7 +22,7 @@ const ProductSchema = mongoose.Schema(
     },
     description: {
         type: String,
-        required: true,
+        required: false,
     },
     category: {
         type: String,
@@ -37,7 +37,6 @@ const ProductSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
 
 const Product = mongoose.model("Product", ProductSchema);
 
