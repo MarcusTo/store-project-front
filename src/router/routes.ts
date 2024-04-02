@@ -63,6 +63,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/IPhone/NewIphoneView.vue"),
     props: true, // Enable props
   },
+  {
+    path: ROUTE_PATHS.ProductsDatabase,
+    name: ROUTE_PATHS.ProductsDatabase,
+    component: () => import("@/views/ProductsDatabase/Server.vue"),
+    props: true, // Enable props
+  },
 ];
 
 export default routes;
