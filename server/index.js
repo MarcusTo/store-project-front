@@ -20,16 +20,12 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
-// routes
-app.use("/api/products", productRoute);
-
 
 app.post('/', (req, res) => {
   const requestData = req.body; 
   console.log('Received data:', requestData);
   res.status(200).send('Data received successfully');
 });
-
 
 app.get("/", (req, res) => {
   res.send("Hello from Node API Server Updated");

@@ -40,10 +40,10 @@
       <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
       <div v-if="showRequiredFieldMessage" class="required-field-message">Please fill in all required fields.</div>
     </div>
-  </template>
+</template>
   
 
-  <script>
+<script>
 import axios from 'axios';
 
 export default {
@@ -101,7 +101,7 @@ export default {
         image: this.formData['Path to .png file:'],
       };
   
-      axios.post('http://localhost:3000/', productData)
+      axios.post('http://localhost:3000/api/products', productData)
         .then(response => {
           this.showInsertionComplete = true;
           setTimeout(() => this.showInsertionComplete = false, 3000);
@@ -113,11 +113,9 @@ export default {
     }
   },
 };
-
 </script>
   
 <style scoped>
-
 .text-input option[value=""][disabled] {
   color: grey;
 }
@@ -162,11 +160,11 @@ export default {
   }
 
   .color-input-group {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 300px;
-}
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 300px;
+  }
 
 .remove-color-btn {
   margin-left: 10px;
@@ -177,7 +175,7 @@ export default {
   color: #333;
   cursor: pointer;
 }
-s
+
 .remove-color-btn:hover {
   background-color: #e6e6e6;
 }
@@ -195,5 +193,4 @@ s
   color: red;
   margin-top: 10px;
 }
-
 </style>
