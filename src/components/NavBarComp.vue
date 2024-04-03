@@ -1,108 +1,27 @@
 <template>
-  <div>
+  <div class="navbar-container" :class="{ 'navbar-open': isDropdownOpen }">
     <div class="navbar">
       <ul class="ul">
         <li class="custom-list-item">
           <RouterLink to="/">{{ $t("navbar.home") }}</RouterLink>
         </li>
-        <li class="custom-list-item">
-          <div @click="handleClick" class="custom-summary" style="color: #c5c5c5; cursor: pointer">
-            Meie tooted
-      </div>
-          <p></p>
-          
-          <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item dropdown">
-              <span class="dropdown-trigger" style="color: white;">Apple devices</span> 
-                <div class="dropdown-content">
-                 <RouterLink to="/iphone">iPhone</RouterLink>
-                  <p></p>
-                  <RouterLink to="/airpods">AirPods</RouterLink>
-                  <p></p>
-                  <RouterLink to="/mac">Mac</RouterLink>
-                  <p></p>
-                  <RouterLink to="/ipad">iPad</RouterLink>
-                  <p></p>
-                  <RouterLink to="/AppleAccessories">Accessories</RouterLink>
-                </div>
-            </li>
-          </ul>
-
-          <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item dropdown">
-              <span class="dropdown-trigger" style="color: white;">Android devices</span> 
-                <div class="dropdown-content">
-                 <RouterLink to="/iphone">Smartphones</RouterLink>
-                  <p></p>
-                  <RouterLink to="/airpods">Earphones</RouterLink>
-                  <p></p>
-                  <RouterLink to="/mac">Tablets</RouterLink>
-                  <p></p>
-                  <RouterLink to="/AppleAccessories">Accessories</RouterLink>
-                </div>
-            </li>
-          </ul>
-
-          <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item dropdown">
-              <span class="dropdown-trigger" style="color: white;">Business class computers</span> 
-                <div class="dropdown-content">
-                 <RouterLink to="/iphone">Desktops</RouterLink>
-                  <p></p>
-                  <RouterLink to="/airpods">Laptops</RouterLink>
-                </div>
-            </li>
-          </ul>
-
-          <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item dropdown">
-              <span class="dropdown-trigger" style="color: white;">Gaming computers</span> 
-                <div class="dropdown-content">
-                 <RouterLink to="/iphone">Desktops</RouterLink>
-                  <p></p>
-                  <RouterLink to="/airpods">Laptops</RouterLink>
-                </div>
-            </li>
-          </ul>
-
-          <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item dropdown">
-              <span class="dropdown-trigger" style="color: white;">Computer components</span> 
-                <div class="dropdown-content">
-                 <RouterLink to="/iphone">CPU</RouterLink>
-                  <p></p>
-                  <RouterLink to="/airpods">GPU</RouterLink>
-                  <p></p>
-                  <RouterLink to="/mac">Motherboards</RouterLink>
-                  <p></p>
-                  <RouterLink to="/ipad">RAM</RouterLink>
-                  <p></p>
-                  <RouterLink to="/ipad">Power supplying unit</RouterLink>
-                  <p></p>
-                  <RouterLink to="/AppleAccessories">Cases</RouterLink>
-                  <p></p>
-                  <RouterLink to="/ipad">Other</RouterLink>
-                </div>
-            </li>
-          </ul>
-
-          <ul class="dropdown-ul" v-show="isDropdownOpen">
-            <li class="custom-list-item dropdown">
-              <span class="dropdown-trigger" style="color: white;">Computer gear</span> 
-                <div class="dropdown-content">
-                 <RouterLink to="/iphone">Monitors</RouterLink>
-                  <p></p>
-                  <RouterLink to="/airpods">Computer mouse</RouterLink>
-                  <p></p>
-                  <RouterLink to="/mac">Mousepads</RouterLink>
-                  <p></p>
-                  <RouterLink to="/ipad">Keyboards</RouterLink>
-                  <p></p>
-                  <RouterLink to="/ipad">Other</RouterLink>
-                </div>
-            </li>
-          </ul>
-
+        <li class="custom-list-item" @mouseover="handleMouseover('iphone')" @mouseleave="handleMouseleave">
+          <RouterLink to="/iphone">{{ $t("navbar.iphone") }}</RouterLink>
+          <div class="dropdown-ul" v-show="activeDropdown === 'iphone'">
+            <!-- List of iPhone products -->
+          </div>
+        </li>
+        <li class="custom-list-item" @mouseover="handleMouseover('mac')" @mouseleave="handleMouseleave">
+          <RouterLink to="/mac">{{ $t("navbar.mac") }}</RouterLink>
+          <div class="dropdown-ul" v-show="activeDropdown === 'mac'">
+            <!-- List of Mac products -->
+          </div>
+        </li>
+        <li class="custom-list-item" @mouseover="handleMouseover('airpods')" @mouseleave="handleMouseleave">
+          <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
+          <div class="dropdown-ul" v-show="activeDropdown === 'airpods'">
+            <!-- List of AirPods products -->
+          </div>
         </li>
         <li class="custom-list-item">
           <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
@@ -168,7 +87,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref,computed } from "vue";
+import { ref, computed } from "vue";
 import { useCartStore } from "@/stores/cart";
 import { setLocale } from "@/config/18n.config";
 import i18n from "@/config/18n.config";
@@ -176,11 +95,15 @@ import i18n from "@/config/18n.config";
 const activeLang = computed(() => {
   return i18n.global.locale.value;
 });
+
 let isDropdownOpen = ref(false);
 
-const handleClick = () => {
-  isDropdownOpen.value = !isDropdownOpen.value;
-  console.log('Dropdown clicked, isDropdownOpen:', isDropdownOpen.value);
+const handleMouseover = () => {
+  this.activeDropdown = dropdown;
+};
+
+const handleMouseleave = () => {
+  this.activeDropdown = null;
 };
 const cart = useCartStore();
 
@@ -197,12 +120,28 @@ const totalPrice = computed(() => {
 
 <style scoped>
 .navbar {
-  position: relative; /* Add this line */
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center; /* Add this line */
   background-color: #1e1e1e;
   font-size: 14px;
+}
+.navbar-container {
+  position: relative;
+}
+.nav-link {
+  background-color: #1e1e1e;
+  text-decoration: none;
+  font-weight: 400;
+  outline: none;
+  margin-top: -10px;
+  color: #c5c5c5;
+}
+.nav-link:hover {
+  color: #ffffff; /* Set the hover color */
+}
+.navbar-open {
+  background-color: #1e1e1e; /* Or any color you want */
 }
 .navbar-user {
   margin-top: 24px;
@@ -225,35 +164,40 @@ a:hover {
   font-weight: 500;
 }
 
+.ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+.dropdown-ul {
+  position: relative;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e1e;
+}
+.custom-list-item {
+  position: relative;
+  padding: 10px;
+}
+
 @media screen and (min-width: 600px) {
   .navbar-user {
-    padding-left: 8rem;
+    padding-left: 4rem;
   }
 }
 
 @media screen and (min-width: 900px) {
   .navbar-user {
-    padding-left: 30rem;
+    padding-left: 15rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .navbar-user {
-    padding-left: 48rem;
+    padding-left: 24rem;
   }
-}
-
-.ul {
-  list-style: none;
-  display: flex;
-  gap: 16px;
-}
-.dropdown-ul {
-  padding-left: 8px;
-  margin-top: 5px;
-}
-
-.custom-list-item {
-  padding: 10px;
 }
 </style>
