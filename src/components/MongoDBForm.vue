@@ -1,45 +1,42 @@
 <template>
-    <div class="container">
-      <div v-for="(header, index) in headers" :key="index" class="input-group">
-        <h3>{{ header }}</h3>
-        <div v-if="header === 'Memory:'" class="memory-input-group">
-          <input 
-            list="memory-options" 
-            v-model="formData[header]"
-            placeholder="Enter or select memory size"
-            class="text-input"
-          />
-          <datalist id="memory-options">
-            <option v-for="memorySize in memoryOptions" :key="memorySize" :value="memorySize">{{ memorySize }} GB</option>
-          </datalist>
-        </div>
-        <div v-else-if="header === 'Color:'" class="color-input-group">
-          <select 
-            v-model="formData[header]" 
-            class="text-input"
-          >
-            <option disabled value="">Select color</option>
-            <option v-for="color in colors" :key="color" :value="color">{{ color }}</option>
-          </select>
-          <button 
-            v-if="formData[header]" 
-            @click="removeColor(header)" 
-            class="remove-color-btn"
-          >Remove</button>
-        </div>
+  <div class="container">
+    <div v-for="(header, index) in headers" :key="index" class="input-group">
+      <h3>{{ header }}</h3>
+      <div v-if="header === 'Memory:'" class="memory-input-group">
         <input 
-          v-else
-          :type="getInputType(header)" 
+          list="memory-options" 
           v-model="formData[header]"
-          :required="isRequiredField(header)"
-          @input="inputChanged(header, $event.target.value)" 
+          placeholder="Enter or select memory size"
           class="text-input"
         />
+        <datalist id="memory-options">
+          <option v-for="memorySize in memoryOptions" :key="memorySize" :value="memorySize">{{ memorySize }} GB</option>
+        </datalist>
       </div>
-      <button @click="submitForm" class="insert-btn">Insert</button>
-      <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
-      <div v-if="showRequiredFieldMessage" class="required-field-message">Please fill in all required fields.</div>
+      <div v-else-if="header === 'Color:'" class="color-input-group">
+        <input 
+          list="color-options" 
+          v-model="formData[header]"
+          placeholder="Enter or select color"
+          class="text-input"
+        />
+        <datalist id="color-options">
+          <option v-for="color in colors" :key="color" :value="color">{{ color }}</option>
+        </datalist>
+      </div>
+      <input 
+        v-else
+        :type="getInputType(header)" 
+        v-model="formData[header]"
+        :required="isRequiredField(header)"
+        @input="inputChanged(header, $event.target.value)" 
+        class="text-input"
+      />
     </div>
+    <button @click="submitForm" class="insert-btn">Insert</button>
+    <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
+    <div v-if="showRequiredFieldMessage" class="required-field-message">Please fill in all required fields.</div>
+  </div>
 </template>
   
 
@@ -154,7 +151,7 @@ export default {
     padding: 10px 20px;
     border-radius: 15px;
     border: none;
-    background-color: #007bff;
+    background-color: #12d453;
     color: white;
     cursor: pointer;
   }
@@ -165,20 +162,6 @@ export default {
     position: relative;
     width: 300px;
   }
-
-.remove-color-btn {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  color: #333;
-  cursor: pointer;
-}
-
-.remove-color-btn:hover {
-  background-color: #e6e6e6;
-}
 
 .insertion-complete {
   position: absolute;

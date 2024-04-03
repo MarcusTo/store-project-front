@@ -26,6 +26,9 @@
         <li class="custom-list-item">
           <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
         </li>
+        <li class="custom-list-item">
+          <RouterLink to="/ProductsDatabase">{{ $t("Products Database") }}</RouterLink>
+        </li>
       </ul>
       <div class="navbar-user">
         <div>
