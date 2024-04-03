@@ -28,9 +28,9 @@
             <span v-if="product.category !== 'airpods'">{{
               formatMemory(product.memory)
             }}</span>
-            <span v-if="product.selectedColor">{{
+            <!-- <span v-if="product.selectedColor">{{
               product.selectedColor.value
-            }}</span>
+            }}</span> -->
             <div class="quantity-control">
               <Button
                 class="pi pi-plus"

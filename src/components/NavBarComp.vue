@@ -1,21 +1,33 @@
 <template>
-  <div>
+  <div class="navbar-container" :class="{ 'navbar-open': isDropdownOpen }">
     <div class="navbar">
       <ul class="ul">
         <li class="custom-list-item">
           <RouterLink to="/">{{ $t("navbar.home") }}</RouterLink>
         </li>
-        <li class="custom-list-item">
+        <li class="custom-list-item" @mouseover="handleMouseover('iphone')" @mouseleave="handleMouseleave">
           <RouterLink to="/iphone">{{ $t("navbar.iphone") }}</RouterLink>
+          <div class="dropdown-ul" v-show="activeDropdown === 'iphone'">
+            <!-- List of iPhone products -->
+          </div>
         </li>
-        <li class="custom-list-item">
-          <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
-        </li>
-        <li class="custom-list-item">
+        <li class="custom-list-item" @mouseover="handleMouseover('mac')" @mouseleave="handleMouseleave">
           <RouterLink to="/mac">{{ $t("navbar.mac") }}</RouterLink>
+          <div class="dropdown-ul" v-show="activeDropdown === 'mac'">
+            <!-- List of Mac products -->
+          </div>
+        </li>
+        <li class="custom-list-item" @mouseover="handleMouseover('airpods')" @mouseleave="handleMouseleave">
+          <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
+          <div class="dropdown-ul" v-show="activeDropdown === 'airpods'">
+            <!-- List of AirPods products -->
+          </div>
         </li>
         <li class="custom-list-item">
           <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
+        </li>
+        <li class="custom-list-item">
+          <RouterLink to="/ProductsDatabase">{{ $t("Products Database") }}</RouterLink>
         </li>
       </ul>
       <div class="navbar-user">
@@ -62,13 +74,14 @@
           </ul>
         </div>
       </div>
-      <div>
+      <div class="cart-container">
         <button class="cart-button">
-          <RouterLink style="font-weight: 500;" to="/cartView" class="nav-bar__router-link">
-            <i
-              class="pi pi-shopping-bag"
-            >
-            </i>
+          <RouterLink
+            style="font-weight: 500"
+            to="/cartView"
+            class="nav-bar__router-link"
+          >
+            <i class="pi pi-shopping-bag" style="margin-right: 5px"> </i>
             {{ isCartEmpty ? "" : `${totalPrice.toFixed(2)} €` }}
           </RouterLink>
         </button>
@@ -77,7 +90,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { useCartStore } from "@/stores/cart";
 import { setLocale } from "@/config/18n.config";
 import i18n from "@/config/18n.config";
@@ -86,6 +99,15 @@ const activeLang = computed(() => {
   return i18n.global.locale.value;
 });
 
+let isDropdownOpen = ref(false);
+
+const handleMouseover = () => {
+  this.activeDropdown = dropdown;
+};
+
+const handleMouseleave = () => {
+  this.activeDropdown = null;
+};
 const cart = useCartStore();
 
 const isCartEmpty = computed(() => {
@@ -99,13 +121,36 @@ const totalPrice = computed(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .navbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1E1E1E; /* Dark grey background navbar background color */
+  justify-content: center; /* Add this line */
+  background-color: #1e1e1e;
   font-size: 14px;
+}
+.navbar-container {
+  position: relative;
+}
+.nav-link {
+  background-color: #1e1e1e;
+  text-decoration: none;
+  font-weight: 400;
+  outline: none;
+  margin-top: -10px;
+  color: #c5c5c5;
+}
+.nav-link:hover {
+  color: #ffffff; /* Set the hover color */
+}
+.navbar-open {
+  background-color: #1e1e1e; /* Or any color you want */
+}
+.navbar-user {
+  margin-top: 24px;
+}
+.cart-container {
+  margin-top: 15px;
 }
 a {
   font-weight: 400;
@@ -113,7 +158,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #ffffff; /* Darker blue */
+  color: #ffffff;
 }
 .cart-button {
   background-color: #0051a8;
@@ -122,41 +167,40 @@ a:hover {
   font-weight: 500;
 }
 
-.navbar-user {
-  padding-left: 2rem; /* Default to a small padding */
+.ul {
+  list-style: none;
   display: flex;
-  justify-content: flex-end;
-  color: #fff; /* White text color */
+  gap: 16px;
+  justify-content: center;
+}
+.dropdown-ul {
+  position: relative;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e1e;
+}
+.custom-list-item {
+  position: relative;
+  padding: 10px;
 }
 
-/* Increase padding when viewport is 600px or wider */
 @media screen and (min-width: 600px) {
   .navbar-user {
-    padding-left: 8rem;
+    padding-left: 4rem;
   }
 }
 
-/* Increase padding when viewport is 900px or wider */
 @media screen and (min-width: 900px) {
   .navbar-user {
-    padding-left: 30rem;
+    padding-left: 15rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .navbar-user {
-    padding-left: 48rem;
+    padding-left: 24rem;
   }
-}
-
-.ul {
-  list-style: none;
-  display: flex;
-  gap: 16px;
-}
-
-.custom-list-item {
-  padding: 10px;
-  color: #0070c9; /* Apple blue text color */
 }
 </style>

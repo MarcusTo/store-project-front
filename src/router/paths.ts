@@ -27,6 +27,7 @@ export enum ROUTE_PATHS {
   ORDERS = "/orders",
   ABOUT = "/about",
   CONTACT = "/contact",
+  ProductsDatabase = "/ProductsDatabase"
 }
 
 export default { ROUTE_PATHS };

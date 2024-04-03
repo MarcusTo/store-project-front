@@ -17,10 +17,12 @@ Welcome to your one-stop destination for premium electronic products and service
 ## Overview and Features
 
 - **Extensive Product Catalog:**
-  - Iphones 
-  - Airpods 
-  - Mac laptops and iMacs
-  - Apple Accessories
+  - Apple devices, Apple accessories 
+  - Android devices
+  - Windows computers
+  - Computer parts
+  - Accessories for your electronic devices
+  - Other computer related items
 
 - **Service Offerings:**
   - Repairs
@@ -33,9 +35,6 @@ Welcome to your one-stop destination for premium electronic products and service
 - **Product Reviews and Ratings:**
   - Customer feedback system
 
-- **Secure Payment Options:**
-  - Integration with secure payment gateways
-
 ## Getting Started
 
 ### Prerequisites
@@ -43,7 +42,9 @@ Welcome to your one-stop destination for premium electronic products and service
 Make sure you have the following installed:
 
 - [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
+- [npm - Node Package Manager](https://www.npmjs.com/) 
+- [MongoDB Compass](https://www.mongodb.com/products/tools/compass)
+- [MongoDB Shell - mongosh](https://www.mongodb.com/docs/mongodb-shell/)
 
 ### Installation
 
@@ -56,27 +57,49 @@ Make sure you have the following installed:
 2. Navigate to the project directory:
 
     ```bash
-    cd -
+    cd store-project
     ```
 
-3. Install dependencies:
+3. Install dependencies in the project directory:
 
     ```bash
     npm install
     ```
 
-## Usage
-
-1. Start the development server:
-
     ```bash
-    npm run dev
+    npm i mongoose
     ```
 
-2. Open your browser and visit `http://localhost:8080/5173` to view the website.
+## Usage
+
+1. Start MongoDB compass:
+   - In MongoDB compass, start a new connection to your database. Enter the following URI:
+   - Replace USERNAME, PASSWORD and SERVER with your server information.
+
+    ```bash
+    mongodb+srv://(USERNAME:PASSWORD)@(SERVER).hcbcpka.mongodb.net
+    ```
+    
+2. Open mongosh console and enter the following connection string: 
+
+    ```bash
+    mongodb+srv://(USERNAME:PASSWORD)@(SERVER).hcbcpka.mongodb.net
+    ```
+    
+3. Navigate to project server folder and start the development server:
+
+     ```bash
+    cd server
+    ```
+    
+    ```bash
+    npm start
+    ```
+
+4. Open your browser and visit `http://localhost:8080/5173` to view the website.
 ## ERD Diagram
 
-[ERD](https://lucid.app/lucidchart/94fc75a8-376e-4b6c-a7e4-be09b4ad5262/edit?beaconFlowId=C1E2FAEE5B2DC0FF&page=0_0&invitationId=inv_906ba416-a3d9-43cf-a15e-069f24c32c5a#)
+[ERD Diagram](https://lucid.app/lucidchart/94fc75a8-376e-4b6c-a7e4-be09b4ad5262/edit?beaconFlowId=C1E2FAEE5B2DC0FF&page=0_0&invitationId=inv_906ba416-a3d9-43cf-a15e-069f24c32c5a#)
 
 
 ## License

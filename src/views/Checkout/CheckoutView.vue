@@ -41,20 +41,11 @@
             placeholder="Lisainfo"
           />
         </div>
-      </div>
-      <div class="payment-info">
-        <InputText
-          v-model="userInfo.creditCardNumber"
-          placeholder="Enter your credit card number"
-        />
-        <InputText
-          v-model="userInfo.expirationDate"
-          placeholder="Enter your expiration date (MM/YY)"
-        />
-        <InputText v-model="userInfo.cvv" placeholder="Enter your CVV" />
+        <div class="payment-info">
+          <div id="card-element" />
+        </div>
       </div>
     </div>
-    <div class="card-info"></div>
   </form>
   <div class="total-price">
     <h2>Total Price: €{{ totalPrice.toFixed(2) }}</h2>
@@ -67,13 +58,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import NavBarComp from "@/components/NavBarComp.vue";
 import Button from "primevue/button";
 import { useCartStore } from "@/stores/cart";
 import InputText from "primevue/inputtext";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const cart = useCartStore();
 
@@ -84,46 +77,41 @@ const totalPrice = computed(() => {
   );
 });
 
-const userInfo = ref({
-  name: "",
-  email: "",
-  phoneNumber: "",
-  address: "",
-  info: "",
-  creditCardNumber: "", // New field
-  expirationDate: "", // New field
-  cvv: "", // New field
-  errors: {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    info: "",
-    creditCardNumber: "", // New field
-    expirationDate: "", // New field
-    cvv: "", // New field
-  },
+let stripe, elements, cardElement;
+
+onMounted(async () => {
+  stripe = await loadStripe("your-publishable-key");
+  elements = stripe.elements();
+  cardElement = elements.create("card");
+  cardElement.mount("#card-element");
 });
 
-const validateForm = () => {
-  // New validation logic
-  userInfo.value.errors.creditCardNumber = userInfo.value.creditCardNumber
-    ? ""
-    : "Credit card number is required";
-  userInfo.value.errors.expirationDate = userInfo.value.expirationDate
-    ? ""
-    : "Expiration date is required";
-  userInfo.value.errors.cvv = userInfo.value.cvv ? "" : "CVV is required";
+const handlePayment = async () => {
+  const { paymentMethod, error } = await stripe.createPaymentMethod({
+    type: "card",
+    card: cardElement,
+  });
 
-  userInfo.value.valid = Object.values(userInfo.value.errors).every((x) => !x);
+  if (error) {
+    // Handle error...
+  } else {
+    // Send paymentMethod.id to your server...
+  }
 };
+
 const { t } = useI18n();
 </script>
 
 <style scoped>
 .info-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: 5px;
+}
+.payment-info{
+  margin-top: 24px;
 }
 .container {
   display: flex;
@@ -142,7 +130,7 @@ const { t } = useI18n();
   padding-left: 10px;
 }
 .button {
-  display: flex;
+  display: relative;
   justify-content: center;
   align-items: center;
   width: 140px;
@@ -167,7 +155,7 @@ const { t } = useI18n();
 .input-container {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 450px;
   gap: 15px;
 }
 .checkout-title {
