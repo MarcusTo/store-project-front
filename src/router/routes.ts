@@ -33,6 +33,21 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_PATHS.NEW_MAC,
     component: () => import("@/views/MacBook/NewMacView.vue"),
   },
+  {
+    path: ROUTE_PATHS.COMPONENTS,
+    name: ROUTE_PATHS.COMPONENTS,
+    component: () => import("@/views/ComputerComponents/Component.vue"),
+  },
+  {
+    path: ROUTE_PATHS.ALLCOMPONENTS,
+    name: ROUTE_PATHS.ALLCOMPONENTS,
+    component: () => import("@/views/ComputerComponents/AllComponents.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_MAC,
+    name: ROUTE_PATHS.NEW_MAC,
+    component: () => import("@/views/MacBook/NewMacView.vue"),
+  },
   
 
   //End of Product Routes - Beginning of Other Routes
@@ -46,11 +61,6 @@ const routes: Array<RouteRecordRaw> = [
     path: ROUTE_PATHS.ABOUT,
     name: ROUTE_PATHS.ABOUT,
     component: () => import("@/views/Other/About.vue"),
-  },
-  {
-    path: ROUTE_PATHS.PRODUCTS,
-    name: ROUTE_PATHS.PRODUCTS,
-    component: () => import("@/views/Other/Product.vue"),
   },
   {
     path: ROUTE_PATHS.SERVICES,
