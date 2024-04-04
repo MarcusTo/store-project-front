@@ -8,26 +8,23 @@
         <li class="custom-list-item" @mouseover="handleMouseover('iphone')" @mouseleave="handleMouseleave">
           <RouterLink to="/iphone">{{ $t("navbar.iphone") }}</RouterLink>
           <div class="dropdown-ul" v-show="activeDropdown === 'iphone'">
-            <!-- List of iPhone products -->
           </div>
         </li>
         <li class="custom-list-item" @mouseover="handleMouseover('mac')" @mouseleave="handleMouseleave">
           <RouterLink to="/mac">{{ $t("navbar.mac") }}</RouterLink>
           <div class="dropdown-ul" v-show="activeDropdown === 'mac'">
-            <!-- List of Mac products -->
           </div>
         </li>
         <li class="custom-list-item" @mouseover="handleMouseover('airpods')" @mouseleave="handleMouseleave">
           <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
           <div class="dropdown-ul" v-show="activeDropdown === 'airpods'">
-            <!-- List of AirPods products -->
           </div>
         </li>
         <li class="custom-list-item">
           <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
         </li>
         <li class="custom-list-item">
-          <RouterLink to="/ProductsDatabase">{{ $t("Products Database") }}</RouterLink>
+          <RouterLink to="/ProductsDatabase">{{ $t("addProducts") }}</RouterLink>
         </li>
       </ul>
       <div class="navbar-user">
@@ -123,67 +120,36 @@ const totalPrice = computed(() => {
 
 <style scoped>
 .navbar {
-  position: relative;
   display: flex;
   justify-content: center; /* Add this line */
-  background-color: #1e1e1e;
+  background-color: #676666;
   font-size: 14px;
-}
-.navbar-container {
-  position: relative;
-}
-.nav-link {
-  background-color: #1e1e1e;
-  text-decoration: none;
-  font-weight: 400;
-  outline: none;
-  margin-top: -10px;
-  color: #c5c5c5;
-}
-.nav-link:hover {
-  color: #ffffff; /* Set the hover color */
-}
-.navbar-open {
-  background-color: #1e1e1e; /* Or any color you want */
 }
 .navbar-user {
   margin-top: 24px;
 }
 .cart-container {
-  margin-top: 15px;
+  margin-top: 16px;
 }
 a {
-  font-weight: 400;
-  color: #c5c5c5;
-  text-decoration: inherit;
+  font-weight: 500;
+  color: #d5d5d5;
 }
 a:hover {
   color: #ffffff;
 }
 .cart-button {
   background-color: #0051a8;
-  display: flex;
-  margin-right: 50px;
   font-weight: 500;
 }
-
 .ul {
+  display: flex;
   list-style: none;
-  display: flex;
   gap: 16px;
-  justify-content: center;
-}
-.dropdown-ul {
-  position: relative;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #1e1e1e;
 }
 .custom-list-item {
-  position: relative;
-  padding: 10px;
+  display: flex;
+  padding: 14px;
 }
 
 @media screen and (min-width: 600px) {
