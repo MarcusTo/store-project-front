@@ -2,24 +2,27 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors")
+const bodyParser = require('body-parser');
 const Product = require("./models/product.model.js");
 const productRoute = require("./routes/product.routes.js");
 const userRoute = require("./routes/user.routes.js");
 const authRoute = require("./routes/auth.js");
 const cartRoute = require("./routes/cart.routes.js");
-const orderRoute = require("./routes/order.routes.js");
+const invoiceRoute = require("./routes/invoice.routes.js");
 const stripeRoute = require("./routes/stripe.js");
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
+app.use(bodyParser.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
-app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
+app.use("/api/invoices", invoiceRoute);
+
 
 app.post('/', (req, res) => {
   const requestData = req.body; 

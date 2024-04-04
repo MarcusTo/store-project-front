@@ -69,7 +69,7 @@
         </h2>
         <div class="button-container">
           <router-link :to="`/checkout`">
-            <Button style="background-color: #0070c9">
+            <Button style="background-color: #0070c9" @click="checkout">
               Vormista Tellimus
             </Button>
           </router-link>
@@ -97,17 +97,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useCartStore } from "@/stores/cart";
 import NavBarComp from "@/components/NavBarComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 
+const { t } = useI18n();
+
+const router = useRoute();
 const route = useRoute();
+
 const cart = useCartStore();
 
-const { t } = useI18n();
+const product = ref(null);
+
 const totalPrice = computed(() => {
   return cart.cartItems.reduce(
     (total, product) => total + product.price * product.quantity,
@@ -119,6 +125,14 @@ const removeFromCart = (product) => {
 };
 const formatMemory = (memory) => {
   return memory === 1 ? `${memory} TB` : `${memory} GB`;
+};
+
+const store = useStore();
+const checkout = () => {
+  // Set the cart items in the store
+  store.cart.setCartItems(cart.cartItems);
+  // Navigate to the checkout view
+  router.push("/checkout");
 };
 
 onMounted(async () => {

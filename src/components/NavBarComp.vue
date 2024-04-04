@@ -5,71 +5,84 @@
         <li class="custom-list-item">
           <RouterLink to="/">{{ $t("navbar.home") }}</RouterLink>
         </li>
-        <li class="custom-list-item" @mouseover="handleMouseover('iphone')" @mouseleave="handleMouseleave">
+        <li
+          class="custom-list-item"
+          @mouseover="handleMouseover('iphone')"
+          @mouseleave="handleMouseleave"
+        >
           <RouterLink to="/iphone">{{ $t("navbar.iphone") }}</RouterLink>
-          <div class="dropdown-ul" v-show="activeDropdown === 'iphone'">
-          </div>
         </li>
-        <li class="custom-list-item" @mouseover="handleMouseover('mac')" @mouseleave="handleMouseleave">
+        <li
+          class="custom-list-item"
+          @mouseover="handleMouseover('mac')"
+          @mouseleave="handleMouseleave"
+        >
           <RouterLink to="/mac">{{ $t("navbar.mac") }}</RouterLink>
-          <div class="dropdown-ul" v-show="activeDropdown === 'mac'">
-          </div>
         </li>
-        <li class="custom-list-item" @mouseover="handleMouseover('airpods')" @mouseleave="handleMouseleave">
+        <li
+          class="custom-list-item"
+          @mouseover="handleMouseover('airpods')"
+          @mouseleave="handleMouseleave"
+        >
           <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
-          <div class="dropdown-ul" v-show="activeDropdown === 'airpods'">
-          </div>
         </li>
         <li class="custom-list-item">
           <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
         </li>
         <li class="custom-list-item">
-          <RouterLink to="/ProductsDatabase">{{ $t("addProducts") }}</RouterLink>
+          <RouterLink to="/ProductsDatabase">{{
+            $t("addProducts")
+          }}</RouterLink>
         </li>
       </ul>
-      <div class="navbar-user">
-        <div>
-          <ul style="list-style: none; margin: 0; padding: 0; display: flex">
-            <div
-              :style="{
-                'font-weight': activeLang === 'et' ? 'bold' : 'normal',
-                color: '#4B5563',
-                display: 'flex',
-                alignItems: 'center',
-                width: '50px',
-              }"
-              @click="setLocale('et')"
-            >
-              <li>
-                <img
-                  src="/img/flags/estonia.png"
-                  style="
-                    padding-right: 18px;
-                    padding-left: 6px;
-                    width: 15px;
-                    height: 15px;
-                  "
-                />
-              </li>
-            </div>
-            <div
-              :style="{
-                'font-weight': activeLang === 'en' ? 'bold' : 'normal',
-                color: '#4B5563',
-                display: 'flex',
-                alignItems: 'center',
-              }"
-              @click="setLocale('en')"
-            >
-              <li>
-                <img
-                  src="/img/flags/united-kingdom-rounded.png"
-                  style="padding-right: 10px; padding-left: 6px; width: 15px"
-                />
-              </li>
-            </div>
-          </ul>
-        </div>
+      <div class="navbar-user" >
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex">
+          <div
+            :style="{
+              'font-weight': activeLang === 'et' ? 'bold' : 'normal',
+              color: '#4B5563',
+              display: 'flex',
+              alignItems: 'center',
+              width: '50px',
+            }"
+            @click="setLocale('et')"
+          >
+            <li>
+              <img
+                src="/img/flags/ee-flag-square.png"
+                style="
+                  padding-right: 18px;
+                  padding-left: 6px;
+                  width: 15px;
+                  height: 18px;
+                "
+              />
+              EE
+            </li>
+          </div>
+          <div
+            :style="{
+              'font-weight': activeLang === 'en' ? 'bold' : 'normal',
+              color: '#4B5563',
+              display: 'flex',
+              alignItems: 'center',
+            }"
+            @click="setLocale('en')"
+          >
+            <li>
+              <img
+                src="/img/flags/uk-flag-square.png"
+                style="
+                  padding-right: 10px;
+                  padding-left: 6px;
+                  width: 15px;
+                  height: 18px;
+                "
+              />
+              EN
+            </li>
+          </div>
+        </ul>
       </div>
       <div class="cart-container">
         <button class="cart-button">
@@ -78,7 +91,7 @@
             to="/cartView"
             class="nav-bar__router-link"
           >
-            <i class="pi pi-shopping-bag" style="margin-right: 5px"> </i>
+            <i class="pi pi-shopping-bag"> </i>
             {{ isCartEmpty ? "" : `${totalPrice.toFixed(2)} €` }}
           </RouterLink>
         </button>
@@ -92,19 +105,14 @@ import { useCartStore } from "@/stores/cart";
 import { setLocale } from "@/config/18n.config";
 import i18n from "@/config/18n.config";
 
+const isLangDropdownActive = ref(false);
+
+function toggleLangDropdown() {
+  isLangDropdownActive.value = !isLangDropdownActive.value;
+}
 const activeLang = computed(() => {
   return i18n.global.locale.value;
 });
-
-let isDropdownOpen = ref(false);
-
-const handleMouseover = () => {
-  this.activeDropdown = dropdown;
-};
-
-const handleMouseleave = () => {
-  this.activeDropdown = null;
-};
 const cart = useCartStore();
 
 const isCartEmpty = computed(() => {
