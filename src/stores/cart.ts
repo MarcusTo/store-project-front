@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import axios from 'axios'; 
 
 export const useCartStore = defineStore('cart', {
   state: () => ({
@@ -33,6 +34,23 @@ export const useCartStore = defineStore('cart', {
       if (existingItem && existingItem.quantity > 1) {
         existingItem.quantity--;
         localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+      }
+    },
+    async createInvoice(invoiceInfo) {
+      try {
+        const invoice = {
+          ...invoiceInfo,
+          products: this.cartItems
+        };
+
+        const response = await axios.post('http://localhost:3000/api/invoices', invoice);
+
+        this.cartItems = [];
+        localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+
+        return response.data;
+      } catch (error) {
+        console.error(error);
       }
     }
   }

@@ -52,6 +52,7 @@ const routes: Array<RouteRecordRaw> = [
 
   //End of Product Routes - Beginning of Other Routes
 
+  
   {
     path: ROUTE_PATHS.HOME,
     name: ROUTE_PATHS.HOME,
