@@ -37,12 +37,6 @@
           <InputText
             class="custom-text"
             type="text"
-            v-model="postalCode"
-            placeholder="Postal Code"
-          />
-          <InputText
-            class="custom-text"
-            type="text"
             v-model="info"
             placeholder="Lisainfo"
           />
@@ -58,7 +52,7 @@
   </div>
 
   <div class="submit-button">
-    <Button class="button" @click="handlePayment">Maksma</Button>
+    <Button class="button">Maksma</Button>
   </div>
   <FooterComp />
 </template>
@@ -72,16 +66,10 @@ import InputText from "primevue/inputtext";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
 import { loadStripe } from "@stripe/stripe-js";
-import axios from "axios";
-
-let name = ref("");
-let mail = ref("");
-let phoneNumber = ref("");
-let address = ref("");
-let info = ref("");
-let postalCode = ref("");
+import { Elements } from "@stripe/react-stripe-js";
 
 const cart = useCartStore();
+
 const totalPrice = computed(() => {
   return cart.cartItems.reduce(
     (total, product) => total + product.price * product.quantity,
@@ -89,13 +77,10 @@ const totalPrice = computed(() => {
   );
 });
 
-let stripe,
- elements, cardElement;
+let stripe, elements, cardElement;
 
 onMounted(async () => {
-  stripe = await loadStripe(
-    "pk_test_51OubecP2tPS1IlS7XDaO4Q0sEpFzyc3XAyKG5zqfJeNRSwloriYnCbwKjWo1MSlsaeFz6hb2p7ARJTpjc4XjhJ4q00ZjTCds6R"
-  );
+  stripe = await loadStripe("your-publishable-key");
   elements = stripe.elements();
   cardElement = elements.create("card");
   cardElement.mount("#card-element");
@@ -105,37 +90,12 @@ const handlePayment = async () => {
   const { paymentMethod, error } = await stripe.createPaymentMethod({
     type: "card",
     card: cardElement,
-    billing_details: {
-      address: {
-        postal_code: postalCode.value,
-      },
-    },
   });
 
   if (error) {
-    console.log(error);
+    // Handle error...
   } else {
-    const order = {
-      name: name.value,
-      mail: mail.value,
-      phoneNumber: phoneNumber.value,
-      address: address.value,
-      info: info.value,
-      products: cart.cartItems.value, // Use the cart instance to access the cart items
-      totalPrice: totalPrice.value,
-      postal_code: postalCode.value,
-      paymentMethodId: paymentMethod.id,
-    };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/invoices",
-        order
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.log("Error sending payment method ID to server:", error);
-    }
+    // Send paymentMethod.id to your server...
   }
 };
 
@@ -150,7 +110,7 @@ const { t } = useI18n();
   flex-direction: column;
   gap: 5px;
 }
-.payment-info {
+.payment-info{
   margin-top: 24px;
 }
 .container {

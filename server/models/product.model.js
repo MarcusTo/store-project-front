@@ -2,12 +2,9 @@ const mongoose = require("mongoose");
 
 const ProductSchema = mongoose.Schema(
   {
-    userId: { 
-      type: String, 
-      required: true 
-    },
     name: {
       type: String,
+      required: [true, "Please enter product name"],
     },
     price: {
        type: Number,
