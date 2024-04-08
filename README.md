@@ -5,14 +5,12 @@ Welcome to your one-stop destination for premium electronic products and service
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Getting Started](#getting-started)
+1. [Overview and Features](#overview)
+2. [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [License](#license)
+3. [Usage](#usage)
+4. [License](#license)
 
 ## Overview and Features
 
