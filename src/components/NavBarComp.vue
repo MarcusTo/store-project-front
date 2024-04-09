@@ -128,16 +128,23 @@ export default defineComponent({
 .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+  width: 100%; 
+  position: relative;
 }
 
-.nav-links,
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
 .nav-extra {
   list-style: none;
   display: flex;
   gap: 30px;
-  padding-left: 630px;
 }
 
 .icon {
@@ -155,10 +162,12 @@ export default defineComponent({
 }
 
 .burger {
+  position: absolute;
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
+  left: 3.5%;
 }
 
 .menu {
@@ -187,18 +196,18 @@ export default defineComponent({
 .sidebar-header {
   display: flex;
   align-items: center;
-  gap: 10px; /* Adjust the gap between elements as needed */
-  padding-bottom: 15px; /* Adds some space below the header */
-  border-bottom: 1px solid #fff; /* Optional: adds a separator */
+  gap: 10px; 
+  padding-bottom: 15px; 
+  border-bottom: 1px solid #fff; 
 }
 
 .sidebar-title {
   color: #fff;
-  font-size: 20px; /* Adjust based on your preference */
+  font-size: 20px; 
   font-weight: bold;
   margin: 0;
-  flex-grow: 1; /* Ensures the title takes up any remaining space */
-  text-align: left; /* Aligns the title to the left */
+  flex-grow: 1; 
+  text-align: left; 
 }
 
 .sidebar-logo {
@@ -213,10 +222,9 @@ export default defineComponent({
   gap: 20px;
   overflow-y: auto; 
   max-height: calc(100vh - 60px); 
-  
-  
   scrollbar-width: none; 
   -ms-overflow-style: none; 
+  transition: transform 0.3s ease;
 }
 
 .sidebar-content::-webkit-scrollbar {
@@ -235,6 +243,7 @@ export default defineComponent({
 .sidebar-link {
   color: #fff;
   text-decoration: none;
+  transition: transform 0.3s ease;
 }
 
 .back-button {
@@ -248,6 +257,9 @@ export default defineComponent({
   font-size: 25px; 
   padding: 5px; 
   z-index: 2; 
+  transform: rotate(360deg);
+  transition: transform 0.3s ease;
+
 }
 
 .dropdown {
@@ -255,23 +267,27 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: transform 0.3s ease;
 }
 
 .dropdown-content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   padding-left: 20px; 
+  transition: transform 0.3s ease;
 }
 
 .nested-dropdown-content {
   display: flex;
   flex-direction: column;
   gap: 10px; 
+  transition: transform 0.3s ease;
 }
-
 
 .pi-chevron-up {
   transform: rotate(180deg);
+  transition: transform 0.3s ease;
 }
+
 </style>
