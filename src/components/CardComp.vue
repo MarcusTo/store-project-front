@@ -62,7 +62,7 @@ const { t } = useI18n();
   border-radius: 24px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
   padding: 1rem;
-  width: 80%; /* Adjust this to your liking */
+  width: 80%; 
   margin: auto;
 }
 .cards {

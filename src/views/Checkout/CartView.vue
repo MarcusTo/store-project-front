@@ -90,7 +90,7 @@
       </div>
     </div>
     <div class="empty-cart" v-if="cart.cartItems.length === 0">
-      <img src="/img/cart_placeholder.svg" />
+      <img src="/img/other/cart_placeholder.svg" />
     </div>
   </div>
   <FooterComp />

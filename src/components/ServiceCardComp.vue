@@ -13,7 +13,7 @@
         <Card>
           <template #content>
             <div class="card-content">
-              <img src="/img/speed-service.png" style="width: 100px; height: 100px" />
+              <img src="/img/other/speed-service.png" style="width: 100px; height: 100px" />
               <p class="m-0" style="max-width: 200px; text-align: center;">
                 {{ t("warranty.warrantyText") }}
               </p>
@@ -23,7 +23,7 @@
         <Card>
           <template #content>
             <div class="card-content">
-              <img src="/img/trophy-service.svg" style="width: 100px; height: 100px;" />
+              <img src="/img/other/trophy-service.svg" style="width: 100px; height: 100px;" />
               <p class="m-0" style="max-width: 200px; text-align: center;">
                 {{ t("warranty.warrantyText1") }}
               </p>
@@ -51,7 +51,7 @@ const { t } = useI18n();
   border-radius: 24px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
   padding: 1rem;
-  width: 80%; /* Adjust this to your liking */
+  width: 80%; 
   margin: auto;
 }
 .card {

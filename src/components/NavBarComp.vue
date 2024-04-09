@@ -32,9 +32,11 @@
             <div v-if="isAndroidDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="/samsung" class="sidebar-link">Samsung</RouterLink>
               <RouterLink to="/huawei" class="sidebar-link">Huawei</RouterLink>
+              <RouterLink to="/huawei" class="sidebar-link">Xiaomi</RouterLink>
+              <RouterLink to="/huawei" class="sidebar-link">Sony</RouterLink>
             </div>
             <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
-              Computer components <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
+              Computer parts <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
             </div>
             <div v-if="isComponentsDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="/gpu" class="sidebar-link">GPU (Graphics processing unit)</RouterLink>
@@ -42,6 +44,7 @@
               <RouterLink to="/psu" class="sidebar-link">PSU (Power supply unit)</RouterLink>
               <RouterLink to="/motherboards" class="sidebar-link">Motherboards</RouterLink>
               <RouterLink to="/ram" class="sidebar-link">RAM</RouterLink>
+              <RouterLink to="/case" class="sidebar-link">Cases</RouterLink>
               <RouterLink to="/other" class="sidebar-link">Other</RouterLink>
             </div>
             <!-- Siia alla saab linke juurde lisada  -->
