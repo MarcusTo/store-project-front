@@ -20,7 +20,7 @@
       </p>
       <router-link
         style="color: #0051a8"
-        :to="`/mac/${product._id}`"
+        :to="`/apple/mac/${product._id}`"
       >
         {{ t("products.buy") }} €{{ product.price.toFixed(2) }}
       </router-link>

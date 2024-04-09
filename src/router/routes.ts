@@ -5,33 +5,33 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: ROUTE_PATHS.IPHONE,
     name: ROUTE_PATHS.IPHONE,
-    component: () => import("@/views/IPhone/Iphone.vue"),
+    component: () => import("@/views/Apple/IPhone/Iphone.vue"),
   },
   {
     path: ROUTE_PATHS.NEW_IPHONE,
     name: ROUTE_PATHS.NEW_IPHONE,
-    component: () => import("@/views/IPhone/NewIphoneView.vue"),
+    component: () => import("@/views/Apple/IPhone/NewIphoneView.vue"),
     props: true, 
   },
   {
     path: ROUTE_PATHS.AIRPODS,
     name: ROUTE_PATHS.AIRPODS,
-    component: () => import("@/views/AirPods/Airpods.vue"),
+    component: () => import("@/views/Apple/AirPods/Airpods.vue"),
   },
   {
     path: ROUTE_PATHS.NEW_AIRPODS,
     name: ROUTE_PATHS.NEW_AIRPODS,
-    component: () => import('@/views/AirPods/NewAirpods.vue')
+    component: () => import('@/views/Apple/AirPods/NewAirpods.vue')
   },
   {
     path: ROUTE_PATHS.MAC,
     name: ROUTE_PATHS.MAC,
-    component: () => import("@/views/MacBook/Mac.vue"),
+    component: () => import("@/views/Apple/MacBook/Mac.vue"),
   },
   {
     path: ROUTE_PATHS.NEW_MAC,
     name: ROUTE_PATHS.NEW_MAC,
-    component: () => import("@/views/MacBook/NewMacView.vue"),
+    component: () => import("@/views/Apple/MacBook/NewMacView.vue"),
   },
   {
     path: ROUTE_PATHS.COMPONENTS,
@@ -42,11 +42,6 @@ const routes: Array<RouteRecordRaw> = [
     path: ROUTE_PATHS.ALLCOMPONENTS,
     name: ROUTE_PATHS.ALLCOMPONENTS,
     component: () => import("@/views/ComputerComponents/AllComponents.vue"),
-  },
-  {
-    path: ROUTE_PATHS.NEW_MAC,
-    name: ROUTE_PATHS.NEW_MAC,
-    component: () => import("@/views/MacBook/NewMacView.vue"),
   },
   
 

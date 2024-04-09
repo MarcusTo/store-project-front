@@ -8,28 +8,19 @@
       font-size: 32px;
     "
   >
-    {{ t("products.airpods") }}
+    {{ t("products.iphone") }}
   </h2>
   <SearchComp @search="handleSearch" />
   <hr />
   <div class="product-cards">
     <div v-for="product in filteredProducts" :key="product._id" class="product-card">
       <img :src="product.image" style="width: 200px; height: 200px" />
-      <p
-        style="
-          font-size: 20px;
-          font-weight: 500;
-          white-space: normal;
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-          width: 100%;
-        "
-      >
+      <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
         {{ product.name }}
       </p>
       <router-link
         style="color: #0051a8"
-        :to="`/airpods/${product._id}`"
+        :to="`/apple/iphone/${product._id}`"
       >
         {{ t("products.buy") }} €{{ product.price.toFixed(2) }}
       </router-link>
@@ -39,14 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, defineEmits } from 'vue';
 import NavBarComp from "@/components/NavBarComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 import SearchComp from "@/components/SearchComp.vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
-
 
 interface Product {
   _id: string;
@@ -56,7 +46,6 @@ interface Product {
 }
 
 const products = ref<Product[]>([]);
-
 const searchTerm = ref('');
 
 const emit = defineEmits(['search']);
@@ -65,13 +54,13 @@ onMounted(async () => {
   try {
     const response = await fetch('http://localhost:3000/api/products');
     const data: Product[] = await response.json();
-    products.value = data.filter(product => product.category === 'airpods');
+    products.value = data.filter(product => product.category === 'iphone');
   } catch (error) {
     console.error('Error:', error);
   }
 });
 
-const handleSearch = (value) => {
+const handleSearch = (value: string) => {
   searchTerm.value = value;
 };
 
@@ -89,7 +78,6 @@ const filteredProducts = computed(() => {
   justify-content: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 10rem;
-  margin-bottom: 20px;
   margin-top: 40px;
 }
 .product-card {

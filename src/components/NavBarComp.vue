@@ -20,11 +20,12 @@
               Apple <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
             </div>
             <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
-              <RouterLink to="/iphone" class="sidebar-link">iPhone</RouterLink>
-              <RouterLink to="/applewatch" class="sidebar-link">Apple Watch</RouterLink>
-              <RouterLink to="/airpods" class="sidebar-link">AirPods</RouterLink>
-              <RouterLink to="/mac" class="sidebar-link">iMac</RouterLink>
-              <RouterLink to="/appleaccessories" class="sidebar-link">Accessories</RouterLink>
+              <RouterLink to="/Apple/iphone" class="sidebar-link">iPhone</RouterLink>
+              <RouterLink to="/Apple/applewatch" class="sidebar-link">Apple Watch</RouterLink>
+              <RouterLink to="/Apple/airpods" class="sidebar-link">AirPods</RouterLink>
+              <RouterLink to="/Apple/mac" class="sidebar-link">iMac</RouterLink>
+              <RouterLink to="/Apple/visionpro" class="sidebar-link">Vision pro</RouterLink>
+              <RouterLink to="/Apple/appleaccessories" class="sidebar-link">Accessories</RouterLink>
             </div>
             <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
               Android <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
@@ -34,6 +35,7 @@
               <RouterLink to="/huawei" class="sidebar-link">Huawei</RouterLink>
               <RouterLink to="/huawei" class="sidebar-link">Xiaomi</RouterLink>
               <RouterLink to="/huawei" class="sidebar-link">Sony</RouterLink>
+              <RouterLink to="/huawei" class="sidebar-link">Accessories</RouterLink>
             </div>
             <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
               Computer parts <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
@@ -98,7 +100,6 @@ export default defineComponent({
     const isAppleDropdownVisible = ref(false);
     const isAndroidDropdownVisible = ref(false);
     const isComponentsDropdownVisible = ref(false);
-
     const isLanguageDropdownVisible = ref(false);
     const activeLang = ref('en'); 
 
@@ -122,9 +123,11 @@ export default defineComponent({
     function toggleAppleDropdown() {
       isAppleDropdownVisible.value = !isAppleDropdownVisible.value;
     }
+
     function toggleAndroidDropdown() {
       isAndroidDropdownVisible.value = !isAndroidDropdownVisible.value;
     }
+
     function toggleComponentsDropdown() {
       isComponentsDropdownVisible.value = !isComponentsDropdownVisible.value;
     }
@@ -322,7 +325,7 @@ export default defineComponent({
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 5px 10px; /* Adjust based on your design */
+  padding: 5px 10px; 
 }
 
 .language-option.active {
@@ -330,8 +333,8 @@ export default defineComponent({
 }
 
 .flag-icon {
-  margin-right: 8px; /* Space between flag icon and text */
-  width: 20px; /* Adjust based on your design */
+  margin-right: 8px; 
+  width: 20px; 
   height: auto;
 }
 

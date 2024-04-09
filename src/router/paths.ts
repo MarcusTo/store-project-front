@@ -3,14 +3,14 @@ export enum ROUTE_PATHS {
   ALLCOMPONENTS = "/Components",
   COMPONENTS = "/Components/:id",
 
-  IPHONE = "/iphone", 
-  NEW_IPHONE="/iphone/:id",
+  IPHONE = "/apple/iphone", 
+  NEW_IPHONE="/apple/iphone/:id",
 
-  AIRPODS = "/airpods",
-  NEW_AIRPODS="/airpods/:id",
+  AIRPODS = "/apple/airpods",
+  NEW_AIRPODS="/apple/airpods/:id",
 
-  MAC = "/mac",
-  NEW_MAC="/mac/:id",
+  MAC = "/apple/mac",
+  NEW_MAC="/apple/mac/:id",
 
   HOME = "/",
   SERVICES = "/services",
