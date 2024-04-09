@@ -1,172 +1,277 @@
 <template>
-  <div class="navbar-container" :class="{ 'navbar-open': isDropdownOpen }">
-    <div class="navbar">
-      <ul class="ul">
-        <li class="custom-list-item">
-          <RouterLink to="/">{{ $t("navbar.home") }}</RouterLink>
-        </li>
-        <li class="custom-list-item" @mouseover="handleMouseover('iphone')" @mouseleave="handleMouseleave">
-          <RouterLink to="/iphone">{{ $t("navbar.iphone") }}</RouterLink>
-          <div class="dropdown-ul" v-show="activeDropdown === 'iphone'">
+  <nav class="navbar">
+    <div class="container">
+      <RouterLink to="/"><img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" /></RouterLink>
+      <button class="burger" @click="toggleMenu">&#9776;</button>
+      <div class="sidebar" :class="{'is-visible': isMenuVisible}">
+        <button class="back-button" @click="toggleMenu">&#11164;</button>
+        <div class="sidebar-header">
+        <button class="back-button" @click="toggleMenu">&#11164;</button>
+        <img src="/public/img/other/firma_ikoon.png" alt="Logo" class="sidebar-logo" />
+        <h1 class="sidebar-title">Arvutipood</h1>
+      </div>
+        <div class="sidebar-content">
+          <p></p>
+          <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
+            <span>&#128722; Products</span>
+            <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isProductsDropdownVisible}"></i>
           </div>
-        </li>
-        <li class="custom-list-item" @mouseover="handleMouseover('mac')" @mouseleave="handleMouseleave">
-          <RouterLink to="/mac">{{ $t("navbar.mac") }}</RouterLink>
-          <div class="dropdown-ul" v-show="activeDropdown === 'mac'">
-          </div>
-        </li>
-        <li class="custom-list-item" @mouseover="handleMouseover('airpods')" @mouseleave="handleMouseleave">
-          <RouterLink to="/airpods">{{ $t("navbar.airpods") }}</RouterLink>
-          <div class="dropdown-ul" v-show="activeDropdown === 'airpods'">
-          </div>
-        </li>
-        <li class="custom-list-item">
-          <RouterLink to="/services">{{ $t("navbar.repairs") }}</RouterLink>
-        </li>
-        <li class="custom-list-item">
-          <RouterLink to="/ProductsDatabase">{{ $t("addProducts") }}</RouterLink>
-        </li>
-      </ul>
-      <div class="navbar-user">
-        <div>
-          <ul style="list-style: none; margin: 0; padding: 0; display: flex">
-            <div
-              :style="{
-                'font-weight': activeLang === 'et' ? 'bold' : 'normal',
-                color: '#4B5563',
-                display: 'flex',
-                alignItems: 'center',
-                width: '50px',
-              }"
-              @click="setLocale('et')"
-            >
-              <li>
-                <img
-                  src="/img/flags/estonia.png"
-                  style="
-                    padding-right: 18px;
-                    padding-left: 6px;
-                    width: 15px;
-                    height: 15px;
-                  "
-                />
-              </li>
+          <div v-if="isProductsDropdownVisible" class="dropdown-content">
+            <div @click.stop="toggleAppleDropdown" class="sidebar-link dropdown">
+              Apple <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
             </div>
-            <div
-              :style="{
-                'font-weight': activeLang === 'en' ? 'bold' : 'normal',
-                color: '#4B5563',
-                display: 'flex',
-                alignItems: 'center',
-              }"
-              @click="setLocale('en')"
-            >
-              <li>
-                <img
-                  src="/img/flags/united-kingdom-rounded.png"
-                  style="padding-right: 10px; padding-left: 6px; width: 15px"
-                />
-              </li>
+            <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
+              <RouterLink to="/iphone" class="sidebar-link">iPhone</RouterLink>
+              <RouterLink to="/applewatch" class="sidebar-link">Apple Watch</RouterLink>
+              <RouterLink to="/airpods" class="sidebar-link">AirPods</RouterLink>
+              <RouterLink to="/mac" class="sidebar-link">iMac</RouterLink>
+              <RouterLink to="/mac" class="sidebar-link">Accessories</RouterLink>
             </div>
-          </ul>
+            <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
+              Android <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
+            </div>
+            <div v-if="isAndroidDropdownVisible" class="dropdown-content nested-dropdown-content">
+              <RouterLink to="/" class="sidebar-link">Samsung</RouterLink>
+              <RouterLink to="/" class="sidebar-link">Huawei</RouterLink>
+            </div>
+            <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
+              Computer components <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
+            </div>
+            <div v-if="isComponentsDropdownVisible" class="dropdown-content nested-dropdown-content">
+              <RouterLink to="/" class="sidebar-link">GPU (Graphics processing unit)</RouterLink>
+              <RouterLink to="/" class="sidebar-link">CPU (Core processing unit)</RouterLink>
+              <RouterLink to="/" class="sidebar-link">PSU (Power supply unit)</RouterLink>
+              <RouterLink to="/" class="sidebar-link">Motherboards</RouterLink>
+              <RouterLink to="/" class="sidebar-link">RAM</RouterLink>
+              <RouterLink to="/" class="sidebar-link">Other</RouterLink>
+            </div>
+            <!-- Siia alla saab linke juurde lisada  -->
+          </div>
+          <RouterLink to="/ProductsDatabase" class="sidebar-link">{{ $t("addProducts") }}</RouterLink>
+        </div>
+        <div class="sidebar-footer">
+          <p>© 2024 ARVUTIPOOD</p>
         </div>
       </div>
-      <div class="cart-container">
+      <ul class="nav-links">
+        <li><RouterLink to="/"><span class="icon">🏠</span>{{ $t("navbar.home") }}</RouterLink></li>
+        <li><RouterLink to="/services"><span class="icon">🔧</span>{{ $t("navbar.repairs") }}</RouterLink></li>
+        <li><RouterLink to="/about"><span class="icon">ℹ️</span>{{ $t("About us") }}</RouterLink></li>
+      </ul>
+
+      <div class="nav-extra">
         <button class="cart-button">
-          <RouterLink
-            style="font-weight: 500"
-            to="/cartView"
-            class="nav-bar__router-link"
-          >
+          <RouterLink to="/cartView" class="nav-bar__router-link">
             <i class="pi pi-shopping-bag" style="margin-right: 5px"> </i>
             {{ isCartEmpty ? "" : `${totalPrice.toFixed(2)} €` }}
           </RouterLink>
         </button>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
-<script setup lang="ts">
-import { ref, computed } from "vue";
+
+<script lang="ts">
+import { defineComponent, computed, ref } from 'vue';
 import { useCartStore } from "@/stores/cart";
-import { setLocale } from "@/config/18n.config";
-import i18n from "@/config/18n.config";
 
-const activeLang = computed(() => {
-  return i18n.global.locale.value;
-});
+export default defineComponent({
+  name: 'Navbar',
+  setup() {
+    const cart = useCartStore();
+    const isCartEmpty = computed(() => cart.cartItems.length === 0);
+    const totalPrice = computed(() => cart.cartItems.reduce((total, item) => total + item.price * item.quantity, 0));
+    const isMenuVisible = ref(false);
+    const isProductsDropdownVisible = ref(false);
+    const isAppleDropdownVisible = ref(false);
+    const isAndroidDropdownVisible = ref(false);
+    const isComponentsDropdownVisible = ref(false);
 
-let isDropdownOpen = ref(false);
+    function toggleMenu() {
+      isMenuVisible.value = !isMenuVisible.value;
+    }
 
-const handleMouseover = () => {
-  this.activeDropdown = dropdown;
-};
+    function toggleProductsDropdown() {
+      isProductsDropdownVisible.value = !isProductsDropdownVisible.value;
+    }
 
-const handleMouseleave = () => {
-  this.activeDropdown = null;
-};
-const cart = useCartStore();
+    function toggleAppleDropdown() {
+      isAppleDropdownVisible.value = !isAppleDropdownVisible.value;
+    }
+    function toggleAndroidDropdown() {
+      isAndroidDropdownVisible.value = !isAndroidDropdownVisible.value;
+    }
+    function toggleComponentsDropdown() {
+      isComponentsDropdownVisible.value = !isComponentsDropdownVisible.value;
+    }
 
-const isCartEmpty = computed(() => {
-  return cart.cartItems.length === 0;
-});
-const totalPrice = computed(() => {
-  return cart.cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+    return { 
+      isCartEmpty, totalPrice, isMenuVisible, toggleMenu, 
+      isProductsDropdownVisible, toggleProductsDropdown,
+      isAppleDropdownVisible, toggleAppleDropdown,
+      isAndroidDropdownVisible, toggleAndroidDropdown,
+      isComponentsDropdownVisible, toggleComponentsDropdown,
+    };
+  }
 });
 </script>
 
 <style scoped>
 .navbar {
+  background-color: #000;
+  color: #fff;
   display: flex;
-  justify-content: center; /* Add this line */
-  background-color: #676666;
-  font-size: 14px;
+  justify-content: space-between;
+  padding: 1rem;
 }
-.navbar-user {
-  margin-top: 24px;
-}
-.cart-container {
-  margin-top: 16px;
-}
-a {
-  font-weight: 500;
-  color: #d5d5d5;
-}
-a:hover {
-  color: #ffffff;
-}
-.cart-button {
-  background-color: #0051a8;
-  font-weight: 500;
-}
-.ul {
+
+.container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-links,
+.nav-extra {
   list-style: none;
-  gap: 16px;
-}
-.custom-list-item {
   display: flex;
-  padding: 14px;
+  gap: 30px;
+  padding-left: 630px;
 }
 
-@media screen and (min-width: 600px) {
-  .navbar-user {
-    padding-left: 4rem;
-  }
+.icon {
+  margin-right: 5px; 
 }
 
-@media screen and (min-width: 900px) {
-  .navbar-user {
-    padding-left: 15rem;
-  }
+.nav-links a,
+.nav-extra a,
+.cart-button { 
+  color: #fff;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-@media screen and (min-width: 1200px) {
-  .navbar-user {
-    padding-left: 24rem;
-  }
+.burger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap between elements as needed */
+  padding-bottom: 15px; /* Adds some space below the header */
+  border-bottom: 1px solid #fff; /* Optional: adds a separator */
+}
+
+.sidebar-title {
+  color: #fff;
+  font-size: 20px; /* Adjust based on your preference */
+  font-weight: bold;
+  margin: 0;
+  flex-grow: 1; /* Ensures the title takes up any remaining space */
+  text-align: left; /* Aligns the title to the left */
+}
+
+.sidebar-logo {
+  width: 40px;
+  height: auto;
+}
+
+.sidebar-content {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto; 
+  max-height: calc(100vh - 60px); 
+  
+  
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+}
+
+.sidebar-content::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-footer {
+  border-top: 1px solid #fff; 
+  text-align: center;
+}
+
+.sidebar.is-visible {
+  transform: translateX(0);
+}
+
+.sidebar-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.back-button {
+  position: absolute; 
+  top: 10px; 
+  right: 10px; 
+  background: none;
+  border: none;
+  color: white; 
+  cursor: pointer;
+  font-size: 25px; 
+  padding: 5px; 
+  z-index: 2; 
+}
+
+.dropdown {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 20px; 
+}
+
+.nested-dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+
+.pi-chevron-up {
+  transform: rotate(180deg);
 }
 </style>
