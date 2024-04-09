@@ -4,9 +4,8 @@
       <RouterLink to="/"><img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" /></RouterLink>
       <button class="burger" @click="toggleMenu">&#9776;</button>
       <div class="sidebar" :class="{'is-visible': isMenuVisible}">
-        <button class="back-button" @click="toggleMenu">&#11164;</button>
+        <button class="back-button" @click="toggleMenu">&#10006;</button>
         <div class="sidebar-header">
-        <button class="back-button" @click="toggleMenu">&#11164;</button>
         <img src="/public/img/other/firma_ikoon.png" alt="Logo" class="sidebar-logo" />
         <h1 class="sidebar-title">Arvutipood</h1>
       </div>
@@ -25,30 +24,41 @@
               <RouterLink to="/applewatch" class="sidebar-link">Apple Watch</RouterLink>
               <RouterLink to="/airpods" class="sidebar-link">AirPods</RouterLink>
               <RouterLink to="/mac" class="sidebar-link">iMac</RouterLink>
-              <RouterLink to="/mac" class="sidebar-link">Accessories</RouterLink>
+              <RouterLink to="/appleaccessories" class="sidebar-link">Accessories</RouterLink>
             </div>
             <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
               Android <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
             </div>
             <div v-if="isAndroidDropdownVisible" class="dropdown-content nested-dropdown-content">
-              <RouterLink to="/" class="sidebar-link">Samsung</RouterLink>
-              <RouterLink to="/" class="sidebar-link">Huawei</RouterLink>
+              <RouterLink to="/samsung" class="sidebar-link">Samsung</RouterLink>
+              <RouterLink to="/huawei" class="sidebar-link">Huawei</RouterLink>
             </div>
             <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
               Computer components <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
             </div>
             <div v-if="isComponentsDropdownVisible" class="dropdown-content nested-dropdown-content">
-              <RouterLink to="/" class="sidebar-link">GPU (Graphics processing unit)</RouterLink>
-              <RouterLink to="/" class="sidebar-link">CPU (Core processing unit)</RouterLink>
-              <RouterLink to="/" class="sidebar-link">PSU (Power supply unit)</RouterLink>
-              <RouterLink to="/" class="sidebar-link">Motherboards</RouterLink>
-              <RouterLink to="/" class="sidebar-link">RAM</RouterLink>
-              <RouterLink to="/" class="sidebar-link">Other</RouterLink>
+              <RouterLink to="/gpu" class="sidebar-link">GPU (Graphics processing unit)</RouterLink>
+              <RouterLink to="/cpu" class="sidebar-link">CPU (Core processing unit)</RouterLink>
+              <RouterLink to="/psu" class="sidebar-link">PSU (Power supply unit)</RouterLink>
+              <RouterLink to="/motherboards" class="sidebar-link">Motherboards</RouterLink>
+              <RouterLink to="/ram" class="sidebar-link">RAM</RouterLink>
+              <RouterLink to="/other" class="sidebar-link">Other</RouterLink>
             </div>
             <!-- Siia alla saab linke juurde lisada  -->
           </div>
+          <div @click="toggleLanguageDropdown" class="sidebar-link dropdown">
+            &#127757; Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
+          </div>
+          <div v-if="isLanguageDropdownVisible" class="dropdown-content">
+          <div :class="{'active': activeLang === 'et'}" @click="setLocale('et')" class="language-option">
+          <img src="/img/flags/estonia.png" class="flag-icon"/> Estonian
+          </div>
+          <div :class="{'active': activeLang === 'en'}" @click="setLocale('en')" class="language-option">
+          <img src="/img/flags/united-kingdom-rounded.png" class="flag-icon"/> English
+          </div>
+          </div>
           <RouterLink to="/ProductsDatabase" class="sidebar-link">{{ $t("addProducts") }}</RouterLink>
-        </div>
+          </div>
         <div class="sidebar-footer">
           <p>© 2024 ARVUTIPOOD</p>
         </div>
@@ -58,7 +68,6 @@
         <li><RouterLink to="/services"><span class="icon">🔧</span>{{ $t("navbar.repairs") }}</RouterLink></li>
         <li><RouterLink to="/about"><span class="icon">ℹ️</span>{{ $t("About us") }}</RouterLink></li>
       </ul>
-
       <div class="nav-extra">
         <button class="cart-button">
           <RouterLink to="/cartView" class="nav-bar__router-link">
@@ -87,6 +96,18 @@ export default defineComponent({
     const isAndroidDropdownVisible = ref(false);
     const isComponentsDropdownVisible = ref(false);
 
+    const isLanguageDropdownVisible = ref(false);
+    const activeLang = ref('en'); 
+
+    function toggleLanguageDropdown() {
+      isLanguageDropdownVisible.value = !isLanguageDropdownVisible.value;
+    }
+
+    function setLocale(lang) {
+      activeLang.value = lang;
+      // Implement language switch logic here, e.g., update i18n locale or store state
+    }
+
     function toggleMenu() {
       isMenuVisible.value = !isMenuVisible.value;
     }
@@ -111,6 +132,10 @@ export default defineComponent({
       isAppleDropdownVisible, toggleAppleDropdown,
       isAndroidDropdownVisible, toggleAndroidDropdown,
       isComponentsDropdownVisible, toggleComponentsDropdown,
+      isLanguageDropdownVisible,
+      toggleLanguageDropdown,
+      setLocale,
+      activeLang,
     };
   }
 });
@@ -288,6 +313,23 @@ export default defineComponent({
 .pi-chevron-up {
   transform: rotate(180deg);
   transition: transform 0.3s ease;
+}
+
+.language-option {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px; /* Adjust based on your design */
+}
+
+.language-option.active {
+  font-weight: bold;
+}
+
+.flag-icon {
+  margin-right: 8px; /* Space between flag icon and text */
+  width: 20px; /* Adjust based on your design */
+  height: auto;
 }
 
 </style>
