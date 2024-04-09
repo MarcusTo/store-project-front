@@ -33,7 +33,7 @@
         class="text-input"
       />
     </div>
-    <button @click="submitForm" class="insert-btn">Insert</button>
+    <button @click="submitForm" class="insert-btn">Create product</button>
     <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
     <div v-if="showRequiredFieldMessage" class="required-field-message">Please fill in all required fields.</div>
   </div>
@@ -54,7 +54,7 @@ export default {
         'Memory:': '',
         'Color:': '',
         'Category:': '',
-        'Path to .png file:': '',
+        'Path to .png file:': '/img/products/', 
       },
       colors: ['Red', 'Green', 'Blue', 'Yellow', 'Black', 'White'],
       memoryOptions: [64, 128, 256, 512, 1024],
@@ -80,14 +80,11 @@ export default {
         this.showRequiredFieldMessage = false;
       }
     },
-    removeColor(header) {
-    this.formData[header] = '';
-    },
     submitForm() {
-    if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Path to .png file:']) {
-    this.showRequiredFieldMessage = true;
-    return;
-    }
+      if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Path to .png file:']) {
+        this.showRequiredFieldMessage = true;
+        return;
+      }
       
       const productData = {
         name: this.formData['Product name:'],
@@ -146,8 +143,8 @@ export default {
   
   .insert-btn {
     position: absolute;
-    bottom: 50px; /* Adjusted to place a bit higher */
-    right: 350px;
+    bottom: 64px; 
+    right: 325px;
     padding: 10px 20px;
     border-radius: 15px;
     border: none;

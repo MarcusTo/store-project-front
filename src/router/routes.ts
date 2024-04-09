@@ -3,24 +3,15 @@ import type { RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: ROUTE_PATHS.HOME,
-    name: ROUTE_PATHS.HOME,
-    component: () => import("@/views/Other/Home.vue"),
-  },
-  {
-    path: ROUTE_PATHS.ABOUT,
-    name: ROUTE_PATHS.ABOUT,
-    component: () => import("@/views/Other/About.vue"),
-  },
-  {
-    path: ROUTE_PATHS.PRODUCTS,
-    name: ROUTE_PATHS.PRODUCTS,
-    component: () => import("@/views/Other/Product.vue"),
-  },
-  {
     path: ROUTE_PATHS.IPHONE,
     name: ROUTE_PATHS.IPHONE,
     component: () => import("@/views/IPhone/Iphone.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_IPHONE,
+    name: ROUTE_PATHS.NEW_IPHONE,
+    component: () => import("@/views/IPhone/NewIphoneView.vue"),
+    props: true, 
   },
   {
     path: ROUTE_PATHS.AIRPODS,
@@ -43,6 +34,36 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/MacBook/NewMacView.vue"),
   },
   {
+    path: ROUTE_PATHS.COMPONENTS,
+    name: ROUTE_PATHS.COMPONENTS,
+    component: () => import("@/views/ComputerComponents/Component.vue"),
+  },
+  {
+    path: ROUTE_PATHS.ALLCOMPONENTS,
+    name: ROUTE_PATHS.ALLCOMPONENTS,
+    component: () => import("@/views/ComputerComponents/AllComponents.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_MAC,
+    name: ROUTE_PATHS.NEW_MAC,
+    component: () => import("@/views/MacBook/NewMacView.vue"),
+  },
+  
+
+  //End of Product Routes - Beginning of Other Routes
+
+  
+  {
+    path: ROUTE_PATHS.HOME,
+    name: ROUTE_PATHS.HOME,
+    component: () => import("@/views/Other/Home.vue"),
+  },
+  {
+    path: ROUTE_PATHS.ABOUT,
+    name: ROUTE_PATHS.ABOUT,
+    component: () => import("@/views/Other/About.vue"),
+  },
+  {
     path: ROUTE_PATHS.SERVICES,
     name: ROUTE_PATHS.SERVICES,
     component: () => import("@/views/Services/Services.vue"),
@@ -58,16 +79,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Checkout/CheckoutView.vue"),
   },
   {
-    path: ROUTE_PATHS.NEW_IPHONE,
-    name: ROUTE_PATHS.NEW_IPHONE,
-    component: () => import("@/views/IPhone/NewIphoneView.vue"),
-    props: true, // Enable props
-  },
-  {
     path: ROUTE_PATHS.ProductsDatabase,
     name: ROUTE_PATHS.ProductsDatabase,
     component: () => import("@/views/ProductsDatabase/Server.vue"),
-    props: true, // Enable props
+    props: true, 
   },
 ];
 

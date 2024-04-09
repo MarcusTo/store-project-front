@@ -76,7 +76,7 @@
                 <li>{{ t("repairs.exchange_prices.iPhone_14_15") }}</li>
                 <li>{{ t("repairs.exchange_prices.iPhone_14Pro_15Pro") }}</li>
                 <li>{{ t("repairs.exchange_prices.iPhone_14ProMax_15ProMax") }}</li>
-                        </ul>
+                </ul>
             </li>
           </ul>
           <span>

@@ -137,5 +137,7 @@
   "checkout":{
     "checkout":"Checkout"
   },
-  "copyright":"TM&JR"
+  "copyright":"TM&JR",
+  "addProducts":"Add a product to database"
+
 }

@@ -7,7 +7,7 @@
       <Card>
         <template #content>
           <img
-            src="/img/products/iphone/iphone-titanium.png"
+            src="/img/products/apple/iphone/iphone-titanium.png"
             style="width: 200px; height: 200px"
           />
           <a
@@ -23,7 +23,7 @@
       <Card>
         <template #content>
           <img
-            src="/img/products/airpods/airpods.png"
+            src="/img/products/apple/airpods/airpods.png"
             alt="Telefonid"
             style="width: 200px; height: 200px"
           />
@@ -42,7 +42,7 @@
       <Card>
         <template #content>
           <img
-            src="/img/products/mac/mac-black.png"
+            src="/img/products/apple/mac/mac-black.png"
             alt="Telefonid"
             style="width: 200px; height: 200px"
           />
