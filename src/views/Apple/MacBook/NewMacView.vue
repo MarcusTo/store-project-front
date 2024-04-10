@@ -64,8 +64,14 @@
           </p>
         </Button>
       </div>
+      
     </div>
   </div>
+  <div class="description-card" v-if="product">
+    <p class="product-description">
+        {{ product.description }}
+    </p>
+</div>
   <FooterComp />
 </template>
 
@@ -202,5 +208,26 @@ onMounted(async () => {
 
 .button:hover {
   background-color: #0056b3;
+}
+
+.description-card {
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  margin-top: 20px; 
+  max-width: 1000px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  overflow: hidden;
+}
+
+.product-description {
+  font-size: 16px; 
+  color: #666; 
+  text-align: left; 
+  margin: 0; 
+  overflow-wrap: break-word;
 }
 </style>
