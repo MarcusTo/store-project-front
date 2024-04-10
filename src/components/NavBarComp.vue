@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="container">
       <RouterLink to="/"><img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" /></RouterLink>
-      <Button class="burger" @click="toggleMenu">&#9776;</Button>
+      <button class="burger" @click="toggleMenu">&#9776;</button>
       <div class="sidebar" :class="{'is-visible': isMenuVisible}">
         <button class="back-button" @click="toggleMenu">&#10006;</button>
         <div class="sidebar-header">
@@ -119,7 +119,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue';
-import Button from 'primevue/button';
 import { useCartStore } from "@/stores/cart";
 
 export default defineComponent({
@@ -192,6 +191,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 .navbar {
   background-color: #000;
   color: #fff;
@@ -209,7 +209,7 @@ export default defineComponent({
 
 .nav-links {
   position: absolute;
-  left: 50%;
+  left: 49%;
   transform: translateX(-50%);
   display: flex;
   gap: 30px;
@@ -220,6 +220,11 @@ export default defineComponent({
   list-style: none;
   display: flex;
   gap: 30px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-extra:hover {
+  transform: scale(1.1);
 }
 
 .icon {
@@ -234,6 +239,13 @@ export default defineComponent({
   background: none;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-links a,
+.nav-extra a,
+.cart-button:hover {
+  transform: scale(1.1);
 }
 
 .burger {
@@ -244,6 +256,11 @@ export default defineComponent({
   font-size: 24px;
   cursor: pointer;
   left: 3.5%;
+  transition: transform 0.2s ease-in-out; 
+}
+
+.burger:hover {
+  transform: scale(1.1); 
 }
 
 .menu {

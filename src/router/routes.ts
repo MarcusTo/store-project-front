@@ -43,6 +43,16 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_PATHS.NEW_APPLEWATCH,
     component: () => import("@/views/Apple/AppleWatch/NewWatch.vue"),
   },
+  {
+    path: ROUTE_PATHS.VISIONPRO,
+    name: ROUTE_PATHS.VISIONPRO,
+    component: () => import("@/views/Apple/VisionPro/VisionPro.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_VISIONPRO,
+    name: ROUTE_PATHS.NEW_VISIONPRO,
+    component: () => import("@/views/Apple/VisionPro/NewVisionPro.vue"),
+  },
   
 
 // Computer parts
