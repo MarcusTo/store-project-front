@@ -47,14 +47,15 @@ export default {
   name: 'MongoDBForm',
   data() {
     return {
-      headers: ['Product name:', 'Product price:', 'Memory:', 'Color:', 'Category:', 'Path to .png file:'],
+      headers: ['Product name:', 'Product price:', 'Memory:', 'Color:', 'Category:', 'Description:', 'Path to .png file:'],
       formData: {
-        'Product name:': '',
-        'Product price:': '',
-        'Memory:': '',
-        'Color:': '',
-        'Category:': '',
-        'Path to .png file:': '/img/products/', 
+      'Product name:': '',
+      'Product price:': '',
+      'Memory:': '',
+      'Color:': '',
+      'Category:': '',
+      'Description:': '', 
+      'Path to .png file:': '/img/products/',
       },
       colors: ['Red', 'Green', 'Blue', 'Yellow', 'Black', 'White'],
       memoryOptions: [64, 128, 256, 512, 1024],
@@ -80,50 +81,54 @@ export default {
         this.showRequiredFieldMessage = false;
       }
     },
-    submitForm() {
-      if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Path to .png file:']) {
-        this.showRequiredFieldMessage = true;
-        return;
-      }
-      
-      const productData = {
-        name: this.formData['Product name:'],
-        price: this.formData['Product price:'],
-        memory: this.formData['Memory:'],
-        color: this.formData['Color:'], 
-        category: this.formData['Category:'],
-        image: this.formData['Path to .png file:'],
-      };
+  submitForm() {
+  if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Description:'] || !this.formData['Path to .png file:']) {
+    this.showRequiredFieldMessage = true;
+    return;
+  }
   
-      axios.post('http://localhost:3000/api/products', productData)
-        .then(response => {
-          this.showInsertionComplete = true;
-          setTimeout(() => this.showInsertionComplete = false, 3000);
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
+  const productData = {
+    name: this.formData['Product name:'],
+    price: this.formData['Product price:'],
+    memory: this.formData['Memory:'],
+    color: this.formData['Color:'], 
+    category: this.formData['Category:'],
+    description: this.formData['Description:'], 
+    image: this.formData['Path to .png file:'],
+  };
+
+  axios.post('http://localhost:3000/api/products', productData)
+    .then(response => {
+      this.showInsertionComplete = true;
+      setTimeout(() => this.showInsertionComplete = false, 3000);
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
   },
 };
 </script>
   
 <style scoped>
+
 .text-input option[value=""][disabled] {
   color: grey;
 }
 
-  .container {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    position: relative;
+    min-height: 80vh;
+    padding: 1rem;
   }
+
   
   .input-group {
+    max-width: 500px; 
     margin: 10px;
   }
   
@@ -142,15 +147,13 @@ export default {
   }
   
   .insert-btn {
-    position: absolute;
-    bottom: 64px; 
-    right: 325px;
     padding: 10px 20px;
     border-radius: 15px;
     border: none;
     background-color: #12d453;
     color: white;
     cursor: pointer;
+    margin-top: 20px; 
   }
 
   .color-input-group {
