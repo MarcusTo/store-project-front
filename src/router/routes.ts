@@ -33,16 +33,7 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_PATHS.NEW_MAC,
     component: () => import("@/views/Apple/MacBook/NewMacView.vue"),
   },
-  {
-    path: ROUTE_PATHS.COMPONENTS,
-    name: ROUTE_PATHS.COMPONENTS,
-    component: () => import("@/views/ComputerComponents/Component.vue"),
-  },
-  {
-    path: ROUTE_PATHS.ALLCOMPONENTS,
-    name: ROUTE_PATHS.ALLCOMPONENTS,
-    component: () => import("@/views/ComputerComponents/AllComponents.vue"),
-  },
+
   
 
   //End of Product Routes - Beginning of Other Routes

@@ -11,11 +11,13 @@
       </div>
         <div class="sidebar-content">
           <p></p>
+
           <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
             <span>&#128722; Products</span>
             <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isProductsDropdownVisible}"></i>
           </div>
           <div v-if="isProductsDropdownVisible" class="dropdown-content">
+
             <div @click.stop="toggleAppleDropdown" class="sidebar-link dropdown">
               Apple <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
             </div>
@@ -24,9 +26,11 @@
               <RouterLink to="/Apple/applewatch" class="sidebar-link">Apple Watch</RouterLink>
               <RouterLink to="/Apple/airpods" class="sidebar-link">AirPods</RouterLink>
               <RouterLink to="/Apple/mac" class="sidebar-link">iMac</RouterLink>
+              <RouterLink to="/Apple/mac" class="sidebar-link">iPad</RouterLink>
               <RouterLink to="/Apple/visionpro" class="sidebar-link">Vision pro</RouterLink>
               <RouterLink to="/Apple/appleaccessories" class="sidebar-link">Accessories</RouterLink>
             </div>
+
             <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
               Android <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
             </div>
@@ -34,9 +38,21 @@
               <RouterLink to="/samsung" class="sidebar-link">Samsung</RouterLink>
               <RouterLink to="/huawei" class="sidebar-link">Huawei</RouterLink>
               <RouterLink to="/huawei" class="sidebar-link">Xiaomi</RouterLink>
-              <RouterLink to="/huawei" class="sidebar-link">Sony</RouterLink>
               <RouterLink to="/huawei" class="sidebar-link">Accessories</RouterLink>
             </div>
+
+            <div @click.stop="togglePrebuiltDropdown" class="sidebar-link dropdown">
+              Desktops / Laptops <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
+            </div>
+            <div v-if="isPrebuiltDropdownVisible" class="dropdown-content nested-dropdown-content">
+              <RouterLink to="/BusinessClass" class="sidebar-link">Business class</RouterLink>
+              <RouterLink to="/HighEnd" class="sidebar-link">High End</RouterLink>
+              <RouterLink to="/GamingDesktops" class="sidebar-link">Gaming Desktops</RouterLink>
+              <RouterLink to="/GamingLaptops" class="sidebar-link">Gaming Laptops</RouterLink>
+              <RouterLink to="/Desktops" class="sidebar-link">Desktops</RouterLink>
+              <RouterLink to="/Laptops" class="sidebar-link">Laptops</RouterLink>
+            </div>
+
             <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
               Computer parts <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
             </div>
@@ -49,7 +65,21 @@
               <RouterLink to="/case" class="sidebar-link">Cases</RouterLink>
               <RouterLink to="/other" class="sidebar-link">Other</RouterLink>
             </div>
+
+            <div @click.stop="toggleGearDropdown" class="sidebar-link dropdown">
+              Gear <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isGearDropdownVisible}"></i>
+            </div>
+            <div v-if="isGearDropdownVisible" class="dropdown-content nested-dropdown-content">
+              <RouterLink to="/gpu" class="sidebar-link">Monitors</RouterLink>
+              <RouterLink to="/cpu" class="sidebar-link">Gaming Monitors</RouterLink>
+              <RouterLink to="/psu" class="sidebar-link">Keyboard</RouterLink>
+              <RouterLink to="/motherboards" class="sidebar-link">Mouse</RouterLink>
+              <RouterLink to="/ram" class="sidebar-link">Mousepad</RouterLink>
+              <RouterLink to="/case" class="sidebar-link">Other</RouterLink>
+            </div>
+
             <!-- Siia alla saab linke juurde lisada  -->
+
           </div>
           <div @click="toggleLanguageDropdown" class="sidebar-link dropdown">
             &#127757; Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
@@ -68,10 +98,11 @@
           <p>© 2024 ARVUTIPOOD</p>
         </div>
       </div>
+
       <ul class="nav-links">
-        <li><RouterLink to="/"><span class="icon">🏠</span>{{ $t("navbar.home") }}</RouterLink></li>
-        <li><RouterLink to="/services"><span class="icon">🔧</span>{{ $t("navbar.repairs") }}</RouterLink></li>
-        <li><RouterLink to="/about"><span class="icon">ℹ️</span>{{ $t("About us") }}</RouterLink></li>
+        <li><RouterLink to="/"><span class="icon"></span>{{ $t("navbar.home") }}</RouterLink></li>
+        <li><RouterLink to="/services"><span class="icon"></span>{{ $t("navbar.repairs") }}</RouterLink></li>
+        <li><RouterLink to="/about"><span class="icon"></span>{{ $t("About us") }}</RouterLink></li>
       </ul>
       <div class="nav-extra">
         <button class="cart-button">
@@ -99,7 +130,11 @@ export default defineComponent({
     const isProductsDropdownVisible = ref(false);
     const isAppleDropdownVisible = ref(false);
     const isAndroidDropdownVisible = ref(false);
+    const isPrebuiltDropdownVisible = ref(false);
+    const isGearDropdownVisible = ref(false);
     const isComponentsDropdownVisible = ref(false);
+
+
     const isLanguageDropdownVisible = ref(false);
     const activeLang = ref('en'); 
 
@@ -128,6 +163,14 @@ export default defineComponent({
       isAndroidDropdownVisible.value = !isAndroidDropdownVisible.value;
     }
 
+    function togglePrebuiltDropdown() {
+      isPrebuiltDropdownVisible.value = !isPrebuiltDropdownVisible.value;
+    }
+
+    function toggleGearDropdown() {
+      isGearDropdownVisible.value = !isGearDropdownVisible.value;
+    }
+
     function toggleComponentsDropdown() {
       isComponentsDropdownVisible.value = !isComponentsDropdownVisible.value;
     }
@@ -137,11 +180,10 @@ export default defineComponent({
       isProductsDropdownVisible, toggleProductsDropdown,
       isAppleDropdownVisible, toggleAppleDropdown,
       isAndroidDropdownVisible, toggleAndroidDropdown,
+      isPrebuiltDropdownVisible, togglePrebuiltDropdown,
       isComponentsDropdownVisible, toggleComponentsDropdown,
-      isLanguageDropdownVisible,
-      toggleLanguageDropdown,
-      setLocale,
-      activeLang,
+      isGearDropdownVisible, toggleGearDropdown,
+      isLanguageDropdownVisible, toggleLanguageDropdown, setLocale, activeLang,
     };
   }
 });
