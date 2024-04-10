@@ -3,7 +3,7 @@
 <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
     <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
       <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
-        &#10060;
+        &#10006;
       </span>
     </button>
 </div>
