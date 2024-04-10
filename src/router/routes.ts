@@ -34,6 +34,20 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Apple/MacBook/NewMacView.vue"),
   },
 
+// Computer parts
+
+  {
+    path: ROUTE_PATHS.PARTS,
+    name: ROUTE_PATHS.PARTS,
+    component: () => import("@/views/ComputerParts/Parts.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_PART,
+    name: ROUTE_PATHS.NEW_PART,
+    component: () => import("@/views/ComputerParts/NewPart.vue"),
+  },
+
+
   
 
   //End of Product Routes - Beginning of Other Routes
