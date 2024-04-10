@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="container">
       <RouterLink to="/"><img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" /></RouterLink>
-      <button class="burger" @click="toggleMenu">&#9776;</button>
+      <Button class="burger" @click="toggleMenu">&#9776;</Button>
       <div class="sidebar" :class="{'is-visible': isMenuVisible}">
         <button class="back-button" @click="toggleMenu">&#10006;</button>
         <div class="sidebar-header">
@@ -119,6 +119,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue';
+import Button from 'primevue/button';
 import { useCartStore } from "@/stores/cart";
 
 export default defineComponent({
