@@ -119,7 +119,7 @@
     }
     const data = await response.json();
     product.value = data;
-    console.log(product.value); // Add this line
+    console.log(product.value); 
   });
   </script>
   

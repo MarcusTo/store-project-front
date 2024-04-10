@@ -1,5 +1,12 @@
 <template>
   <NavBarComp />
+<div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+        &#10060;
+      </span>
+    </button>
+</div>
   <h2
     style="
       display: flex;
@@ -81,6 +88,10 @@ import { useRoute, useRouter } from "vue-router";
 const { t } = useI18n();
 const router = useRouter();
 
+const goBack = () => {
+  router.back(); 
+};
+
 const cart = useCartStore();
 
 const product = ref(null);
@@ -100,7 +111,7 @@ const addToCart = () => {
   const cartItem = {
     ...product.value,
     id: product.value._id,
-    selectedColor: selectedColor.value, // include the selected color
+    selectedColor: selectedColor.value, 
   };
   cart.addToCart(cartItem);
   router.push("/CartView");
@@ -119,7 +130,7 @@ onMounted(async () => {
   }
   const data = await response.json();
   product.value = data;
-  console.log(product.value); // Add this line
+  console.log(product.value); 
 });
 </script>
 

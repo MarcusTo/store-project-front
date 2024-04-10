@@ -26,6 +26,7 @@
               <RouterLink to="/Apple/applewatch" class="sidebar-link">Apple Watch</RouterLink>
               <RouterLink to="/Apple/airpods" class="sidebar-link">AirPods</RouterLink>
               <RouterLink to="/Apple/mac" class="sidebar-link">iMac</RouterLink>
+              <RouterLink to="/Apple/mac" class="sidebar-link">iMac</RouterLink>
               <RouterLink to="/Apple/mac" class="sidebar-link">iPad</RouterLink>
               <RouterLink to="/Apple/visionpro" class="sidebar-link">Vision pro</RouterLink>
               <RouterLink to="/Apple/appleaccessories" class="sidebar-link">Accessories</RouterLink>
