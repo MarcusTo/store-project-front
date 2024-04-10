@@ -13,8 +13,16 @@
       {{ product && product.name }}
     </h2>
     <div class="product-grid">
-      <div class="product-card" v-if="product" :key="product.id">
-        <img :src="product.image" alt="Product Image" class="product-image" />
+      <div class="product-card" v-if="product" :key="product._id">
+        <img
+          :src="
+            selectedColor.value
+              ? colorImageMapping[selectedColor.value]
+              : product.image
+          "
+          alt="Product Image"
+          class="product-image"
+        />
         <div class="product-details">
           <div class="form">
             <p style="font-size: 13px; font-weight: 500">VALI MÄLUMAHT</p>
@@ -41,8 +49,8 @@
                   'color-button-selected': selectedColor.value === color,
                 }"
                 :style="{ 'background-color': color }"
+                @click="selectedColor.value = color"
               >
-                @click="selectedColor.value = color" />
                 {{ color }}
               </Button>
             </div>
@@ -81,11 +89,18 @@
   
   const selectedColor = ref({ value: null });
   
+  const colorImageMapping: Record<string, string> = {
+    Black: "/img/products/iphone/IP-15PMX-black-titanium.jpeg",
+    "#5f778a": "/img/products/iphone/IP-15PMX-blue-titanium.jpeg",
+    "#e5e5e5": "/img/products/iphone/IP-15PMX-white-titanium.jpeg",
+    Gray: "/img/products/iphone/IP-15PMX-natural-titanium.jpeg",
+  };
+  
   const addToCart = () => {
     const cartItem = {
       ...product.value,
       id: product.value._id,
-      selectedColor: selectedColor.value, // include the selected color
+      selectedColor: selectedColor.value,
     };
     cart.addToCart(cartItem);
     router.push("/CartView");
@@ -106,22 +121,24 @@
     product.value = data;
     console.log(product.value); // Add this line
   });
-  
   </script>
   
   <style scoped>
   .product-card {
     display: flex;
-    align-items: center;
-    gap: 10rem;
-    width: 65%;
+    flex-direction: row; 
+    align-items: start; 
+    gap: 5rem; 
+    margin: auto; 
+    max-width: 1000px; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   }
   .transparent {
     opacity: 0.5;
   }
-  .product-details {
-    margin-left: 60px;
-  }
+  
   .mem-button {
     margin-right: 2px;
     height: 36px;
@@ -143,7 +160,7 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  .color-button{
+  .color-button {
     margin-right: 2px;
     height: 36px;
     width: 36px;
@@ -157,18 +174,14 @@
     background-color: #0066cc;
   }
   .product-grid {
-    display: block;
-    width: 90%; /* Adjust the width as needed */
-    margin: auto; /* Center the grid */
+    margin: auto; 
     padding: 10px 0px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     .product-image {
       width: 468.5px;
       height: 446.637px;
     }
   }
+  
   .button {
     display: flex;
     justify-content: center;

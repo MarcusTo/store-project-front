@@ -126,16 +126,19 @@ onMounted(async () => {
 <style scoped>
 .product-card {
   display: flex;
-  align-items: center;
-  gap: 10rem;
-  width: 65%;
+  flex-direction: row; 
+  align-items: start; 
+  gap: 5rem; 
+  margin: auto; 
+  max-width: 1000px; 
+  padding: 20px; 
+  background-color: #ffffff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 .transparent {
   opacity: 0.5;
 }
-.product-details {
-  margin-left: 60px;
-}
+
 .mem-button {
   margin-right: 2px;
   height: 36px;
@@ -171,18 +174,14 @@ onMounted(async () => {
   background-color: #0066cc;
 }
 .product-grid {
-  display: block;
-  width: 90%; /* Adjust the width as needed */
-  margin: auto; /* Center the grid */
+  margin: auto; 
   padding: 10px 0px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   .product-image {
     width: 468.5px;
     height: 446.637px;
   }
 }
+
 .button {
   display: flex;
   justify-content: center;

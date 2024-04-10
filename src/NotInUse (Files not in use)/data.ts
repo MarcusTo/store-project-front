@@ -1,4 +1,4 @@
-import {Product} from "./types/Product.ts"
+import {Product} from "./Product.ts"
 
 export const sampleProducts: Product[] = [
     {
