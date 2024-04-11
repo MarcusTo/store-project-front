@@ -26,6 +26,7 @@
               <RouterLink to="/Apple/applewatch" class="sidebar-link">Apple Watch</RouterLink>
               <RouterLink to="/Apple/airpods" class="sidebar-link">AirPods</RouterLink>
               <RouterLink to="/Apple/mac" class="sidebar-link">iMac</RouterLink>
+              <RouterLink to="/Apple/mac" class="sidebar-link">Display</RouterLink>
               <RouterLink to="/Apple/mac" class="sidebar-link">iPad</RouterLink>
               <RouterLink to="/Apple/visionpro" class="sidebar-link">Vision pro</RouterLink>
               <RouterLink to="/Apple/appleaccessories" class="sidebar-link">Accessories</RouterLink>
@@ -190,6 +191,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 .navbar {
   background-color: #000;
   color: #fff;
@@ -207,7 +209,7 @@ export default defineComponent({
 
 .nav-links {
   position: absolute;
-  left: 50%;
+  left: 49%;
   transform: translateX(-50%);
   display: flex;
   gap: 30px;
@@ -218,6 +220,11 @@ export default defineComponent({
   list-style: none;
   display: flex;
   gap: 30px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-extra:hover {
+  transform: scale(1.1);
 }
 
 .icon {
@@ -232,15 +239,28 @@ export default defineComponent({
   background: none;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.nav-links a,
+.nav-extra a,
+.cart-button:hover {
+  transform: scale(1.1);
 }
 
 .burger {
+  outline: none;
   position: absolute;
   background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
   left: 3.5%;
+  transition: transform 0.2s ease-in-out; 
+}
+
+.burger:hover {
+  transform: scale(1.1); 
 }
 
 .menu {

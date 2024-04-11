@@ -1,5 +1,12 @@
 <template>
   <NavBarComp />
+  <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+        &#10006;
+      </span>
+    </button>
+  </div>
   <h2
     style="
       display: flex;
@@ -25,35 +32,6 @@
       />
       <div class="product-details">
         <div class="form">
-          <p style="font-size: 13px; font-weight: 500">VALI MÄLUMAHT</p>
-          <div class="memory">
-            <Button
-              class="mem-button"
-              :class="{
-                'mem-button-selected':
-                  selectedMemory && selectedMemory.value === product.memory,
-              }"
-              style="align-items: center; white-space: nowrap"
-              @click="selectedMemory.value = product.memory"
-            >
-              {{ formatMemory(product.memory) }}
-            </Button>
-          </div>
-          <p style="font-size: 13px; font-weight: 500">VALI VÄRV</p>
-          <div class="color" v-if="product.color && product.color.length">
-            <Button
-              v-for="(color, index) in product.color"
-              :key="index"
-              class="color-button"
-              :class="{
-                'color-button-selected': selectedColor.value === color,
-              }"
-              :style="{ 'background-color': color }"
-              @click="selectedColor.value = color"
-            >
-              {{ color }}
-            </Button>
-          </div>
         </div>
         <p style="font-weight: 500; font-size: 40px">
           € {{ product.price.toFixed(2) }}
@@ -64,8 +42,14 @@
           </p>
         </Button>
       </div>
+      
     </div>
   </div>
+  <div class="description-card" v-if="product">
+    <p class="product-description">
+        {{ product.description }}
+    </p>
+</div>
   <FooterComp />
 </template>
 
@@ -80,6 +64,10 @@ import { useRoute, useRouter } from "vue-router";
 
 const { t } = useI18n();
 const router = useRouter();
+
+const goBack = () => {
+  router.back(); 
+};
 
 const cart = useCartStore();
 
@@ -100,7 +88,7 @@ const addToCart = () => {
   const cartItem = {
     ...product.value,
     id: product.value._id,
-    selectedColor: selectedColor.value, // include the selected color
+    selectedColor: selectedColor.value, 
   };
   cart.addToCart(cartItem);
   router.push("/CartView");
@@ -119,7 +107,7 @@ onMounted(async () => {
   }
   const data = await response.json();
   product.value = data;
-  console.log(product.value); // Add this line
+  console.log(product.value); 
 });
 </script>
 
@@ -202,5 +190,31 @@ onMounted(async () => {
 
 .button:hover {
   background-color: #0056b3;
+}
+
+.description-card {
+  background-color: #ffffff; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  padding: 20px; 
+  margin-top: 20px; 
+  max-width: 1000px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  overflow: hidden;
+}
+
+.product-description {
+  font-size: 16px; 
+  color: #666; 
+  text-align: left; 
+  margin: 0; 
+  overflow-wrap: break-word;
+}
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
 }
 </style>

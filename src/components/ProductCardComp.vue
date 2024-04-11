@@ -1,7 +1,7 @@
 <template>
-    <h2 style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
+    <!--<h2 style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
       {{ t("home.homeHeader") }}
-    </h2>
+    </h2>-->
     <div class="card-container">
       <a v-for="product in products" :key="product.id" :href="product.link" class="card">
         <div class="product-image-container">
@@ -21,8 +21,8 @@ const products = [
   { id: '1', name: 'iPhone', image: '/img/products/apple/iphone/iphone-titanium.png', link: '/apple/iphone' },
   { id: '2', name: 'AirPods', image: '/img/products/apple/airpods/airpods-max-black.png', link: '/apple/airpods' },
   { id: '3', name: 'iMac / Macbook / iPad', image: '/img/products/apple/mac/mac-black.png', link: '/Apple/mac' },
-  { id: '4', name: 'Apple Watch', image: '/img/products/apple/apple-watch/Apple-Watch-Ultra.png', link: '/apple' },
-  { id: '5', name: 'Vision Pro', image: '/img/products/apple/vision-pro/vision.webp', link: '/macbook' },
+  { id: '4', name: 'Apple Watch', image: '/img/products/apple/apple-watch/Apple-Watch-Ultra.png', link: '/apple/applewatch' },
+  { id: '5', name: 'Vision Pro', image: '/img/products/apple/vision-pro/vision.png', link: '/apple/visionpro' },
   { id: '6', name: 'Android Devices', image: '/img/products/android/samsung-s24.png', link: '/macbook' },
   { id: '7', name: 'Business class', image: '/img/products/business-class/bclass.png', link: '/macbook' },
   { id: '8', name: 'Gaming computers', image: '/img/products/prebuiltpc/gamingcomp.png', link: '/macbook' },

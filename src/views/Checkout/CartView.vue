@@ -1,5 +1,12 @@
 <template>
   <NavBarComp />
+  <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+        &#10006;
+      </span>
+    </button>
+  </div>
   <div>
     <h2
       style="
@@ -103,11 +110,16 @@ import NavBarComp from "@/components/NavBarComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+
 
 const { t } = useI18n();
+const router = useRouter();
 
-const router = useRoute();
+const goBack = () => {
+  router.back(); 
+};
+
 const route = useRoute();
 
 const cart = useCartStore();

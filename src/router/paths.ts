@@ -9,6 +9,12 @@ export enum ROUTE_PATHS {
   MAC = "/apple/mac",
   NEW_MAC="/apple/mac/:id",
 
+  APPLEWATCH = "/apple/applewatch",
+  NEW_APPLEWATCH = "/apple/applewatch/:id",
+
+  VISIONPRO = "/apple/visionpro",
+  NEW_VISIONPRO = "/apple/visionpro/:id",
+
   PARTS = "/ComputerParts",
   NEW_PART = "/ComputerParts/:id",
 
