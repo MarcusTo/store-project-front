@@ -1,6 +1,13 @@
 <template>
     <NavBarComp />
-    <h2 style="display: flex; justify-content: center; align-items: center; font-size: 32px; margin-bottom: 40px;">
+    <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+        &#10006;
+      </span>
+    </button>
+  </div>
+    <h2 style="display: flex; justify-content: center; align-items: center; font-size: 32px; margin-bottom: 20px; margin-top: var(--h2-margin-top, -30px);">
       {{ t("Computer components") }}
     </h2>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
@@ -39,8 +46,14 @@
   import FooterComp from "@/components/FooterComp.vue";
   import SearchComp from "@/components/SearchComp.vue";
   import { useI18n } from "vue-i18n";
-  
+  import { useRoute, useRouter } from "vue-router";
+
   const { t } = useI18n();
+  const router = useRouter();
+
+  const goBack = () => {
+   router.back(); 
+  };
   
   interface Product {
     _id: string;
