@@ -115,5 +115,10 @@
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
+  button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
   </style>
   

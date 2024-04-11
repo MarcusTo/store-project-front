@@ -155,5 +155,10 @@ const filteredProducts = computed(() => {
   background-size: 30px; 
   width: 100%; 
 }
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
 </style>
   

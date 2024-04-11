@@ -117,7 +117,7 @@
     const cartItem = {
       ...product.value,
       id: product.value._id,
-      selectedColor: selectedColor.value, // include the selected color
+      selectedColor: selectedColor.value, 
     };
     cart.addToCart(cartItem);
     router.push("/CartView");
@@ -136,7 +136,7 @@
     }
     const data = await response.json();
     product.value = data;
-    console.log(product.value); // Add this line
+    console.log(product.value); 
   });
   </script>
   
@@ -241,5 +241,10 @@
     margin: 0; 
     overflow-wrap: break-word;
   }
+
+  button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
   </style>
   

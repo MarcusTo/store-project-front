@@ -147,14 +147,20 @@ export default {
   }
   
   .insert-btn {
-    padding: 10px 20px;
-    border-radius: 15px;
-    border: none;
-    background-color: #12d453;
-    color: white;
-    cursor: pointer;
-    margin-top: 20px; 
-  }
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+  background-color: #12d453;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px; 
+  transform: scale(1); 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.insert-btn:hover {
+  transform: scale(1.1); 
+}
 
   .color-input-group {
     display: flex;
@@ -174,6 +180,6 @@ export default {
 
 .required-field-message {
   color: red;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 </style>
