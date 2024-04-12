@@ -118,7 +118,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+import { defineComponent, computed, ref, onMounted } from 'vue';
 import { useCartStore } from "@/stores/cart";
 
 export default defineComponent({
@@ -134,46 +134,85 @@ export default defineComponent({
     const isPrebuiltDropdownVisible = ref(false);
     const isGearDropdownVisible = ref(false);
     const isComponentsDropdownVisible = ref(false);
-
-
     const isLanguageDropdownVisible = ref(false);
     const activeLang = ref('en'); 
 
+    onMounted(() => {
+      const savedState = localStorage.getItem('sidebarState');
+      if (savedState) {
+        const state = JSON.parse(savedState);
+        isMenuVisible.value = state.isMenuVisible;
+        isProductsDropdownVisible.value = state.isProductsDropdownVisible;
+        isAppleDropdownVisible.value = state.isAppleDropdownVisible;
+        isAndroidDropdownVisible.value = state.isAndroidDropdownVisible;
+        isPrebuiltDropdownVisible.value = state.isPrebuiltDropdownVisible;
+        isGearDropdownVisible.value = state.isGearDropdownVisible;
+        isComponentsDropdownVisible.value = state.isComponentsDropdownVisible;
+        isLanguageDropdownVisible.value = state.isLanguageDropdownVisible;
+        activeLang.value = state.activeLang;
+      }
+    });
+
+    const saveSidebarState = () => {
+      const state = {
+        isMenuVisible: isMenuVisible.value,
+        isProductsDropdownVisible: isProductsDropdownVisible.value,
+        isAppleDropdownVisible: isAppleDropdownVisible.value,
+        isAndroidDropdownVisible: isAndroidDropdownVisible.value,
+        isPrebuiltDropdownVisible: isPrebuiltDropdownVisible.value,
+        isGearDropdownVisible: isGearDropdownVisible.value,
+        isComponentsDropdownVisible: isComponentsDropdownVisible.value,
+        isLanguageDropdownVisible: isLanguageDropdownVisible.value,
+        activeLang: activeLang.value,
+      };
+      localStorage.setItem('sidebarState', JSON.stringify(state));
+    };
+
+
     function toggleLanguageDropdown() {
       isLanguageDropdownVisible.value = !isLanguageDropdownVisible.value;
+      saveSidebarState();
     }
 
     function setLocale(lang) {
       activeLang.value = lang;
+      saveSidebarState();
       // Implement language switch logic here, e.g., update i18n locale or store state
     }
 
     function toggleMenu() {
       isMenuVisible.value = !isMenuVisible.value;
+      saveSidebarState();
     }
 
     function toggleProductsDropdown() {
       isProductsDropdownVisible.value = !isProductsDropdownVisible.value;
+      saveSidebarState();
     }
 
     function toggleAppleDropdown() {
       isAppleDropdownVisible.value = !isAppleDropdownVisible.value;
+      saveSidebarState();
     }
 
     function toggleAndroidDropdown() {
       isAndroidDropdownVisible.value = !isAndroidDropdownVisible.value;
+      saveSidebarState();
     }
 
     function togglePrebuiltDropdown() {
       isPrebuiltDropdownVisible.value = !isPrebuiltDropdownVisible.value;
+      saveSidebarState();
     }
 
     function toggleGearDropdown() {
       isGearDropdownVisible.value = !isGearDropdownVisible.value;
+      saveSidebarState();
     }
 
     function toggleComponentsDropdown() {
       isComponentsDropdownVisible.value = !isComponentsDropdownVisible.value;
+      saveSidebarState();
     }
 
     return { 
@@ -260,7 +299,7 @@ export default defineComponent({
 }
 
 .burger:hover {
-  transform: scale(1.1); 
+  transform: scale(1.3); 
 }
 
 .menu {
@@ -352,7 +391,6 @@ export default defineComponent({
   z-index: 2; 
   transform: rotate(360deg);
   transition: transform 0.3s ease;
-
 }
 
 .dropdown {
@@ -399,5 +437,4 @@ export default defineComponent({
   width: 20px; 
   height: auto;
 }
-
 </style>

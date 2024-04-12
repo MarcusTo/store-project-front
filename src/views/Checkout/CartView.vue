@@ -16,7 +16,7 @@
         font-size: 32px;
       "
     >
-      {{ t("cart.title") }}
+      {{ t("Cart") }}
     </h2>
     <div class="cart-container">
       <div
@@ -141,9 +141,7 @@ const formatMemory = (memory) => {
 
 const store = useStore();
 const checkout = () => {
-  // Set the cart items in the store
   store.cart.setCartItems(cart.cartItems);
-  // Navigate to the checkout view
   router.push("/checkout");
 };
 
@@ -209,7 +207,7 @@ onMounted(async () => {
 .item-details {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
+  align-items: flex-start; 
 }
 
 .item-name {
@@ -264,4 +262,10 @@ onMounted(async () => {
   text-decoration: none;
   color: #333;
 }
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
+
 </style>

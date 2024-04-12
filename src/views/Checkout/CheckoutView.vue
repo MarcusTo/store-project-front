@@ -1,5 +1,12 @@
 <template>
   <NavBarComp />
+  <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+        &#10006;
+      </span>
+    </button>
+  </div>
   <h2 class="checkout-title">
     {{ t("checkout.checkout") }}
   </h2>
@@ -73,6 +80,14 @@ import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { useRoute, useRouter } from "vue-router";
+const router = useRouter();
+
+const goBack = () => {
+  router.back(); 
+};
+
+
 
 let name = ref("");
 let mail = ref("");
@@ -121,7 +136,7 @@ const handlePayment = async () => {
       phoneNumber: phoneNumber.value,
       address: address.value,
       info: info.value,
-      products: cart.cartItems.value, // Use the cart instance to access the cart items
+      products: cart.cartItems.value, 
       totalPrice: totalPrice.value,
       postal_code: postalCode.value,
       paymentMethodId: paymentMethod.id,
@@ -181,6 +196,12 @@ const { t } = useI18n();
   border-radius: 16px;
   transition: background-color 0.3s ease;
 }
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
+
 .total-price {
   display: flex;
   justify-content: center;
