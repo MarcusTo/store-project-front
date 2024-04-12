@@ -1,4 +1,11 @@
 <template>
+    <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+        &#10006;
+      </span>
+    </button>
+  </div>
   <div class="container">
     <div v-for="(header, index) in headers" :key="index" class="input-group">
       <h3>{{ header }}</h3>
@@ -32,7 +39,7 @@
         @input="inputChanged(header, $event.target.value)" 
         class="text-input"
       />
-      <span v-if="isRequiredField(header) && !formData[header]" class="required-icon">!</span>
+      <span v-if="isRequiredField(header) && !formData[header] && attemptedSubmit" class="required-icon">!</span>
     </div>
     <button @click="submitForm" class="insert-btn">Create product</button>
     <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
@@ -44,10 +51,19 @@
   
 
 <script>
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 
 export default {
   name: 'MongoDBForm',
+  setup() {
+    const router = useRouter();
+
+    const goBack = () => {
+      router.back();
+    };
+    return { goBack };
+  },
   data() {
     return {
       headers: ['Product name:', 'Product price:', 'Memory:', 'Color:', 'Category:', 'Description:', 'Path to .png file:'],
@@ -84,11 +100,13 @@ export default {
         this.showRequiredFieldMessage = false;
       }
     },
-  submitForm() {
-  if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Description:'] || !this.formData['Path to .png file:']) {
-    this.showRequiredFieldMessage = true;
-    return;
-  }
+    submitForm() {
+      this.attemptedSubmit = true; 
+      if (!this.formData['Product name:'] || !this.formData['Product price:'] || !this.formData['Category:'] || !this.formData['Description:'] || !this.formData['Path to .png file:']) {
+        this.showRequiredFieldMessage = true;
+        return;
+      }
+      this.showRequiredFieldMessage = false;
   
   const productData = {
     name: this.formData['Product name:'],
@@ -125,7 +143,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
+    min-height: 70vh;
     padding: 1rem;
   }
 
@@ -174,7 +192,7 @@ export default {
 
 .insertion-complete {
   position: absolute;
-  top: 20px;
+  top: 130px;
   background-color: lightgreen;
   padding: 10px;
   border-radius: 5px;
@@ -205,5 +223,10 @@ export default {
 .input-wrapper {
   display: flex;
   align-items: center;
+}
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
 }
 </style>
