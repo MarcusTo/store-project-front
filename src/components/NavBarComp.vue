@@ -23,14 +23,15 @@
               <b>Apple</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
             </div>
             <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/iphone')">iPhone</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/applewatch')">Apple Watch</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/airpods')">AirPods</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/mac')">iMac</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/mac')">Display</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/mac')">iPad</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/visionpro')">Vision pro</RouterLink>
-              <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/appleaccessories')">Accessories</RouterLink>
+              <RouterLink to="/apple/iphone" class="sidebar-link" @click="() => closeMenu('/Apple/iphone')">iPhone</RouterLink>
+              <RouterLink to="/apple/applewatch" class="sidebar-link" @click="() => closeMenu('/Apple/applewatch')">Apple Watch</RouterLink>
+              <RouterLink to="/apple/airpods" class="sidebar-link" @click="() => closeMenu('/Apple/airpods')">AirPods</RouterLink>
+              <RouterLink to="/apple/mac?category=macpc" class="sidebar-link" @click="() => closeMenu('/apple/macpc')">Mac</RouterLink>
+              <RouterLink to="/apple/mac?category=macbook" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macbook')">MacBook</RouterLink>
+              <RouterLink to="/apple/mac?category=macdisplay" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macdisplay')">Display</RouterLink>
+              <RouterLink to="/apple/mac?category=ipad" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=ipad')">iPad</RouterLink>
+              <RouterLink to="/apple/visionpro" class="sidebar-link" @click="() => closeMenu('/Apple/visionpro')">Vision pro</RouterLink>
+              <RouterLink to="/apple/accessories" class="sidebar-link" @click="() => closeMenu('/Apple/appleaccessories')">Accessories</RouterLink>
             </div>
 
             <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
@@ -142,7 +143,7 @@ export default defineComponent({
       const savedState = localStorage.getItem('sidebarState');
       if (savedState) {
         const state = JSON.parse(savedState);
-        isMenuVisible.value = state.isMenuVisible;
+        isMenuVisible.value = false;
         isProductsDropdownVisible.value = state.isProductsDropdownVisible;
         isAppleDropdownVisible.value = state.isAppleDropdownVisible;
         isAndroidDropdownVisible.value = state.isAndroidDropdownVisible;
@@ -172,12 +173,12 @@ export default defineComponent({
 
     function closeMenu(route) {
       isMenuVisible.value = false;
+
       setTimeout(() => {
         if (route) {
-          this.$router.push(route); 
+          router.push(route);
         }
-      }, 310); 
-      saveSidebarState();
+      }, 300); 
     }
 
     function toggleLanguageDropdown() {
