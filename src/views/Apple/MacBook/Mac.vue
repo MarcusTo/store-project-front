@@ -15,7 +15,7 @@
     <div style="margin-top: -50px; width: 100%; max-width: 300px;">
       <select v-model="selectedCategory" id="categoryFilter" class="custom-select">
         <option value="">All Categories</option>
-        <option value="mac">Mac</option>
+        <option value="macpc">Mac</option>
         <option value="macbook">MacBook</option>
         <option value="macdisplay">Display</option>
         <option value="ipad">iPad</option>
@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, defineEmits } from 'vue';
+import { ref, onMounted, computed, defineEmits, watch } from 'vue';
 import NavBarComp from "@/components/NavBarComp.vue";
 import FooterComp from "@/components/FooterComp.vue";
 import SearchComp from "@/components/SearchComp.vue";
@@ -51,6 +51,8 @@ const router = useRouter();
 const goBack = () => {
   router.back(); 
 };
+
+const route = useRoute();
 
 interface Product {
   _id: string;
@@ -69,11 +71,15 @@ onMounted(async () => {
 try {
   const response = await fetch('http://localhost:3000/api/products');
   const data: Product[] = await response.json();
-  const desiredCategories = ['mac', 'macbook', 'ipad', 'macdisplay'];
+  products.value = data;
+  const desiredCategories = ['macpc', 'macbook', 'ipad', 'macdisplay'];
   products.value = data.filter(product => desiredCategories.includes(product.category));
 } catch (error) {
   console.error('Error:', error);
 }
+if (route.query.category) {
+    selectedCategory.value = route.query.category;
+  }
 });
 
 const handleSearch = (value: string) => {

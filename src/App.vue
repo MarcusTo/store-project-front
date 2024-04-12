@@ -1,5 +1,5 @@
 <template>
-  <RouterView />
+  <RouterView :key="$route.fullPath" />
 </template>
 <script lang="ts">
 import { RouterView} from 'vue-router'
