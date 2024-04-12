@@ -326,7 +326,7 @@ export default defineComponent({
   top: 0;
   left: 0;
   bottom: 0;
-  width: 250px;
+  width: 300px;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
   background-color: #333;

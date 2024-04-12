@@ -32,10 +32,13 @@
         @input="inputChanged(header, $event.target.value)" 
         class="text-input"
       />
+      <span v-if="isRequiredField(header) && !formData[header]" class="required-icon">!</span>
     </div>
     <button @click="submitForm" class="insert-btn">Create product</button>
     <div v-if="showInsertionComplete" class="insertion-complete">Product added to database</div>
+    <div>
     <div v-if="showRequiredFieldMessage" class="required-field-message">Please fill in all required fields.</div>
+  </div>
   </div>
 </template>
   
@@ -51,8 +54,8 @@ export default {
       formData: {
       'Product name:': '',
       'Product price:': '',
-      'Memory:': '',
-      'Color:': '',
+      'Memory:': '0',
+      'Color:': '0',
       'Category:': '',
       'Description:': '', 
       'Path to .png file:': '/img/products/',
@@ -71,7 +74,7 @@ export default {
       return 'text';
     },
     isRequiredField(header) {
-      return ['Product name:', 'Product price:', 'Category:', 'Path to .png file:'].includes(header);
+      return ['Product name:', 'Product price:', 'Category:', 'Description:', 'Path to .png file:'].includes(header);
     },
     inputChanged(header, value) {
       this.formData[header] = value;
@@ -179,7 +182,28 @@ export default {
 }
 
 .required-field-message {
+  position: absolute;
   color: red;
-  margin-top: 20px;
+  font-weight: bold;
+  top: 78%;
+  margin-left: -114px;
+}
+
+.input-error input {
+  border: 2px solid red;
+}
+
+.required-icon {
+  position: absolute;
+  color: red;
+  font-weight: bold;
+  margin-left: 5px;
+  font-size: 23px;
+  margin-top: 5px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
 }
 </style>
