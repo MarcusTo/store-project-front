@@ -20,7 +20,7 @@
           <div v-if="isProductsDropdownVisible" class="dropdown-content">
 
             <div @click.stop="toggleAppleDropdown" class="sidebar-link dropdown">
-              Apple <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
+              <b>Apple</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
             </div>
             <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/Apple/iphone')">iPhone</RouterLink>
@@ -34,7 +34,7 @@
             </div>
 
             <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
-              Android <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
+              <b>Android</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
             </div>
             <div v-if="isAndroidDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Samsung</RouterLink>
@@ -44,7 +44,7 @@
             </div>
 
             <div @click.stop="togglePrebuiltDropdown" class="sidebar-link dropdown">
-              Desktops / Laptops <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
+              <b>Desktops / Laptops</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
             </div>
             <div v-if="isPrebuiltDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/businessclass/')">Business class</RouterLink>
@@ -56,7 +56,7 @@
             </div>
 
             <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
-              Computer parts <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
+              <b>Computer parts</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
             </div>
             <div v-if="isComponentsDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gpu')">GPU (Graphics processing unit)</RouterLink>
@@ -69,7 +69,7 @@
             </div>
 
             <div @click.stop="toggleGearDropdown" class="sidebar-link dropdown">
-              Gear <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isGearDropdownVisible}"></i>
+              <b>Gear</b><i class="pi pi-chevron-down" :class="{'pi-chevron-up': isGearDropdownVisible}"></i>
             </div>
             <div v-if="isGearDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/monitors')">Monitors</RouterLink>
@@ -94,7 +94,7 @@
           <img src="/img/flags/united-kingdom-rounded.png" class="flag-icon"/> English
           </div>
           </div>
-          <RouterLink to="/ProductsDatabase" class="sidebar-link">{{ $t("addProducts") }}</RouterLink>
+          <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/ProductsDatabase')">{{ $t("addProducts") }}</RouterLink>
           </div>
         <div class="sidebar-footer">
           <p>© 2024 ARVUTIPOOD</p>
@@ -401,7 +401,11 @@ export default defineComponent({
   padding: 5px; 
   z-index: 2; 
   transform: rotate(360deg);
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease-in-out; 
+}
+
+.back-button:hover {
+  transform: scale(1.3); 
 }
 
 .dropdown {
@@ -418,12 +422,14 @@ export default defineComponent({
   gap: 20px;
   padding-left: 20px; 
   transition: transform 0.3s ease;
+  font-weight: normal;
 }
 
 .nested-dropdown-content {
   display: flex;
   flex-direction: column;
   gap: 10px; 
+  font-weight: normal;
   transition: transform 0.3s ease;
 }
 
