@@ -289,6 +289,7 @@ export default defineComponent({
   background: none;
   border: none;
   cursor: pointer;
+  padding: 10px;
   transition: transform 0.2s ease-in-out;
 }
 
