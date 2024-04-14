@@ -203,8 +203,8 @@ export default {
   position: absolute;
   color: red;
   font-weight: bold;
-  top: 78%;
   margin-left: -114px;
+  margin-top: 20px;
 }
 
 .input-error input {
