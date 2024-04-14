@@ -16,12 +16,12 @@
         margin-top: var(--h2-margin-top, -30px);
       "
     >
-      {{ t("products.iphone") }}
+      {{ t("Apple watch") }}
     </h2>
     <SearchComp @search="handleSearch" />
     <hr />
     <div class="product-cards">
-      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/apple/iphone/${product._id}`" class="product-card-link">
+      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/apple/applewatch/${product._id}`" class="product-card-link">
         <div class="product-card">
           <img :src="product.image" style="width: 200px; height: 200px" />
           <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
@@ -66,7 +66,7 @@
     try {
       const response = await fetch('http://localhost:3000/api/products');
       const data: Product[] = await response.json();
-      products.value = data.filter(product => product.category === 'iphone');
+      products.value = data.filter(product => product.category === 'applewatch');
     } catch (error) {
       console.error('Error:', error);
     }

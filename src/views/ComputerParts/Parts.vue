@@ -25,7 +25,7 @@
         </select>
       </div>
     </div>
-    <hr />
+    <hr/>
     <div class="product-cards">
       <router-link v-for="product in filteredProducts" :key="product._id" :to="`/ComputerParts/${product._id}`" class="product-card-link">
         <div class="product-card">
@@ -52,8 +52,8 @@
   const router = useRouter();
 
   const goBack = () => {
-   router.back(); 
-  };
+  router.push('/'); 
+};
   
   interface Product {
     _id: string;

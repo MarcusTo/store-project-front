@@ -46,7 +46,7 @@ const { t } = useI18n();
 const router = useRouter();
 
 const goBack = () => {
-  router.back(); 
+  router.push('/'); 
 };
 
 interface Product {

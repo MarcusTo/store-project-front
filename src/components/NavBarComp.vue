@@ -13,27 +13,33 @@
         <div class="sidebar-content">
           <p></p>
 
+          <div class="button-card1">
           <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
             <span>&#128722; Products</span>
             <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isProductsDropdownVisible}"></i>
-          </div>
+        </div>
+
           <div v-if="isProductsDropdownVisible" class="dropdown-content">
 
+            <div class="button-card">
             <div @click.stop="toggleAppleDropdown" class="sidebar-link dropdown">
               <b>Apple</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
             </div>
+
             <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="/apple/iphone" class="sidebar-link" @click="() => closeMenu('/Apple/iphone')">iPhone</RouterLink>
               <RouterLink to="/apple/applewatch" class="sidebar-link" @click="() => closeMenu('/Apple/applewatch')">Apple Watch</RouterLink>
               <RouterLink to="/apple/airpods" class="sidebar-link" @click="() => closeMenu('/Apple/airpods')">AirPods</RouterLink>
-              <RouterLink to="/apple/mac?category=macpc" class="sidebar-link" @click="() => closeMenu('/apple/macpc')">Mac</RouterLink>
+              <RouterLink to="/apple/mac?category=mac" class="sidebar-link" @click="() => closeMenu('/apple/mac')">Mac</RouterLink>
               <RouterLink to="/apple/mac?category=macbook" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macbook')">MacBook</RouterLink>
               <RouterLink to="/apple/mac?category=macdisplay" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macdisplay')">Display</RouterLink>
               <RouterLink to="/apple/mac?category=ipad" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=ipad')">iPad</RouterLink>
               <RouterLink to="/apple/visionpro" class="sidebar-link" @click="() => closeMenu('/Apple/visionpro')">Vision pro</RouterLink>
               <RouterLink to="/apple/accessories" class="sidebar-link" @click="() => closeMenu('/Apple/appleaccessories')">Accessories</RouterLink>
             </div>
+          </div>
 
+            <div class="button-card">
             <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
               <b>Android</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
             </div>
@@ -43,9 +49,11 @@
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Xiaomi</RouterLink>
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Accessories</RouterLink>
             </div>
+          </div>
 
+          <div class="button-card">
             <div @click.stop="togglePrebuiltDropdown" class="sidebar-link dropdown">
-              <b>Desktops / Laptops</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
+              <b>Computers</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
             </div>
             <div v-if="isPrebuiltDropdownVisible" class="dropdown-content nested-dropdown-content">
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/businessclass/')">Business class</RouterLink>
@@ -55,7 +63,9 @@
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/desktop/')">Desktops</RouterLink>
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/laptop/')">Laptops</RouterLink>
             </div>
+          </div>
 
+          <div class="button-card">
             <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
               <b>Computer parts</b> <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
             </div>
@@ -68,7 +78,9 @@
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/case')">Cases</RouterLink>
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/other')">Other</RouterLink>
             </div>
+          </div>
 
+          <div class="button-card">
             <div @click.stop="toggleGearDropdown" class="sidebar-link dropdown">
               <b>Gear</b><i class="pi pi-chevron-down" :class="{'pi-chevron-up': isGearDropdownVisible}"></i>
             </div>
@@ -80,23 +92,36 @@
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/mousepad')">Mousepad</RouterLink>
               <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/other')">Other</RouterLink>
             </div>
-
-            <!-- Siia alla saab linke juurde lisada  -->
+          </div>
 
           </div>
+            <!-- Siia alla saab linke juurde lisada  -->
+          </div>
+
+        <div class="button-card1">
           <div @click="toggleLanguageDropdown" class="sidebar-link dropdown">
             &#127757; Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
           </div>
           <div v-if="isLanguageDropdownVisible" class="dropdown-content">
           <div :class="{'active': activeLang === 'et'}" @click="setLocale('et')" class="language-option">
+            <div class="button-card">
           <img src="/img/flags/estonia.png" class="flag-icon"/> Estonian
           </div>
-          <div :class="{'active': activeLang === 'en'}" @click="setLocale('en')" class="language-option">
+        </div>
+        <div :class="{'active': activeLang === 'en'}" @click="setLocale('en')" class="language-option">
+            <div class="button-card">
           <img src="/img/flags/united-kingdom-rounded.png" class="flag-icon"/> English
           </div>
-          </div>
-          <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/ProductsDatabase')">{{ $t("addProducts") }}</RouterLink>
-          </div>
+        </div>
+        </div>
+        </div>
+        <div class="button-card1">
+        <div class="product-database-link-container">
+          <RouterLink to="/productsdatabase" class="sidebar-link" @click="() => closeMenu('/productsdatabase')">Products Database</RouterLink>
+        </div>
+      </div>
+        </div>
+
         <div class="sidebar-footer">
           <p>© 2024 ARVUTIPOOD</p>
         </div>
@@ -249,6 +274,11 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0; 
+  right: 0; 
+  z-index: 1001;
 }
 
 .container {
@@ -346,6 +376,11 @@ export default defineComponent({
   border-bottom: 1px solid #fff; 
 }
 
+.sidebar-icon {
+  margin-right: 15px; 
+  color: #f0ad4e; 
+}
+
 .sidebar-title {
   color: #fff;
   font-size: 20px; 
@@ -386,9 +421,12 @@ export default defineComponent({
 }
 
 .sidebar-link {
+  padding: 10px 15px;
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
   transition: transform 0.3s ease;
+  border-radius: 15px;
 }
 
 .back-button {
@@ -467,4 +505,67 @@ export default defineComponent({
   z-index: 999; 
   transition: opacity 0.3s ease;
 }
+
+.product-database-link-container {
+    text-align: center;
+    width: 100%; 
+}
+
+.sidebar-link:hover {
+  opacity: 0.8;
+}
+
+.button-card {
+  background-color: #6b6161; 
+  border-radius: 30px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px; 
+  display: inline-block;
+  margin: 5px; 
+  transition: transform 0.1s ease; 
+}
+
+.button-card button {
+  background: none;
+  border: none; 
+  color: inherit; 
+  text-align: center; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  outline: none; 
+}
+
+.button-card:hover {
+  transform: translateY(-3px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button-card1 {
+  background-color: #0e0808; 
+  border-radius: 30px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px; 
+  display: block;
+  margin: 5px; 
+  transition: transform 0.1s ease; 
+}
+
+
+.button-card1 button {
+  background: none;
+  border: none; 
+  color: inherit; 
+  text-align: center; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  outline: none; 
+}
+
+.button-card1:hover {
+  transform: translateY(-3px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 </style>

@@ -15,7 +15,7 @@
     <div style="margin-top: -50px; width: 100%; max-width: 300px;">
       <select v-model="selectedCategory" id="categoryFilter" class="custom-select">
         <option value="">All Categories</option>
-        <option value="macpc">Mac</option>
+        <option value="mac">Mac</option>
         <option value="macbook">MacBook</option>
         <option value="macdisplay">Display</option>
         <option value="ipad">iPad</option>
@@ -49,7 +49,7 @@ const { t } = useI18n();
 const router = useRouter();
 
 const goBack = () => {
-  router.back(); 
+  router.push('/'); 
 };
 
 const route = useRoute();
@@ -72,7 +72,7 @@ try {
   const response = await fetch('http://localhost:3000/api/products');
   const data: Product[] = await response.json();
   products.value = data;
-  const desiredCategories = ['macpc', 'macbook', 'ipad', 'macdisplay'];
+  const desiredCategories = ['mac', 'macbook', 'ipad', 'macdisplay'];
   products.value = data.filter(product => desiredCategories.includes(product.category));
 } catch (error) {
   console.error('Error:', error);
@@ -114,7 +114,7 @@ return products.value.filter(product => {
 
 .product-card {
   text-align: center;
-  width: 200px; 
+  width: 220px; 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
