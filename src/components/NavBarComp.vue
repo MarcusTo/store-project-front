@@ -268,7 +268,7 @@ export default defineComponent({
 <style scoped>
 
 .navbar {
-  background-color: #000;
+  background-color: #aaaaaa;
   color: #fff;
   display: flex;
   justify-content: space-between;
