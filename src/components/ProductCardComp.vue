@@ -26,9 +26,9 @@ const products = [
   { id: '6', name: 'Android Devices', image: '/img/products/android/samsung-s24.png', link: '/macbook' },
   { id: '7', name: 'Business class', image: '/img/products/business-class/bclass.png', link: '/macbook' },
   { id: '8', name: 'Gaming computers', image: '/img/products/prebuiltpc/gamingcomp.png', link: '/macbook' },
-  { id: '9', name: 'Computer parts / Other', image: '/img/products/gear/cable.png', link: '/ComputerParts' },
+  { id: '9', name: 'Computer parts / Other', image: '/img/products/gear/gpu.png', link: '/ComputerParts' },
   { id: '10', name: 'Gear', image: '/img/products/gear/compgear.png', link: '/macbook' },
-  
+
 ];
 </script>
 
