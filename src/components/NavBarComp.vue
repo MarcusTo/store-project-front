@@ -13,9 +13,9 @@
         <div class="sidebar-content">
           <p></p>
 
-          <div class="button-card1">
+          <div class="button-card">
           <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
-            <span>&#128722; Products</span>
+            <span>Products</span>
             <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isProductsDropdownVisible}"></i>
         </div>
 
@@ -100,7 +100,7 @@
 
         <div class="button-card1">
           <div @click="toggleLanguageDropdown" class="sidebar-link dropdown">
-            &#127757; Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
+             Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
           </div>
           <div v-if="isLanguageDropdownVisible" class="dropdown-content">
           <div :class="{'active': activeLang === 'et'}" @click="setLocale('et')" class="language-option">
@@ -214,7 +214,6 @@ export default defineComponent({
     function setLocale(lang) {
       activeLang.value = lang;
       saveSidebarState();
-      // Implement language switch logic here, e.g., update i18n locale or store state
     }
 
     function toggleMenu() {
@@ -269,7 +268,7 @@ export default defineComponent({
 <style scoped>
 
 .navbar {
-  background-color: #000;
+  background-color: #aaaaaa;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -516,7 +515,6 @@ export default defineComponent({
 }
 
 .button-card {
-  background-color: #6b6161; 
   border-radius: 30px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px 20px; 
@@ -542,7 +540,6 @@ export default defineComponent({
 }
 
 .button-card1 {
-  background-color: #0e0808; 
   border-radius: 30px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px 20px; 
