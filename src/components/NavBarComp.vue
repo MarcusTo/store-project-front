@@ -139,23 +139,30 @@
         </div>
 
       </div>
+
       <ul class="nav-links">
         <li>
           <RouterLink to="/">
             <span class="icon"></span>{{ $t("navbar.home") }}
           </RouterLink>
         </li>
+      </ul>
+      <ul class="nav-links">
         <li>
           <RouterLink to="/services">
             <span class="icon"></span>{{ $t("navbar.repairs") }}
           </RouterLink>
         </li>
+      </ul>
+      <ul class="nav-links">
         <li>
           <RouterLink to="/about">
             <span class="icon"></span>{{ $t("About us") }}
           </RouterLink>
         </li>
       </ul>
+
+
       <div class="nav-extra">
         <button class="cart-button">
           <RouterLink to="/cartView" class="nav-bar__router-link">
@@ -165,6 +172,7 @@
         </button>
       </div>
     </div>
+
   </nav>
 </template>
 <script lang="ts">
@@ -304,7 +312,7 @@
 </script>
 <style scoped>
   .navbar {
-    background-color: #000;
+    background-color: #272727;
     color: #fff;
     display: flex;
     justify-content: space-between;
@@ -323,13 +331,23 @@
     position: relative;
   }
 
+  .container > :first-child {
+   margin-right: 780px;
+}
+
+.container > :last-child {
+   margin-left: 750px; 
+}
+
   .nav-links {
-    position: absolute;
-    left: 49%;
-    transform: translateX(-50%);
+    position: relative;
     display: flex;
-    gap: 30px;
     list-style: none;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .nav-links:hover {
+    transform: scale(1.1);
   }
 
   .nav-extra {
@@ -396,7 +414,7 @@
     width: 300px;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    background-color: #333;
+    background-color: #272727;
     color: white;
     padding: 1rem;
     z-index: 1000;
@@ -551,7 +569,7 @@
   }
 
   .button-card {
-    background-color: #6b6161;
+    background-color: #7a6e6e;
     border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
@@ -577,7 +595,7 @@
   }
 
   .button-card1 {
-    background-color: #0e0808;
+    background-color: #504a4a;
     border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px 20px;
