@@ -1,182 +1,161 @@
 <template>
   <div class="overlay" v-if="isMenuVisible" @click="closeMenu"></div>
   <nav class="navbar">
-    <div class="container">
-      <RouterLink to="/">
-        <img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" />
-      </RouterLink>
-      <button class="burger" @click="toggleMenu">&#9776;</button>
-      <div class="sidebar" :class="{'is-visible': isMenuVisible}">
-        <button class="back-button" @click="closeMenu">&#10006;</button>
-        <div class="sidebar-header">
-          <img src="/public/img/other/firma_ikoon.png" alt="Logo" class="sidebar-logo" />
-          <h1 class="sidebar-title">Arvutipood</h1>
+     <div class="container">
+        <RouterLink to="/">
+           <img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" />
+        </RouterLink>
+        <button class="burger" @click="toggleMenu">&#9776;</button>
+        <div class="sidebar" :class="{'is-visible': isMenuVisible}">
+           <button class="back-button" @click="closeMenu">&#10006;</button>
+           <div class="sidebar-header">
+              <img src="/public/img/other/firma_ikoon.png" alt="Logo" class="sidebar-logo" />
+              <h1 class="sidebar-title">Arvutipood</h1>
+           </div>
+           <div class="sidebar-content">
+              <p></p>
+              <div class="button-card1">
+                 <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
+                    <span>Products</span>
+                    <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isProductsDropdownVisible}"></i>
+                 </div>
+              </div>
+              <div v-if="isProductsDropdownVisible" class="dropdown-content">
+                 <div class="button-card">
+                    <div @click.stop="toggleAppleDropdown" class="sidebar-link dropdown">
+                       <b>Apple</b>
+                       <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
+                    </div>
+                    <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
+                       <RouterLink to="/apple/iphone" class="sidebar-link" @click="() => closeMenu('/Apple/iphone')">iPhone</RouterLink>
+                       <RouterLink to="/apple/applewatch" class="sidebar-link" @click="() => closeMenu('/Apple/applewatch')">Apple Watch</RouterLink>
+                       <RouterLink to="/apple/airpods" class="sidebar-link" @click="() => closeMenu('/Apple/airpods')">AirPods</RouterLink>
+                       <RouterLink to="/apple/mac?category=mac" class="sidebar-link" @click="() => closeMenu('/apple/mac')">Mac</RouterLink>
+                       <RouterLink to="/apple/mac?category=macbook" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macbook')">MacBook</RouterLink>
+                       <RouterLink to="/apple/mac?category=macdisplay" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macdisplay')">Display</RouterLink>
+                       <RouterLink to="/apple/mac?category=ipad" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=ipad')">iPad</RouterLink>
+                       <RouterLink to="/apple/visionpro" class="sidebar-link" @click="() => closeMenu('/Apple/visionpro')">Vision pro</RouterLink>
+                       <RouterLink to="/apple/accessories" class="sidebar-link" @click="() => closeMenu('/Apple/appleaccessories')">Accessories</RouterLink>
+                    </div>
+                 </div>
+                 <div class="button-card">
+                    <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
+                       <b>Android</b>
+                       <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
+                    </div>
+                    <div v-if="isAndroidDropdownVisible" class="dropdown-content nested-dropdown-content">
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Samsung</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Huawei</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Xiaomi</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Accessories</RouterLink>
+                    </div>
+                 </div>
+                 <div class="button-card">
+                    <div @click.stop="togglePrebuiltDropdown" class="sidebar-link dropdown">
+                       <b>Computers</b>
+                       <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
+                    </div>
+                    <div v-if="isPrebuiltDropdownVisible" class="dropdown-content nested-dropdown-content">
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/businessclass/')">Business class</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/highend/')">High End</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gamingdesktop/')">Gaming Desktops</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gaminglaptop/')">Gaming Laptops</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/desktop/')">Desktops</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/laptop/')">Laptops</RouterLink>
+                    </div>
+                 </div>
+                 <div class="button-card">
+                    <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
+                       <b>Computer parts</b>
+                       <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
+                    </div>
+                    <div v-if="isComponentsDropdownVisible" class="dropdown-content nested-dropdown-content">
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gpu')">GPU (Graphics processing unit)</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/cpu')">CPU (Core processing unit)</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/psu')">PSU (Power supply unit)</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/motherboard')">Motherboards</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/ram')">RAM</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/case')">Cases</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/other')">Other</RouterLink>
+                    </div>
+                 </div>
+                 <div class="button-card">
+                    <div @click.stop="toggleGearDropdown" class="sidebar-link dropdown">
+                       <b>Gear</b>
+                       <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isGearDropdownVisible}"></i>
+                    </div>
+                    <div v-if="isGearDropdownVisible" class="dropdown-content nested-dropdown-content">
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/monitors')">Monitors</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gamingmonitors')">Gaming Monitors</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/keyboard')">Keyboard</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/mouse')">Mouse</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/mousepad')">Mousepad</RouterLink>
+                       <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/other')">Other</RouterLink>
+                    </div>
+                 </div>
+              </div>
+              <!-- Siia alla saab linke juurde lisada  -->
+              <div class="button-card1">
+                 <div @click="toggleLanguageDropdown" class="sidebar-link dropdown"> Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
+                 </div>
+              </div>
+              <div v-if="isLanguageDropdownVisible" class="dropdown-content">
+                 <div :class="{'active': activeLang === 'et'}" @click="setLocale('et')" class="language-option">
+                    <div class="button-card">
+                       <img src="/img/flags/estonia.png" class="flag-icon" /> Estonian
+                    </div>
+                 </div>
+                 <div :class="{'active': activeLang === 'en'}" @click="setLocale('en')" class="language-option">
+                    <div class="button-card">
+                       <img src="/img/flags/united-kingdom-rounded.png" class="flag-icon" /> English
+                    </div>
+                 </div>
+              </div>
+              <div class="button-card1">
+                 <div class="product-database-link-container">
+                    <RouterLink to="/productsdatabase" class="sidebar-link" @click="() => closeMenu('/productsdatabase')">Products Database</RouterLink>
+                 </div>
+              </div>
+           </div>
+           <div class="sidebar-footer">
+              <p>© 2024 ARVUTIPOOD</p>
+           </div>
         </div>
-
-        <div class="sidebar-content">
-
-          <p></p>
-
-          <div class="button-card1">
-            <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
-              <span>Products</span>
-              <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isProductsDropdownVisible}"></i>
-            </div>
-          </div>
-
-            <div v-if="isProductsDropdownVisible" class="dropdown-content">
-              <div class="button-card">
-                <div @click.stop="toggleAppleDropdown" class="sidebar-link dropdown">
-                  <b>Apple</b>
-                  <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAppleDropdownVisible}"></i>
-                </div>
-
-                <div v-if="isAppleDropdownVisible" class="dropdown-content nested-dropdown-content">
-                  <RouterLink to="/apple/iphone" class="sidebar-link" @click="() => closeMenu('/Apple/iphone')">iPhone</RouterLink>
-                  <RouterLink to="/apple/applewatch" class="sidebar-link" @click="() => closeMenu('/Apple/applewatch')">Apple Watch</RouterLink>
-                  <RouterLink to="/apple/airpods" class="sidebar-link" @click="() => closeMenu('/Apple/airpods')">AirPods</RouterLink>
-                  <RouterLink to="/apple/mac?category=mac" class="sidebar-link" @click="() => closeMenu('/apple/mac')">Mac</RouterLink>
-                  <RouterLink to="/apple/mac?category=macbook" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macbook')">MacBook</RouterLink>
-                  <RouterLink to="/apple/mac?category=macdisplay" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=macdisplay')">Display</RouterLink>
-                  <RouterLink to="/apple/mac?category=ipad" class="sidebar-link" @click="() => closeMenu('/Apple/mac?category=ipad')">iPad</RouterLink>
-                  <RouterLink to="/apple/visionpro" class="sidebar-link" @click="() => closeMenu('/Apple/visionpro')">Vision pro</RouterLink>
-                  <RouterLink to="/apple/accessories" class="sidebar-link" @click="() => closeMenu('/Apple/appleaccessories')">Accessories</RouterLink>
-                </div>
-              </div>
-
-              <div class="button-card">
-                <div @click.stop="toggleAndroidDropdown" class="sidebar-link dropdown">
-                  <b>Android</b>
-                  <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isAndroidDropdownVisible}"></i>
-                </div>
-
-                <div v-if="isAndroidDropdownVisible" class="dropdown-content nested-dropdown-content">
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Samsung</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Huawei</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Xiaomi</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/android/')">Accessories</RouterLink>
-                </div>
-              </div>
-
-              <div class="button-card">
-                <div @click.stop="togglePrebuiltDropdown" class="sidebar-link dropdown">
-                  <b>Computers</b>
-                  <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isPrebuiltDropdownVisible}"></i>
-                </div>
-
-                <div v-if="isPrebuiltDropdownVisible" class="dropdown-content nested-dropdown-content">
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/businessclass/')">Business class</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/highend/')">High End</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gamingdesktop/')">Gaming Desktops</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gaminglaptop/')">Gaming Laptops</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/desktop/')">Desktops</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/laptop/')">Laptops</RouterLink>
-                </div>
-              </div>
-
-              <div class="button-card">
-                <div @click.stop="toggleComponentsDropdown" class="sidebar-link dropdown">
-                  <b>Computer parts</b>
-                  <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isComponentsDropdownVisible}"></i>
-                </div>
-
-                <div v-if="isComponentsDropdownVisible" class="dropdown-content nested-dropdown-content">
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gpu')">GPU (Graphics processing unit)</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/cpu')">CPU (Core processing unit)</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/psu')">PSU (Power supply unit)</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/motherboard')">Motherboards</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/ram')">RAM</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/case')">Cases</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/other')">Other</RouterLink>
-                </div>
-              </div>
-
-              <div class="button-card">
-                <div @click.stop="toggleGearDropdown" class="sidebar-link dropdown">
-                  <b>Gear</b>
-                  <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isGearDropdownVisible}"></i>
-                </div>
-
-                <div v-if="isGearDropdownVisible" class="dropdown-content nested-dropdown-content">
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/monitors')">Monitors</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/gamingmonitors')">Gaming Monitors</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/keyboard')">Keyboard</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/mouse')">Mouse</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/mousepad')">Mousepad</RouterLink>
-                  <RouterLink to="#" class="sidebar-link" @click="() => closeMenu('/other')">Other</RouterLink>
-                </div>
-
-              </div>
-            </div>
-            <!-- Siia alla saab linke juurde lisada  -->
-
-          <div class="button-card1">
-            <div @click="toggleLanguageDropdown" class="sidebar-link dropdown"> Language <i class="pi pi-chevron-down" :class="{'pi-chevron-up': isLanguageDropdownVisible}"></i>
-            </div>
-          </div>
-            <div v-if="isLanguageDropdownVisible" class="dropdown-content">
-              <div :class="{'active': activeLang === 'et'}" @click="setLocale('et')" class="language-option">
-                <div class="button-card">
-                  <img src="/img/flags/estonia.png" class="flag-icon" /> Estonian
-                </div>
-              </div>
-              <div :class="{'active': activeLang === 'en'}" @click="setLocale('en')" class="language-option">
-                <div class="button-card">
-                  <img src="/img/flags/united-kingdom-rounded.png" class="flag-icon" /> English
-                </div>
-              </div>
-            </div>
-          
-          <div class="button-card1">
-            <div class="product-database-link-container">
-              <RouterLink to="/productsdatabase" class="sidebar-link" @click="() => closeMenu('/productsdatabase')">Products Database</RouterLink>
-            </div>
-          </div>
+        <div class="container-buttons">
+           <ul class="nav-links">
+              <li>
+                 <RouterLink to="/">
+                    <span class="icon"></span>{{ $t("navbar.home") }}
+                 </RouterLink>
+              </li>
+           </ul>
+           <ul class="nav-links">
+              <li>
+                 <RouterLink to="/services">
+                    <span class="icon"></span>{{ $t("navbar.repairs") }}
+                 </RouterLink>
+              </li>
+           </ul>
+           <ul class="nav-links">
+              <li>
+                 <RouterLink to="/about">
+                    <span class="icon"></span>{{ $t("About us") }}
+                 </RouterLink>
+              </li>
+           </ul>
         </div>
-
-        <div class="sidebar-footer">
-          <p>© 2024 ARVUTIPOOD</p>
+        <div class="nav-extra">
+           <button class="cart-button">
+              <RouterLink to="/cartView" class="nav-bar__router-link">
+                 <i class="pi pi-shopping-bag" style="margin-right: 5px"></i>
+                 {{ isCartEmpty ? "" : `${totalPrice.toFixed(2)} €` }}
+              </RouterLink>
+           </button>
         </div>
-
-      </div>
-
-      <div class="container-buttons">
-  <ul class="nav-links">
-    <li>
-      <RouterLink to="/">
-        <span class="icon"></span>{{ $t("navbar.home") }}
-      </RouterLink>
-    </li>
-  </ul>
-  <ul class="nav-links">
-    <li>
-      <RouterLink to="/services">
-        <span class="icon"></span>{{ $t("navbar.repairs") }}
-      </RouterLink>
-    </li>
-  </ul>
-  <ul class="nav-links">
-    <li>
-      <RouterLink to="/about">
-        <span class="icon"></span>{{ $t("About us") }}
-      </RouterLink>
-    </li>
-  </ul>
-</div>
-
-
-      <div class="nav-extra">
-        <button class="cart-button">
-          <RouterLink to="/cartView" class="nav-bar__router-link">
-            <i class="pi pi-shopping-bag" style="margin-right: 5px"></i>
-            {{ isCartEmpty ? "" : `${totalPrice.toFixed(2)} €` }}
-          </RouterLink>
-        </button>
-      </div>
-    </div>
-
+     </div>
   </nav>
 </template>
+
 <script lang="ts">
   import {
     defineComponent,
@@ -249,7 +228,7 @@
       function setLocale(lang) {
         activeLang.value = lang;
         saveSidebarState();
-        // Implement language switch logic here, e.g., update i18n locale or store state
+        // Siia läheb keelevahetus loogika. i18n?
       }
 
       function toggleMenu() {
@@ -312,6 +291,7 @@
     }
   });
 </script>
+
 <style scoped>
   .navbar {
     background-color: #272727;
@@ -337,14 +317,6 @@
   .container-buttons {
   display: flex; 
   gap: 15px; 
-}
-
-  .container > :first-child {
-    justify-content: middle;
-}
-
-.container > :last-child {
-  justify-content: middle;
 }
 
   .nav-links {
@@ -627,5 +599,4 @@
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
-  
 </style>
