@@ -140,27 +140,29 @@
 
       </div>
 
-      <ul class="nav-links">
-        <li>
-          <RouterLink to="/">
-            <span class="icon"></span>{{ $t("navbar.home") }}
-          </RouterLink>
-        </li>
-      </ul>
-      <ul class="nav-links">
-        <li>
-          <RouterLink to="/services">
-            <span class="icon"></span>{{ $t("navbar.repairs") }}
-          </RouterLink>
-        </li>
-      </ul>
-      <ul class="nav-links">
-        <li>
-          <RouterLink to="/about">
-            <span class="icon"></span>{{ $t("About us") }}
-          </RouterLink>
-        </li>
-      </ul>
+      <div class="container-buttons">
+  <ul class="nav-links">
+    <li>
+      <RouterLink to="/">
+        <span class="icon"></span>{{ $t("navbar.home") }}
+      </RouterLink>
+    </li>
+  </ul>
+  <ul class="nav-links">
+    <li>
+      <RouterLink to="/services">
+        <span class="icon"></span>{{ $t("navbar.repairs") }}
+      </RouterLink>
+    </li>
+  </ul>
+  <ul class="nav-links">
+    <li>
+      <RouterLink to="/about">
+        <span class="icon"></span>{{ $t("About us") }}
+      </RouterLink>
+    </li>
+  </ul>
+</div>
 
 
       <div class="nav-extra">
@@ -331,12 +333,18 @@
     position: relative;
   }
 
+
+  .container-buttons {
+  display: flex; 
+  gap: 15px; 
+}
+
   .container > :first-child {
-   margin-right: 780px;
+    justify-content: middle;
 }
 
 .container > :last-child {
-   margin-left: 750px; 
+  justify-content: middle;
 }
 
   .nav-links {
