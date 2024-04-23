@@ -97,6 +97,11 @@ import { toRaw } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
+
+
+const toast = useToast();
+
 const router = useRouter();
 
 const goBack = () => {
@@ -161,8 +166,10 @@ const handlePayment = async () => {
         order
       );
       console.log(response.data);
+      toast.success('Invoice created successfully!');
     } catch (error) {
       console.log("Error sending payment method ID to server:", error);
+      toast.error('Error creating an invoice!');
     }
   }
 };
