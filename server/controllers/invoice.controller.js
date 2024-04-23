@@ -20,13 +20,9 @@ const getInvoice = async (req, res) => {
     }
   };
 
-const createInvoice = async (req, res) => {
+  const createInvoice = async (req, res) => {
     try {
-      const { name, mail, phoneNumber, address, info, totalPrice, productIds } = req.body;
-  
-      // Fetch product details from the database
-      const products = await Product.find({ _id: { $in: productIds } });
-  
+      const { name, mail, phoneNumber, address, info, totalPrice, cartItems } = req.body;
       const invoice = new Invoice({
         name,
         mail,
@@ -34,7 +30,7 @@ const createInvoice = async (req, res) => {
         address,
         info,
         totalPrice,
-        products: products.map(product => product._id)
+        products: cartItems, // Include cartItems in the invoice
       });
   
       await invoice.save();
@@ -42,6 +38,7 @@ const createInvoice = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
+  
   };
 
 const updateInvoice = async (req, res) => {

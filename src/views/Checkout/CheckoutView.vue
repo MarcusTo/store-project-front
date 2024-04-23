@@ -1,8 +1,23 @@
 <template>
   <NavBarComp />
-  <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
-    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
-      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+  <div style="text-align: left; margin-left: 20px; margin-top: 20px">
+    <button
+      @click="goBack"
+      style="border: none; background-color: transparent; cursor: pointer"
+    >
+      <span
+        style="
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #b2beb5;
+          color: #fff;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+        "
+      >
         &#10006;
       </span>
     </button>
@@ -78,16 +93,15 @@ import { useCartStore } from "@/stores/cart";
 import InputText from "primevue/inputtext";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
+import { toRaw } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
 const router = useRouter();
 
 const goBack = () => {
-  router.back(); 
+  router.back();
 };
-
-
 
 let name = ref("");
 let mail = ref("");
@@ -104,8 +118,7 @@ const totalPrice = computed(() => {
   );
 });
 
-let stripe,
- elements, cardElement;
+let stripe, elements, cardElement;
 
 onMounted(async () => {
   stripe = await loadStripe(
@@ -136,12 +149,12 @@ const handlePayment = async () => {
       phoneNumber: phoneNumber.value,
       address: address.value,
       info: info.value,
-      products: cart.cartItems.value, 
+      cartItems: cart.cartItems, // Changed from products to cartItems
       totalPrice: totalPrice.value,
       postal_code: postalCode.value,
       paymentMethodId: paymentMethod.id,
     };
-
+    console.log("cartItems before sending:", toRaw(cart.cartItems));
     try {
       const response = await axios.post(
         "http://localhost:3000/api/invoices",
