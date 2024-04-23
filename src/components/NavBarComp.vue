@@ -139,7 +139,7 @@
            <ul class="nav-links">
               <li>
                  <RouterLink to="/about">
-                    <span class="icon"></span>{{ $t("About us") }}
+                    <span class="icon"></span>{{ $t("footer.company") }}
                  </RouterLink>
               </li>
            </ul>
