@@ -3,13 +3,13 @@
   <nav class="navbar">
      <div class="container">
         <RouterLink to="/">
-           <img src="/public/img/other/firma_ikoon.png" alt="Home" class="home-icon" />
+           <img src="/img/other/firma_ikoon.png" alt="Home" class="home-icon" />
         </RouterLink>
         <button class="burger" @click="toggleMenu">&#9776;</button>
         <div class="sidebar" :class="{'is-visible': isMenuVisible}">
            <button class="back-button" @click="closeMenu">&#10006;</button>
            <div class="sidebar-header">
-              <img src="/public/img/other/firma_ikoon.png" alt="Logo" class="sidebar-logo" />
+              <img src="/img/other/firma_ikoon.png" alt="Logo" class="sidebar-logo" />
               <h1 class="sidebar-title">Arvutipood</h1>
            </div>
            <div class="sidebar-content">
