@@ -1,6 +1,5 @@
 <template>
     <h2 style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
-      {{ t("home.homeHeader") }}
     </h2>
     <div class="card-container">
       <a v-for="product in products" :key="product.id" :href="product.link" class="card">

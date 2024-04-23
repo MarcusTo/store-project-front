@@ -393,6 +393,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref, onMounted } from "vue";
 import { useCartStore } from "@/stores/cart";
+import router from "@/router";
 export default defineComponent({
   name: "Navbar",
   setup() {
@@ -400,7 +401,7 @@ export default defineComponent({
     const isCartEmpty = computed(() => cart.cartItems.length === 0);
     const totalPrice = computed(() =>
       cart.cartItems.reduce(
-        (total, item) => total + item.price * item.quantity,
+        (total: number, item: { price: number; quantity: number; }) => total + item.price * item.quantity,
         0
       )
     );
@@ -443,7 +444,7 @@ export default defineComponent({
       localStorage.setItem("sidebarState", JSON.stringify(state));
     };
 
-    function closeMenu(route) {
+    function closeMenu(route: any) {
       isMenuVisible.value = false;
       setTimeout(() => {
         if (route) {
@@ -457,7 +458,7 @@ export default defineComponent({
       saveSidebarState();
     }
 
-    function setLocale(lang) {
+    function setLocale(lang: string) {
       activeLang.value = lang;
       saveSidebarState();
       // Siia läheb keelevahetus loogika. i18n?

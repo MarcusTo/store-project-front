@@ -22,7 +22,8 @@
       </select>
     </div>
   </div>
-  <hr />
+<p></p>
+<p></p>
   <div class="product-cards">
     <router-link v-for="product in filteredProducts" :key="product._id" :to="`/apple/mac/${product._id}`" class="product-card-link">
       <div class="product-card">
@@ -99,12 +100,11 @@ return products.value.filter(product => {
 
 .product-cards {
   display: grid;
-  margin: 0 auto; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 5rem; 
+  padding: 1rem;
   max-width: 1200px; 
-  justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem; 
-  margin-top: 40px;
+  margin: auto; 
 }
 
 .product-card-link {
@@ -113,12 +113,16 @@ return products.value.filter(product => {
 }
 
 .product-card {
-  text-align: center;
-  width: 220px; 
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 15px; 
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .product-card img {
@@ -128,6 +132,11 @@ return products.value.filter(product => {
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
 }
 
 select {
