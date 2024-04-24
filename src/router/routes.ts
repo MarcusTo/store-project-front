@@ -53,6 +53,37 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_PATHS.NEW_VISIONPRO,
     component: () => import("@/views/Apple/VisionPro/NewVisionPro.vue"),
   },
+  {
+    path: ROUTE_PATHS.ANDROID,
+    name: ROUTE_PATHS.ANDROID,
+    component: () => import("@/views/Android/Android/Android.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_ANDROID,
+    name: ROUTE_PATHS.NEW_ANDROID,
+    component: () => import("@/views/Android/Android/NewAndroid.vue"),
+  },
+  {
+    path: ROUTE_PATHS.BUSINESSCLASS,
+    name: ROUTE_PATHS.BUSINESSCLASS,
+    component: () => import("@/views/BusinessClass/BusinessClass.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_BUSINESSCLASS,
+    name: ROUTE_PATHS.NEW_BUSINESSCLASS,
+    component: () => import("@/views/BusinessClass/NewBusinessClass.vue"),
+  },
+  {
+    path: ROUTE_PATHS.GAMINGCOMPUTERS,
+    name: ROUTE_PATHS.GAMINGCOMPUTERS,
+    component: () => import("@/views/GamingComputers/GamingComputer.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_GAMINGCOMPUTER,
+    name: ROUTE_PATHS.NEW_BUSINESSCLASS,
+    component: () => import("@/views/GamingComputers/NewGamingComputer.vue"),
+  },
+  
   
 
 // Computer parts

@@ -41,19 +41,21 @@
   </template>
   
   <script setup lang="ts">
-  import { ref, onMounted, computed, defineEmits } from 'vue';
+  import { ref, onMounted, computed, defineEmits, watch } from 'vue';
   import NavBarComp from "@/components/NavBarComp.vue";
   import FooterComp from "@/components/FooterComp.vue";
   import SearchComp from "@/components/SearchComp.vue";
   import { useI18n } from "vue-i18n";
   import { useRoute, useRouter } from "vue-router";
-
+  
   const { t } = useI18n();
   const router = useRouter();
-
+  
   const goBack = () => {
-  router.push('/'); 
-};
+    router.push('/'); 
+  };
+  
+  const route = useRoute();
   
   interface Product {
     _id: string;
@@ -65,71 +67,80 @@
   const products = ref<Product[]>([]);
   const searchTerm = ref('');
   const selectedCategory = ref('');
-
+  
   const emit = defineEmits(['search']);
   
   onMounted(async () => {
   try {
     const response = await fetch('http://localhost:3000/api/products');
     const data: Product[] = await response.json();
+    products.value = data;
     const desiredCategories = ['CPU', 'GPU', 'PSU', 'Motherboard', 'RAM', 'Case', 'Other'];
     products.value = data.filter(product => desiredCategories.includes(product.category));
   } catch (error) {
     console.error('Error:', error);
   }
-});
+  if (route.query.category) {
+      selectedCategory.value = route.query.category;
+    }
+  });
   
   const handleSearch = (value: string) => {
     searchTerm.value = value;
   };
   
-const filteredProducts = computed(() => {
+  const filteredProducts = computed(() => {
   return products.value.filter(product => {
     const matchesCategory = selectedCategory.value ? product.category === selectedCategory.value : true;
     const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.value.toLowerCase());
     return matchesCategory && matchesSearchTerm;
   });
-});
-</script>
+  });
+  </script>
   
-<style scoped>
-
-.product-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 5rem; 
-  padding: 1rem;
-  max-width: 1200px; 
-  margin: auto; 
-}
-
-.product-card-link {
-  text-decoration: none;
-  color: inherit;
-}
-
-.product-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 15px; 
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.product-card img {
-  width: 100%;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+  <style scoped>
+  
+  .product-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 5rem; 
+    padding: 1rem;
+    max-width: 1200px; 
+    margin: auto; 
+  }
+  
+  .product-card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 15px; 
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .product-card img {
+    width: 100%;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  button > span:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
+  }
+  
   select {
   padding: 10px 15px; 
   border-radius: 20px; 
@@ -142,9 +153,9 @@ const filteredProducts = computed(() => {
   margin-right: 20px; 
   margin-left: auto; 
   transition: background-color 0.3s, border-color 0.3s; 
-}
-
-.custom-select {
+  }
+  
+  .custom-select {
   padding: 14px 15px 14px 15px;
   border-radius: 20px; 
   font-size: 16px;
@@ -157,11 +168,11 @@ const filteredProducts = computed(() => {
   background-position: right 10px center;
   background-size: 30px; 
   width: 100%; 
-}
-
-button > span:hover {
-  transform: scale(1.1);
-  transition: transform 0.1s ease-in-out;
-}
-</style>
+  }
+  
+  button > span:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
+  }
+  </style>
   

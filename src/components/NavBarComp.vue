@@ -115,27 +115,33 @@
                 class="dropdown-content nested-dropdown-content"
               >
                 <RouterLink
-                  to="#"
+                  to="/android?category=samsung"
                   class="sidebar-link"
-                  @click="() => closeMenu('/android/')"
+                  @click="() => closeMenu('/android?category=samsung')"
                   >Samsung</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/android?category=huawei"
                   class="sidebar-link"
-                  @click="() => closeMenu('/android/')"
+                  @click="() => closeMenu('/android?category=huawei')"
                   >Huawei</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/android?category=Xiaomi"
                   class="sidebar-link"
-                  @click="() => closeMenu('/android/')"
+                  @click="() => closeMenu('/android?category=Xiaomi')"
                   >Xiaomi</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/android?category=androidtab"
                   class="sidebar-link"
-                  @click="() => closeMenu('/android/')"
+                  @click="() => closeMenu('/android?category=androidtab')"
+                  >Android Tablets</RouterLink
+                >
+                <RouterLink
+                  to="/android?category=accessories"
+                  class="sidebar-link"
+                  @click="() => closeMenu('/android?category=accessories')"
                   >Accessories</RouterLink
                 >
               </div>
@@ -208,46 +214,46 @@
                 v-if="isComponentsDropdownVisible"
                 class="dropdown-content nested-dropdown-content"
               >
-                <RouterLink
-                  to="#"
+              <RouterLink
+                  to="/computerparts?category=GPU"
                   class="sidebar-link"
-                  @click="() => closeMenu('/gpu')"
+                  @click="() => closeMenu('/computerparts?category=GPU')"
                   >GPU (Graphics processing unit)</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/computerparts?category=CPU"
                   class="sidebar-link"
-                  @click="() => closeMenu('/cpu')"
+                  @click="() => closeMenu('/computerparts?category=CPU')"
                   >CPU (Core processing unit)</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/computerparts?category=PSU"
                   class="sidebar-link"
-                  @click="() => closeMenu('/psu')"
+                  @click="() => closeMenu('/computerparts?category=PSU')"
                   >PSU (Power supply unit)</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/computerparts?category=Motherboard"
                   class="sidebar-link"
-                  @click="() => closeMenu('/motherboard')"
+                  @click="() => closeMenu('/computerparts?category=Motherboard')" 
                   >Motherboards</RouterLink
-                >
+                > <!-- See rida ei ole tegelikult vajalik, to= teeb täpselt sama asja mis @click-->
                 <RouterLink
-                  to="#"
+                  to="/computerparts?category=RAM"
                   class="sidebar-link"
-                  @click="() => closeMenu('/ram')"
+                  @click="() => closeMenu('/computerparts?category=RAM')"
                   >RAM</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/computerparts?category=Case"
                   class="sidebar-link"
-                  @click="() => closeMenu('/case')"
+                  @click="() => closeMenu('/computerparts?category=Case')"
                   >Cases</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/computerparts?category=Other"
                   class="sidebar-link"
-                  @click="() => closeMenu('/other')"
+                  @click="() => closeMenu('/computerparts?category=Other')"
                   >Other</RouterLink
                 >
               </div>

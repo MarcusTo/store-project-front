@@ -8,25 +8,22 @@
       </button>
     </div>
     <h2 style="display: flex; justify-content: center; align-items: center; font-size: 32px; margin-bottom: 20px; margin-top: var(--h2-margin-top, -30px);">
-      {{ t("Android products") }}
+      {{ t("Business class computers") }}
     </h2>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
       <SearchComp @search="handleSearch" />
       <div style="margin-top: -50px; width: 100%; max-width: 300px;">
         <select v-model="selectedCategory" id="categoryFilter" class="custom-select">
           <option value="">All Categories</option>
-          <option value="samsung">Samsung</option>
-          <option value="huawei">Huawei</option>
-          <option value="xiaomi">Xiaomi</option>
-          <option value="androidtab">Android Tablets</option>
-          <option value="accessories">Accessories</option>
+          <option value="samsung">Lenovo</option>
+          <option value="huawei">HP</option>
         </select>
       </div>
     </div>
   <p></p>
   <p></p>
     <div class="product-cards">
-      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/android/${product._id}`" class="product-card-link">
+      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/businessclass/${product._id}`" class="product-card-link">
         <div class="product-card">
           <img :src="product.image" style="width: 200px; height: 200px" />
           <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
@@ -74,7 +71,7 @@
     const response = await fetch('http://localhost:3000/api/products');
     const data: Product[] = await response.json();
     products.value = data;
-    const desiredCategories = ['samsung', 'huawei', 'xiaomi', 'androidtab', 'accessories'];
+    const desiredCategories = ['Lenovo', 'HP'];
     products.value = data.filter(product => desiredCategories.includes(product.category));
   } catch (error) {
     console.error('Error:', error);
