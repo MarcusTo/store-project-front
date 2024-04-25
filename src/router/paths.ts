@@ -12,6 +12,9 @@ export enum ROUTE_PATHS {
   APPLEWATCH = "/apple/applewatch",
   NEW_APPLEWATCH = "/apple/applewatch/:id",
 
+  APPLEACCESSORY = "/apple/accessories",
+  NEW_APPLEACCESSORY = "/apple/accessories/:id",
+
   VISIONPRO = "/apple/visionpro",
   NEW_VISIONPRO = "/apple/visionpro/:id",
 
@@ -21,11 +24,11 @@ export enum ROUTE_PATHS {
   ANDROID = "/Android",
   NEW_ANDROID = "/Android/:id",
 
-  BUSINESSCLASS = "/BusinessClass",
-  NEW_BUSINESSCLASS = "/BusinessClass/:id",
+  GENERALUSEPC = "/generalusepc",
+  NEW_GENERALUSEPC = "/generalusepc/:id",
 
-  GAMINGCOMPUTERS = "/GamingComputer",
-  NEW_GAMINGCOMPUTER = "/GamingComputer/:id",
+  HIGHENDPC = "/highendpc",
+  NEW_HIGHENDPC = "/highendpc/:id",
 
   GEAR = "/Gear",
   NEW_GEAR = "Gear/:id",

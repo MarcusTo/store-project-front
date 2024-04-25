@@ -64,24 +64,24 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Android/Android/NewAndroid.vue"),
   },
   {
-    path: ROUTE_PATHS.BUSINESSCLASS,
-    name: ROUTE_PATHS.BUSINESSCLASS,
-    component: () => import("@/views/BusinessClass/BusinessClass.vue"),
+    path: ROUTE_PATHS.GENERALUSEPC,
+    name: ROUTE_PATHS.GENERALUSEPC,
+    component: () => import("@/views/GeneralUsePC/GeneralUsePC.vue"),
   },
   {
-    path: ROUTE_PATHS.NEW_BUSINESSCLASS,
-    name: ROUTE_PATHS.NEW_BUSINESSCLASS,
-    component: () => import("@/views/BusinessClass/NewBusinessClass.vue"),
+    path: ROUTE_PATHS.NEW_GENERALUSEPC,
+    name: ROUTE_PATHS.NEW_GENERALUSEPC,
+    component: () => import("@/views/GeneralUsePC/NewGeneralUsePC.vue"),
   },
   {
-    path: ROUTE_PATHS.GAMINGCOMPUTERS,
-    name: ROUTE_PATHS.GAMINGCOMPUTERS,
-    component: () => import("@/views/GamingComputers/GamingComputer.vue"),
+    path: ROUTE_PATHS.HIGHENDPC,
+    name: ROUTE_PATHS.HIGHENDPC,
+    component: () => import("@/views/HighEndPC/HighEndPC.vue"),
   },
   {
-    path: ROUTE_PATHS.NEW_GAMINGCOMPUTER,
-    name: ROUTE_PATHS.NEW_BUSINESSCLASS,
-    component: () => import("@/views/GamingComputers/NewGamingComputer.vue"),
+    path: ROUTE_PATHS.NEW_HIGHENDPC,
+    name: ROUTE_PATHS.NEW_HIGHENDPC,
+    component: () => import("@/views/HighEndPC/NewHighEndPC.vue"),
   },
   {
     path: ROUTE_PATHS.GEAR,
@@ -89,9 +89,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/Gear/Gear.vue"),
   },
   {
-    path: ROUTE_PATHS.NEW_GAMINGCOMPUTER,
-    name: ROUTE_PATHS.NEW_GAMINGCOMPUTER,
-    component: () => import("@/views/Gear/NewGear.vue"),
+    path: ROUTE_PATHS.APPLEACCESSORY,
+    name: ROUTE_PATHS.APPLEACCESSORY,
+    component: () => import("@/views/Apple/Accessories/AppleAccessory.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_APPLEACCESSORY,
+    name: ROUTE_PATHS.NEW_APPLEACCESSORY,
+    component: () => import("@/views/Apple/Accessories/NewAccessory.vue"),
   },
   
   

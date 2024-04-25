@@ -13,7 +13,7 @@
         <Card>
           <template #content>
             <div class="card-content">
-              <img src="/img/other/speed-service.png" style="width: 100px; height: 100px" />
+              <img src="/img/other/speed-service.png" style="width: 120px; height: 100px" />
               <p class="m-0" style="max-width: 200px; text-align: center;">
                 {{ t("warranty.warrantyText") }}
               </p>
@@ -23,7 +23,7 @@
         <Card>
           <template #content>
             <div class="card-content">
-              <img src="/img/other/trophy-service.svg" style="width: 100px; height: 100px;" />
+              <img src="/img/other/replacement.png" style="width: 100px; height: 100px;" />
               <p class="m-0" style="max-width: 200px; text-align: center;">
                 {{ t("warranty.warrantyText1") }}
               </p>

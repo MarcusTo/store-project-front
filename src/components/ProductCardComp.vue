@@ -23,8 +23,8 @@ const products = [
   { id: '4', name: 'Apple Watch', image: '/img/products/apple/apple-watch/Apple-Watch-Ultra.png', link: '/apple/applewatch' },
   { id: '5', name: 'Vision Pro', image: '/img/products/apple/vision-pro/vision.png', link: '/apple/visionpro' },
   { id: '6', name: 'Android Devices', image: '/img/products/android/samsung-s24.png', link: '/android' },
-  { id: '7', name: 'Business class', image: '/img/products/business-class/bclass.png', link: '/businessclass' },
-  { id: '8', name: 'Gaming computers', image: '/img/products/prebuiltpc/gamingcomp.png', link: '/gamingcomputer' },
+  { id: '7', name: 'General use PC', image: '/img/products/business-class/bclass.png', link: '/generalusepc' },
+  { id: '8', name: 'High-End PC', image: '/img/products/prebuiltpc/gamingcomp.png', link: '/highendpc' },
   { id: '9', name: 'Computer parts / Other', image: '/img/products/gear/gpu.png', link: '/computerparts' },
   { id: '10', name: 'Gear', image: '/img/products/gear/compgear.png', link: '/gear' },
 ];

@@ -20,7 +20,7 @@
           <p></p>
           <div class="button-card1">
             <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
-              <span>Products</span>
+              <i class="pi pi-tags" style="margin-right: -110px;"></i><span>Products</span>
               <i
                 class="pi pi-chevron-down"
                 :class="{ 'pi-chevron-up': isProductsDropdownVisible }"
@@ -32,12 +32,9 @@
               <div
                 @click.stop="toggleAppleDropdown"
                 class="sidebar-link dropdown"
-              >
-                <b>Apple</b>
-                <i
-                  class="pi pi-chevron-down"
-                  :class="{ 'pi-chevron-up': isAppleDropdownVisible }"
-                ></i>
+              >  
+              <i class="pi pi-apple" style="margin-right: -100px;"></i><b>Apple</b>
+              <i  class="pi pi-chevron-down" :class="{ 'pi-chevron-up': isAppleDropdownVisible }"></i>
               </div>
               <div
                 v-if="isAppleDropdownVisible"
@@ -46,19 +43,19 @@
                 <RouterLink
                   to="/apple/iphone"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/iphone')"
+                  @click="() => closeMenu('/apple/iphone')"
                   >iPhone</RouterLink
                 >
                 <RouterLink
                   to="/apple/applewatch"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/applewatch')"
+                  @click="() => closeMenu('/apple/applewatch')"
                   >Apple Watch</RouterLink
                 >
                 <RouterLink
                   to="/apple/airpods"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/airpods')"
+                  @click="() => closeMenu('/apple/airpods')"
                   >AirPods</RouterLink
                 >
                 <RouterLink
@@ -70,31 +67,31 @@
                 <RouterLink
                   to="/apple/mac?category=macbook"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/mac?category=macbook')"
+                  @click="() => closeMenu('/apple/mac?category=macbook')"
                   >MacBook</RouterLink
                 >
                 <RouterLink
                   to="/apple/mac?category=macdisplay"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/mac?category=macdisplay')"
+                  @click="() => closeMenu('/apple/mac?category=macdisplay')"
                   >Display</RouterLink
                 >
                 <RouterLink
                   to="/apple/mac?category=ipad"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/mac?category=ipad')"
+                  @click="() => closeMenu('/apple/mac?category=ipad')"
                   >iPad</RouterLink
                 >
                 <RouterLink
                   to="/apple/visionpro"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/visionpro')"
+                  @click="() => closeMenu('/apple/visionpro')"
                   >Vision pro</RouterLink
                 >
                 <RouterLink
                   to="/apple/accessories"
                   class="sidebar-link"
-                  @click="() => closeMenu('/Apple/appleaccessories')"
+                  @click="() => closeMenu('/apple/accessories')"
                   >Accessories</RouterLink
                 >
               </div>
@@ -104,7 +101,7 @@
                 @click.stop="toggleAndroidDropdown"
                 class="sidebar-link dropdown"
               >
-                <b>Android</b>
+              <i class="pi pi-android" style="margin-right: -90px;"></i><b>Android</b>
                 <i
                   class="pi pi-chevron-down"
                   :class="{ 'pi-chevron-up': isAndroidDropdownVisible }"
@@ -151,7 +148,7 @@
                 @click.stop="togglePrebuiltDropdown"
                 class="sidebar-link dropdown"
               >
-                <b>Computers</b>
+              <i class="pi pi-microsoft" style="margin-right: -70px;"></i><b>Computers</b>
                 <i
                   class="pi pi-chevron-down"
                   :class="{ 'pi-chevron-up': isPrebuiltDropdownVisible }"
@@ -162,40 +159,28 @@
                 class="dropdown-content nested-dropdown-content"
               >
                 <RouterLink
-                  to="#"
+                  to="highendpc"
                   class="sidebar-link"
-                  @click="() => closeMenu('/businessclass/')"
-                  >Business class</RouterLink
+                  @click="() => closeMenu('/highendpc')"
+                  >High-End Desktops</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/highendpc"
                   class="sidebar-link"
-                  @click="() => closeMenu('/highend/')"
-                  >High End</RouterLink
+                  @click="() => closeMenu('/highendpc')"
+                  >High-End Laptops</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/generalusepc"
                   class="sidebar-link"
-                  @click="() => closeMenu('/gamingdesktop/')"
-                  >Gaming Desktops</RouterLink
+                  @click="() => closeMenu('/generalusepc')"
+                  >General use Desktops</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/generalusepc"
                   class="sidebar-link"
-                  @click="() => closeMenu('/gaminglaptop/')"
-                  >Gaming Laptops</RouterLink
-                >
-                <RouterLink
-                  to="#"
-                  class="sidebar-link"
-                  @click="() => closeMenu('/desktop/')"
-                  >Desktops</RouterLink
-                >
-                <RouterLink
-                  to="#"
-                  class="sidebar-link"
-                  @click="() => closeMenu('/laptop/')"
-                  >Laptops</RouterLink
+                  @click="() => closeMenu('/generalusepc')"
+                  >General use Laptops</RouterLink
                 >
               </div>
             </div>
@@ -204,7 +189,7 @@
                 @click.stop="toggleComponentsDropdown"
                 class="sidebar-link dropdown"
               >
-                <b>Computer parts</b>
+              <i class="pi pi-wrench" style="margin-right: -40px;"></i><b>Computer parts</b>
                 <i
                   class="pi pi-chevron-down"
                   :class="{ 'pi-chevron-up': isComponentsDropdownVisible }"
@@ -237,7 +222,7 @@
                   class="sidebar-link"
                   @click="() => closeMenu('/computerparts?category=Motherboard')" 
                   >Motherboards</RouterLink
-                > <!-- See rida ei ole tegelikult vajalik, to= teeb täpselt sama asja mis @click-->
+                >
                 <RouterLink
                   to="/computerparts?category=RAM"
                   class="sidebar-link"
@@ -248,7 +233,7 @@
                   to="/computerparts?category=Case"
                   class="sidebar-link"
                   @click="() => closeMenu('/computerparts?category=Case')"
-                  >Cases</RouterLink
+                  >Computer cases</RouterLink
                 >
                 <RouterLink
                   to="/computerparts?category=Other"
@@ -263,7 +248,7 @@
                 @click.stop="toggleGearDropdown"
                 class="sidebar-link dropdown"
               >
-                <b>Gear</b>
+              <i class="pi pi-cog" style="margin-right: -120px;"></i><b>Gear</b>
                 <i
                   class="pi pi-chevron-down"
                   :class="{ 'pi-chevron-up': isGearDropdownVisible }"
@@ -277,13 +262,13 @@
                   to="/gear?category=monitor"
                   class="sidebar-link"
                   @click="() => closeMenu('/gear?category=monitor')"
-                  >Monitors</RouterLink
+                  >General Monitors</RouterLink
                 >
                 <RouterLink
-                  to="/gear?category=gamingmonitor"
+                  to="/gear?category=highendmonitor"
                   class="sidebar-link"
-                  @click="() => closeMenu('/gear?category=gamingmonitor')"
-                  >Gaming Monitors</RouterLink
+                  @click="() => closeMenu('/gear?category=highendmonitor')"
+                  >High-End Monitors</RouterLink
                 >
                 <RouterLink
                   to="/gear?category=keyboard"
@@ -315,7 +300,7 @@
           <!-- Siia alla saab linke juurde lisada  -->
           <div class="button-card1">
             <div @click="toggleLanguageDropdown" class="sidebar-link dropdown">
-              Language
+              <i class="pi pi-language" style="margin-right: -100px;"></i>Language
               <i
                 class="pi pi-chevron-down"
                 :class="{ 'pi-chevron-up': isLanguageDropdownVisible }"

@@ -8,7 +8,7 @@
       </button>
     </div>
     <h2 style="display: flex; justify-content: center; align-items: center; font-size: 32px; margin-bottom: 20px; margin-top: var(--h2-margin-top, -30px);">
-      {{ t("Gaming Computers") }}
+      {{ t("High-End Personal Computers") }}
     </h2>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
       <SearchComp @search="handleSearch" />

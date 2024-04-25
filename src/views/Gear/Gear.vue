@@ -16,7 +16,7 @@
         <select v-model="selectedCategory" id="categoryFilter" class="custom-select">
           <option value="">All Categories</option>
           <option value="monitor">Monitors</option>
-          <option value="gamingmonitor">Gaming Monitors</option>
+          <option value="highendmonitor">High-End Monitors</option>
           <option value="keyboard">Keyboards</option>
           <option value="mouse">Mouse</option>
           <option value="mousepad">Mousepad</option>
@@ -76,7 +76,7 @@
     const response = await fetch('http://localhost:3000/api/products');
     const data: Product[] = await response.json();
     products.value = data;
-    const desiredCategories = ['keyboard', 'monitor', 'gamingmonitor', 'mouse', 'mousepad', 'other'];
+    const desiredCategories = ['keyboard', 'monitor', 'highendmonitor', 'mouse', 'mousepad', 'other'];
     products.value = data.filter(product => desiredCategories.includes(product.category));
   } catch (error) {
     console.error('Error:', error);
