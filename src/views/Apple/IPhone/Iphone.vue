@@ -27,7 +27,7 @@
         <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
           {{ product.name }}
         </p>
-        <p style="font-size: 16px;">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</p>
+        <div class="price-tag">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</div>
       </div>
     </router-link>
   </div>
@@ -84,10 +84,21 @@ const filteredProducts = computed(() => {
 </script>
 
 <style scoped>
+.price-tag {
+  background-color: #f1eeee;  
+  color: rgb(0, 0, 0);               
+  padding: 5px 10px;          
+  border-radius: 30px;        
+  margin-top: 10px;  
+  margin-bottom: 10px;         
+  font-size: 16px;            
+}
+
 .product-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
-  gap: 5rem; 
+  row-gap: 4rem;
+  column-gap: 3rem; 
   padding: 1rem;
   max-width: 1200px; 
   margin: auto; 

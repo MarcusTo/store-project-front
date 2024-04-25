@@ -143,35 +143,39 @@ onMounted(async () => {
 <style scoped>
 .product-card {
   display: flex;
-  flex-direction: row; 
-  align-items: start; 
-  gap: 5rem; 
-  margin: auto; 
-  max-width: 1000px; 
-  padding: 20px; 
-  background-color: #ffffff; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  flex-direction: row;
+  align-items: start;
+  gap: 5rem;
+  margin: auto;
+  max-width: 1000px;
+  padding: 20px;
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 32px;
 }
+
 .transparent {
   opacity: 0.5;
 }
 
 .mem-button {
-  margin-right: 2px;
-  height: 36px;
-  background-color: #E5F2FF(210, 210, 210);
-  border: 2px solid;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 12px;
-  padding-left: 14px;
-  padding-right: 14px;
-  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
 }
+
+.mem-button:hover, .mem-button-selected {
+  background-color: #007bff;
+  color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 120, 255, 0.4);
+}
+
 .mem-button-selected {
   background-color: #0066cc;
 }
+
 .color {
   display: relative;
   flex-wrap: wrap;
@@ -187,9 +191,11 @@ onMounted(async () => {
   padding: 0;
   border: 2px solid;
 }
-.color-button-selected {
-  background-color: #0066cc;
+.color-button:hover, .color-button-selected {
+  border-color: #007bff;
+  transform: scale(1);
 }
+
 .product-grid {
   margin: auto; 
   padding: 10px 0px;
@@ -218,19 +224,20 @@ onMounted(async () => {
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 .description-card {
-  background-color: #ffffff; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  padding: 20px; 
-  margin-top: 20px; 
-  max-width: 1000px; 
-  margin-left: auto; 
-  margin-right: auto; 
+  background-color: #ffffff;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin-top: 40px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
 }
 

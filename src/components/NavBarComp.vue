@@ -127,9 +127,9 @@
                   >Huawei</RouterLink
                 >
                 <RouterLink
-                  to="/android?category=Xiaomi"
+                  to="/android?category=xiaomi"
                   class="sidebar-link"
-                  @click="() => closeMenu('/android?category=Xiaomi')"
+                  @click="() => closeMenu('/android?category=xiaomi')"
                   >Xiaomi</RouterLink
                 >
                 <RouterLink
@@ -274,39 +274,39 @@
                 class="dropdown-content nested-dropdown-content"
               >
                 <RouterLink
-                  to="#"
+                  to="/gear?category=monitor"
                   class="sidebar-link"
-                  @click="() => closeMenu('/monitors')"
+                  @click="() => closeMenu('/gear?category=monitor')"
                   >Monitors</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/gear?category=gamingmonitor"
                   class="sidebar-link"
-                  @click="() => closeMenu('/gamingmonitors')"
+                  @click="() => closeMenu('/gear?category=gamingmonitor')"
                   >Gaming Monitors</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/gear?category=keyboard"
                   class="sidebar-link"
-                  @click="() => closeMenu('/keyboard')"
+                  @click="() => closeMenu('/gear?category=keyboard')"
                   >Keyboard</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/gear?category=mouse"
                   class="sidebar-link"
-                  @click="() => closeMenu('/mouse')"
+                  @click="() => closeMenu('/gear?category=mouse')"
                   >Mouse</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/gear?category=mousepad"
                   class="sidebar-link"
-                  @click="() => closeMenu('/mousepad')"
+                  @click="() => closeMenu('/gear?category=mousepad')"
                   >Mousepad</RouterLink
                 >
                 <RouterLink
-                  to="#"
+                  to="/gear?category=other"
                   class="sidebar-link"
-                  @click="() => closeMenu('/other')"
+                  @click="() => closeMenu('/gear?category=other')"
                   >Other</RouterLink
                 >
               </div>
@@ -464,10 +464,11 @@ export default defineComponent({
       saveSidebarState();
     }
 
+
     function setLocale(lang: string) {
       activeLang.value = lang;
+      setLocale(lang);
       saveSidebarState();
-      // Siia läheb keelevahetus loogika. i18n?
     }
 
     function toggleMenu() {
@@ -542,7 +543,10 @@ export default defineComponent({
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1001;
+  z-index: 1000;
+  border-bottom-right-radius: 10px; 
+  border-bottom-left-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); 
 }
 
 .container {
@@ -633,7 +637,10 @@ export default defineComponent({
   padding: 1rem;
   z-index: 1000;
   overflow-y: auto;
+  border-bottom-right-radius: 20px; 
+  border-right: 1px solid #868383; 
 }
+
 
 .sidebar-header {
   display: flex;

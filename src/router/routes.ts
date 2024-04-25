@@ -83,6 +83,16 @@ const routes: Array<RouteRecordRaw> = [
     name: ROUTE_PATHS.NEW_BUSINESSCLASS,
     component: () => import("@/views/GamingComputers/NewGamingComputer.vue"),
   },
+  {
+    path: ROUTE_PATHS.GEAR,
+    name: ROUTE_PATHS.GEAR,
+    component: () => import("@/views/Gear/Gear.vue"),
+  },
+  {
+    path: ROUTE_PATHS.NEW_GAMINGCOMPUTER,
+    name: ROUTE_PATHS.NEW_GAMINGCOMPUTER,
+    component: () => import("@/views/Gear/NewGear.vue"),
+  },
   
   
 

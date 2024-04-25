@@ -34,7 +34,8 @@ const products = [
 .card-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr); 
-  gap: 1rem; 
+  row-gap: 2rem;
+  column-gap: 1.5rem;  
   padding: 1rem;
   max-width: 1200px; 
   margin: auto; 

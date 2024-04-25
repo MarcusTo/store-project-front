@@ -1,23 +1,8 @@
 <template>
   <NavBarComp />
-  <div style="text-align: left; margin-left: 20px; margin-top: 20px">
-    <button
-      @click="goBack"
-      style="border: none; background-color: transparent; cursor: pointer"
-    >
-      <span
-        style="
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #b2beb5;
-          color: #fff;
-          border-radius: 50%;
-          width: 40px;
-          height: 40px;
-          font-size: 20px;
-        "
-      >
+  <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
+    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
         &#10006;
       </span>
     </button>
@@ -86,13 +71,14 @@
           </p>
         </Button>
       </div>
+      
     </div>
   </div>
   <div class="description-card" v-if="product">
     <p class="product-description">
-      {{ product.description }}
+        {{ product.description }}
     </p>
-  </div>
+</div>
   <FooterComp />
 </template>
 
@@ -109,7 +95,7 @@ const { t } = useI18n();
 const router = useRouter();
 
 const goBack = () => {
-  router.back();
+  router.back(); 
 };
 
 const cart = useCartStore();
@@ -120,11 +106,18 @@ const selectedMemory = ref({ value: null });
 
 const selectedColor = ref({ value: null });
 
+const colorImageMapping: Record<string, string> = {
+  Black: "/img/products/iphone/IP-15PMX-black-titanium.jpeg",
+  "#5f778a": "/img/products/iphone/IP-15PMX-blue-titanium.jpeg",
+  "#e5e5e5": "/img/products/iphone/IP-15PMX-white-titanium.jpeg",
+  Gray: "/img/products/iphone/IP-15PMX-natural-titanium.jpeg",
+};
+
 const addToCart = () => {
   const cartItem = {
     ...product.value,
     id: product.value._id,
-    selectedColor: selectedColor.value,
+    selectedColor: selectedColor.value, 
   };
   cart.addToCart(cartItem);
   router.push("/CartView");
@@ -143,39 +136,46 @@ onMounted(async () => {
   }
   const data = await response.json();
   product.value = data;
-  console.log(product.value);
+  console.log(product.value); 
 });
 </script>
 
 <style scoped>
-
 .product-card {
   display: flex;
-  border-radius: 32px;
+  flex-direction: row;
+  align-items: start;
   gap: 5rem;
   margin: auto;
   max-width: 1000px;
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 32px;
+}
+
+.transparent {
+  opacity: 0.5;
 }
 
 .mem-button {
-  margin-right: 2px;
-  height: 36px;
-  background-color: #E5F2FF(210, 210, 210);
-  border: 2px solid;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 12px;
-  padding-left: 14px;
-  padding-right: 14px;
-  margin-bottom: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
 }
+
+.mem-button:hover, .mem-button-selected {
+  background-color: #007bff;
+  color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 120, 255, 0.4);
+}
+
 .mem-button-selected {
   background-color: #0066cc;
 }
+
 .color {
   display: relative;
   flex-wrap: wrap;
@@ -191,13 +191,18 @@ onMounted(async () => {
   padding: 0;
   border: 2px solid;
 }
-.color-button-selected {
-  background-color: #0066cc;
+.color-button:hover, .color-button-selected {
+  border-color: #007bff;
+  transform: scale(1);
 }
 
-.product-image {
-  width: 540px;
-  height: 446px;
+.product-grid {
+  margin: auto; 
+  padding: 10px 0px;
+  .product-image {
+    width: 468.5px;
+    height: 446.637px;
+  }
 }
 
 .button {
@@ -219,15 +224,17 @@ onMounted(async () => {
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 .description-card {
   background-color: #ffffff;
   border-radius: 32px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -235,8 +242,15 @@ onMounted(async () => {
 }
 
 .product-description {
-  font-size: 16px;
-  color: #666;
-  margin: auto;
+  font-size: 16px; 
+  color: #666; 
+  text-align: left; 
+  margin: 0; 
+  overflow-wrap: break-word;
+}
+
+button > span:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
 }
 </style>

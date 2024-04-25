@@ -31,12 +31,13 @@
         <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
           {{ product.name }}
         </p>
-        <p style="font-size: 16px;">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</p>
+        <div class="price-tag">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</div>
       </div>
     </router-link>
   </div>
   <FooterComp />
 </template>
+
 
 <script setup lang="ts">
 import { ref, onMounted, computed, defineEmits, watch } from 'vue';
@@ -97,11 +98,11 @@ return products.value.filter(product => {
 </script>
 
 <style scoped>
-
 .product-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
-  gap: 5rem; 
+  row-gap: 4rem;
+  column-gap: 3rem; 
   padding: 1rem;
   max-width: 1200px; 
   margin: auto; 
@@ -125,51 +126,48 @@ return products.value.filter(product => {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.product-card img {
-  width: 100%;
-}
-
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-button > span:hover {
-  transform: scale(1.1);
-  transition: transform 0.1s ease-in-out;
+.price-tag {
+  background-color: #f1eeee;  
+  color: rgb(0, 0, 0);               
+  padding: 5px 10px;          
+  border-radius: 30px;        
+  margin-top: 10px;  
+  margin-bottom: 10px;         
+  font-size: 16px;            
 }
 
 select {
-padding: 10px 15px; 
-border-radius: 20px; 
-font-size: 16px; 
-cursor: pointer; 
-border: 1px solid #ccc; 
-appearance: none; 
-background-color: white; 
-margin-top: 20px; 
-margin-right: 20px; 
-margin-left: auto; 
-transition: background-color 0.3s, border-color 0.3s; 
+  padding: 10px 15px; 
+  border-radius: 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  border: 1px solid #ccc; 
+  appearance: none; 
+  background-color: white; 
+  margin-top: 20px; 
+  margin-right: 20px; 
+  margin-left: auto; 
+  transition: background-color 0.3s, border-color 0.3s; 
 }
 
 .custom-select {
-padding: 14px 15px 14px 15px;
-border-radius: 20px; 
-font-size: 16px;
-cursor: pointer;
-border: 1px solid #ccc; 
-appearance: none;
-background-color: white;
-background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
-background-repeat: no-repeat;
-background-position: right 10px center;
-background-size: 30px; 
-width: 100%; 
-}
-
-button > span:hover {
-  transform: scale(1.1);
-  transition: transform 0.1s ease-in-out;
+  padding: 14px 15px 14px 15px;
+  border-radius: 20px; 
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc; 
+  appearance: none;
+  background-color: white;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 30px; 
+  width: 100%; 
 }
 </style>
+

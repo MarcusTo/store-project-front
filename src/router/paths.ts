@@ -27,6 +27,9 @@ export enum ROUTE_PATHS {
   GAMINGCOMPUTERS = "/GamingComputer",
   NEW_GAMINGCOMPUTER = "/GamingComputer/:id",
 
+  GEAR = "/Gear",
+  NEW_GEAR = "Gear/:id",
+
   HOME = "/",
   SERVICES = "/services",
   CART = "/cartView",
