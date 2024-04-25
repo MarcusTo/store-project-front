@@ -543,7 +543,7 @@ export default defineComponent({
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1003;
   border-bottom-right-radius: 10px; 
   border-bottom-left-radius: 10px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); 
@@ -776,7 +776,7 @@ export default defineComponent({
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 1002;
   transition: opacity 0.3s ease;
 }
 

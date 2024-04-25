@@ -29,14 +29,14 @@
     <div class="info-container">
       <div class="user-info">
         <div class="user-title">
-          <p>Kontaktandmed</p>
+          <p>Contact information</p>
         </div>
         <div class="input-container">
           <InputText
             class="custom-text"
             type="text"
             v-model="name"
-            placeholder="Nimi"
+            placeholder="Name"
           />
           <InputText
             class="custom-text"
@@ -48,13 +48,13 @@
             class="custom-text"
             type="text"
             v-model="phoneNumber"
-            placeholder="Telefoninumber"
+            placeholder="Phone number"
           />
           <InputText
             class="custom-text"
             type="text"
             v-model="address"
-            placeholder="Aadress"
+            placeholder="Address"
           />
           <InputText
             class="custom-text"
@@ -66,7 +66,7 @@
             class="custom-text"
             type="text"
             v-model="info"
-            placeholder="Lisainfo"
+            placeholder="Additional information"
           />
         </div>
         <div class="payment-info">
@@ -80,7 +80,7 @@
   </div>
 
   <div class="submit-button">
-    <Button class="button" @click="handlePayment">Maksma</Button>
+    <Button class="button" @click="handlePayment">Pay now</Button>
   </div>
   <FooterComp />
 </template>

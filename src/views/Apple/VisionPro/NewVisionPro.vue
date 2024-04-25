@@ -46,21 +46,6 @@
               {{ formatMemory(product.memory) }}
             </Button>
           </div>
-          <p style="font-size: 13px; font-weight: 500">VALI VÄRV</p>
-          <div class="color" v-if="product.color && product.color.length">
-            <Button
-              v-for="(color, index) in product.color"
-              :key="index"
-              class="color-button"
-              :class="{
-                'color-button-selected': selectedColor.value === color,
-              }"
-              :style="{ 'background-color': color }"
-              @click="selectedColor.value = color"
-            >
-              {{ color }}
-            </Button>
-          </div>
         </div>
         <p style="font-weight: 500; font-size: 40px">
           € {{ product.price.toFixed(2) }}
