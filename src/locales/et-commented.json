@@ -1,0 +1,140 @@
+/*{
+  "navbar": {
+    "home": "Avaleht",
+    "iphone": "iPhone",
+    "airpods": "Airpods",
+    "mac": "Mac",
+    "repairs": "Hooldus",
+    "company": "Ettevõttest"
+  },
+  "footer": {
+    "company": "Meist ",
+    "contacts": "Contact",
+    "name": "Pood Pood",
+    "location": "Sõpruse pst 182, 13424 Tallinn",
+    "info": "+372 5891 0000"
+  },
+  "home": {
+    "homeHeader": "Laias valikus tooteid.",
+    "iphone": "iPhone",
+    "headphones": "Airpods",
+    "mac": "Apple Mac"
+  },
+  "card": {
+    "whyUs": "Miks osta seade meie poest?",
+    "quality": "Kvaliteetne valik",
+    "qualityText": "Suurim valik uusi ja kasutatud tooteid garantiiga.",
+    "service": "Ekspertteenindus",
+    "serviceText": "Enamus tooteid kohe saadaval - külastage esindust või tellige e-poest.",
+    "delivery": "Kiire tarne",
+    "deliveryText": "Tasuta transport pakiautomaati kõikidele toodetele.",
+    "selection": "Mitmekülgne valik",
+    "selectionText": "Laia valikuga seadmed erinevatele eelarvetele ja soovidele."
+  },
+  "warranty": {
+    "service": "Seadmete remont ja hooldus.",
+    "warrantyText": "Telefon samal päeval tagasi kätte.",
+    "warrantyText1": "Tasuta asenduseade ning tööjärgne aastane garantii.",
+    "more": "Uuri Lisa"
+  },
+  "repairs": {
+    "repairs": "Hooldus",
+    "functioning": "Seade ei tööta korrektselt?",
+    "prices": "Hinnakiri",
+    "maintenance": "Hooldus",
+    "diagnostics": "Diagnostika / hinnapakkumine - €29,00",
+    "act": "Defekteerimisakt - €25,00",
+    "actSwed": "Defekteerimisakt Swedbank - €13,00",
+    "software": "Tarkvara paigaldus - €39,00",
+    "data": "Andmete päästmine - al €89,00",
+    "dataTransfer": "Andmete ülekandmine seadmete vahel - €39,00",
+    "rentMac": "Asendusarvuti rent - €40,00",
+    "rentIphone": "Asendustelefoni rent - €20,00",
+    "macService": "MacBook korraline hooldus - €59,00",
+    "imacService": "iMac korraline hooldus - €79,00",
+    "repairParts": "Remont/Varuosad",
+    "iphoneBatterySE": "iPhone aku vahetus (SE 2. gen ja SE 3. gen) - €109,00",
+    "iphoneBatteryX": "iPhone aku vahetus (X ja uuemad) - €129,00",
+    "iphoneScreenSE": "iPhone SE (SE 2. gen ja SE 3. gen) ekraanivahetus - €325,00",
+    "iphoneScreenXR": "iPhone XR/11 ekraanivahetus - €353,00",
+    "iphoneScreenXSeries": "iPhone X/Xs/11 Pro/12/12 Pro/13/13 Pro/14/15 ekraanivahetus - €438,00",
+    "iphoneScreenMini": "iPhone 12 mini/13 mini ekraanivahetus - €394,00",
+    "iphoneScreenMax": "iPhone Xs Max/11-12-13 Pro Max/14 Pro/14 Plus/15 Pro/15 Plus ekraan - €514,00",
+    "iphoneScreenMaxPro": "iPhone 14/15 Pro Max ekraanivahetus - €614,00",
+    "lostAirPodsProCase": "Kadunud AirPods Pro karp - €131,00",
+    "lostAirPodsProEarbuds": "Kadunud AirPods Pro klapp - €121,00",
+    "lostWirelessAirPodsCase": "Kadunud Wireless AirPods karp - €101,00",
+    "lostAirPodsCase": "Kadunud AirPods karp - €101,00",
+    "lostAirPodsEarbuds": "Kadunud AirPods klapp - €101,00",
+    "exchange_offer": "Pakume ametliku Apple tasulist seadme väljavahetamist, juhul kui seade ei kuulu enam garantii alla (niisukus- või mehaanilise kahjustuse korral) või garantii on läbi saanud. Teie vana/katkine seade vahetatakse uue seadme vastu.",
+    "exchange_prices": {
+      "iPhone_6_6S": "iPhone 6/6S vahetus €415",
+      "iPhone_6Plus_6SPlus": "iPhone 6 Plus/6S Plus vahetus €505",
+      "iPhone_7": "iPhone 7 vahetus €430",
+      "iPhone_7Plus": "iPhone 7 Plus vahetus €525",
+      "iPhone_SE_2020": "iPhone SE (2020) vahetus €425",
+      "iPhone_SE_2022": "iPhone SE (2022) vahetus €495",
+      "iPhone_8": "iPhone 8 vahetus €525",
+      "iPhone_8Plus": "iPhone 8 Plus vahetus €525",
+      "iPhone_XR_11_12Mini_13Mini": "iPhone XR/11/12 Mini/13 mini vahetus €525",
+      "iPhone_12_13": "iPhone 12/iPhone 13 vahetus €635",
+      "iPhone_X_XS_11Pro_12Pro_13Pro": "iPhone X/XS/11 Pro/12 Pro/13 Pro vahetus €830",
+      "iPhone_XSMax_11ProMax_12ProMax_14_15Plus": "iPhone XS Max/11 Pro Max/12-13 Pro Max/14-15 Plus vahetus €915",
+      "iPhone_14_15": "iPhone 14/15 vahetus €830",
+      "iPhone_14Pro_15Pro": "iPhone 14 Pro/15 Pro vahetus €1005",
+      "iPhone_14ProMax_15ProMax": "iPhone 14 Pro Max/15 Pro Max vahetus €1080"
+    },
+    "exchange_broken_device": "Katkise Apple seadme uue vastu vahetamine",
+    "icloud_lock_message": "! iCloud lukk (Find My iPhone) peab olema seadmel maha võetud!",
+    "handling_fee_message": "Käsitlustasu kui seadet ei ole võimalik välja vahetada (seadet on eelnevalt remonditud) €20",
+    "warranty_message": "Väljavahetatud toodetele kehtib edasi vana seadme garantii või 3-kuuline garantii, juhul kui originaal garantii pikkus oli lühem või see oli lõppenud."
+  },
+  "products": {
+    "model": "Model",
+    "iphone": "iPhone",
+    "airpods": "Airpods",
+    "mac": "Mac",
+    "buy": "al.",
+    "new": "Uus",
+    "used": "Kasutatud"
+  },
+  "cart": {
+    "title": "Ostukorv",
+    "addToCart": "Lisa ostukorvi",
+    "iphone": "iPhone",
+    "airpods": "Airpods",
+    "mac": "Mac"
+  },
+  "iphone15Pro": {
+    "technicalData": "Tehnilised andmed",
+    "newSealedBox": "iPhone 15 Pro. Uus, kinnises karbis.",
+    "camera": "6.1” Super Retina XDR OLED 120Hz võimekusega ekraan",
+    "processor": "A17 Pro Bionic protsessor",
+    "case": "Titaaniumist korpus",
+    "actionBtn": "Nupp “Action”",
+    "chargingPort": "USB-C laadimispesa",
+    "dynamicIsland": "Dynamic Island",
+    "mainCamera": "48-megapiksline põhikaamera",
+    "ultraWideTelephotoCamera": "Pro 12-megapiksline Ultra Wide, Telephoto kaamera",
+    "trueDepthFrontCamera": "12-megapiksline TrueDepth esikaamera",
+    "cinematicCamera": "Cinematic kaamera salvestusrežiim & stabilisaator",
+    "proResVideo": "ProRes video salvestus kuni 4K 30 fps",
+    "macroMode": "Makroreziim pildistamiseks",
+    "nightModeLiDAR": "Night Mode LiDAR skänneriga",
+    "IPRating": "Pritsmekindel IP68",
+    "wirelessCharging": "Juhtmevaba laadimise võimalus",
+    "magsafeCharging": "Magsafe laadimise võimekus",
+    "5GCapability": "5G võimekus",
+    "crashDetection": "Crash Detection"
+  },
+  "checkout": {
+    "checkout": "Checkout"
+  },
+
+  "dummyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget eleifend sapien. Morbi interdum nulla nulla, ac ullamcorper ipsum lacinia at. Nam ut neque lobortis, tempus quam non, pharetra lorem. Etiam in lorem libero. Ut bibendum eros eu arcu fringilla vehicula. Duis porttitor tellus vitae urna maximus euismod. Vivamus in tortor nisl.",
+  "copyright": "TM&JR",
+  "addProducts":"Lisa andmebaasi tooteid"
+}
+ */
+
+ 

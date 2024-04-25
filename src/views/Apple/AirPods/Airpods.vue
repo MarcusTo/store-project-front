@@ -27,7 +27,7 @@
         <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
           {{ product.name }}
         </p>
-        <p style="font-size: 16px;">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</p>
+        <div class="price-tag">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</div>
       </div>
     </router-link>
   </div>
@@ -46,7 +46,7 @@ const { t } = useI18n();
 const router = useRouter();
 
 const goBack = () => {
-  router.back(); 
+  router.push('/'); 
 };
 
 interface Product {
@@ -83,26 +83,42 @@ const filteredProducts = computed(() => {
 </script>
 
 <style scoped>
+.price-tag {
+  background-color: #f1eeee;  
+  color: rgb(0, 0, 0);               
+  padding: 5px 10px;          
+  border-radius: 30px;        
+  margin-top: 10px;  
+  margin-bottom: 10px;         
+  font-size: 16px;            
+}
+
 .product-cards {
   display: grid;
-  margin: 0 auto; 
+  grid-template-columns: repeat(4, 1fr); 
+  row-gap: 4rem;
+  column-gap: 3rem;  
+  padding: 1rem;
   max-width: 1200px; 
-  justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem; 
-  margin-top: 40px;
+  margin: auto; 
 }
+
 .product-card-link {
   text-decoration: none;
   color: inherit;
 }
+
 .product-card {
-  text-align: center;
-  width: 200px; 
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 15px; 
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .product-card img {

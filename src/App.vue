@@ -1,5 +1,5 @@
 <template>
-  <RouterView />
+  <RouterView :key="$route.fullPath" />
 </template>
 <script lang="ts">
 import { RouterView} from 'vue-router'
@@ -9,6 +9,7 @@ import { RouterView} from 'vue-router'
 html, body {
   overflow-y: scroll; 
   scrollbar-width: none; 
+  margin-top: 40px;
 }
 
 html::-webkit-scrollbar, body::-webkit-scrollbar {

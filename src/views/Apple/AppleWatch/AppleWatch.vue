@@ -16,18 +16,18 @@
         margin-top: var(--h2-margin-top, -30px);
       "
     >
-      {{ t("products.iphone") }}
+      {{ t("Apple watch") }}
     </h2>
     <SearchComp @search="handleSearch" />
     <hr />
     <div class="product-cards">
-      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/apple/iphone/${product._id}`" class="product-card-link">
+      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/apple/applewatch/${product._id}`" class="product-card-link">
         <div class="product-card">
           <img :src="product.image" style="width: 200px; height: 200px" />
           <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
             {{ product.name }}
           </p>
-          <p style="font-size: 16px;">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</p>
+          <div class="price-tag">{{ t("products.buy") }} €{{ product.price.toFixed(2) }}</div>
         </div>
       </router-link>
     </div>
@@ -66,7 +66,7 @@
     try {
       const response = await fetch('http://localhost:3000/api/products');
       const data: Product[] = await response.json();
-      products.value = data.filter(product => product.category === 'iphone');
+      products.value = data.filter(product => product.category === 'applewatch');
     } catch (error) {
       console.error('Error:', error);
     }
@@ -84,36 +84,52 @@
   </script>
   
   <style scoped>
+  .price-tag {
+  background-color: #f1eeee;  
+  color: rgb(0, 0, 0);               
+  padding: 5px 10px;          
+  border-radius: 30px;        
+  margin-top: 10px;  
+  margin-bottom: 10px;         
+  font-size: 16px;            
+}
+
   .product-cards {
-    display: grid;
-    margin: 0 auto; 
-    max-width: 1200px; 
-    justify-content: center;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem; 
-    margin-top: 40px;
-  }
-  .product-card-link {
-    text-decoration: none;
-    color: inherit;
-  }
-  .product-card {
-    text-align: center;
-    width: 200px; 
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-  }
-  
-  .product-card img {
-    width: 100%;
-  }
-  
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  row-gap: 4rem;
+  column-gap: 3rem;  
+  padding: 1rem;
+  max-width: 1200px; 
+  margin: auto; 
+}
+
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 15px; 
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  width: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
   button > span:hover {
   transform: scale(1.1);

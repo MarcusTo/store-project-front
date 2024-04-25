@@ -1,8 +1,23 @@
 <template>
   <NavBarComp />
-  <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
-    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
-      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+  <div style="text-align: left; margin-left: 20px; margin-top: 20px">
+    <button
+      @click="goBack"
+      style="border: none; background-color: transparent; cursor: pointer"
+    >
+      <span
+        style="
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #b2beb5;
+          color: #fff;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+        "
+      >
         &#10006;
       </span>
     </button>
@@ -14,14 +29,14 @@
     <div class="info-container">
       <div class="user-info">
         <div class="user-title">
-          <p>Kontaktandmed</p>
+          <p>Contact information</p>
         </div>
         <div class="input-container">
           <InputText
             class="custom-text"
             type="text"
             v-model="name"
-            placeholder="Nimi"
+            placeholder="Name"
           />
           <InputText
             class="custom-text"
@@ -33,13 +48,13 @@
             class="custom-text"
             type="text"
             v-model="phoneNumber"
-            placeholder="Telefoninumber"
+            placeholder="Phone number"
           />
           <InputText
             class="custom-text"
             type="text"
             v-model="address"
-            placeholder="Aadress"
+            placeholder="Address"
           />
           <InputText
             class="custom-text"
@@ -51,7 +66,7 @@
             class="custom-text"
             type="text"
             v-model="info"
-            placeholder="Lisainfo"
+            placeholder="Additional information"
           />
         </div>
         <div class="payment-info">
@@ -65,7 +80,7 @@
   </div>
 
   <div class="submit-button">
-    <Button class="button" @click="handlePayment">Maksma</Button>
+    <Button class="button" @click="handlePayment">Pay now</Button>
   </div>
   <FooterComp />
 </template>
@@ -78,16 +93,20 @@ import { useCartStore } from "@/stores/cart";
 import InputText from "primevue/inputtext";
 import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
+import { toRaw } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
+
+
+const toast = useToast();
+
 const router = useRouter();
 
 const goBack = () => {
-  router.back(); 
+  router.back();
 };
-
-
 
 let name = ref("");
 let mail = ref("");
@@ -104,8 +123,7 @@ const totalPrice = computed(() => {
   );
 });
 
-let stripe,
- elements, cardElement;
+let stripe, elements, cardElement;
 
 onMounted(async () => {
   stripe = await loadStripe(
@@ -136,20 +154,22 @@ const handlePayment = async () => {
       phoneNumber: phoneNumber.value,
       address: address.value,
       info: info.value,
-      products: cart.cartItems.value, 
+      cartItems: cart.cartItems, // Changed from products to cartItems
       totalPrice: totalPrice.value,
       postal_code: postalCode.value,
       paymentMethodId: paymentMethod.id,
     };
-
+    console.log("cartItems before sending:", toRaw(cart.cartItems));
     try {
       const response = await axios.post(
         "http://localhost:3000/api/invoices",
         order
       );
       console.log(response.data);
+      toast.success('Invoice created successfully!');
     } catch (error) {
       console.log("Error sending payment method ID to server:", error);
+      toast.error('Error creating an invoice!');
     }
   }
 };

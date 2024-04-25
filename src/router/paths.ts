@@ -18,6 +18,18 @@ export enum ROUTE_PATHS {
   PARTS = "/ComputerParts",
   NEW_PART = "/ComputerParts/:id",
 
+  ANDROID = "/Android",
+  NEW_ANDROID = "/Android/:id",
+
+  BUSINESSCLASS = "/BusinessClass",
+  NEW_BUSINESSCLASS = "/BusinessClass/:id",
+
+  GAMINGCOMPUTERS = "/GamingComputer",
+  NEW_GAMINGCOMPUTER = "/GamingComputer/:id",
+
+  GEAR = "/Gear",
+  NEW_GEAR = "Gear/:id",
+
   HOME = "/",
   SERVICES = "/services",
   CART = "/cartView",

@@ -72,12 +72,12 @@
             font-weight: 500;
           "
         >
-          Kokku: {{ totalPrice.toFixed(2) }} €
+          Total: {{ totalPrice.toFixed(2) }} €
         </h2>
         <div class="button-container">
           <router-link :to="`/checkout`">
             <Button style="background-color: #0070c9" @click="checkout">
-              Vormista Tellimus
+              Proceed to checkout
             </Button>
           </router-link>
           <router-link :to="`/`">
@@ -90,7 +90,7 @@
                 align-items: center;
               "
             >
-              Jätka ostlemist
+              Continue shopping
             </Button>
           </router-link>
         </div>

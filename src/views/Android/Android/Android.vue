@@ -1,33 +1,32 @@
 <template>
     <NavBarComp />
     <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
-    <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
-      <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
-        &#10006;
-      </span>
-    </button>
-  </div>
+      <button @click="goBack" style="border: none; background-color: transparent; cursor: pointer;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; background-color: #B2BEB5; color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px;">
+          &#10006;
+        </span>
+      </button>
+    </div>
     <h2 style="display: flex; justify-content: center; align-items: center; font-size: 32px; margin-bottom: 20px; margin-top: var(--h2-margin-top, -30px);">
-      {{ t("Computer components") }}
+      {{ t("Android products") }}
     </h2>
     <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
       <SearchComp @search="handleSearch" />
       <div style="margin-top: -50px; width: 100%; max-width: 300px;">
         <select v-model="selectedCategory" id="categoryFilter" class="custom-select">
           <option value="">All Categories</option>
-          <option value="CPU">CPU (Core processing unit)</option>
-          <option value="GPU">GPU (Graphics processing unit)</option>
-          <option value="PSU">PSU (Power Supplying Unit)</option>
-          <option value="Motherboard">Motherboard</option>
-          <option value="RAM">RAM</option>
-          <option value="Case">Case</option>
-          <option value="Other">Other</option>
+          <option value="samsung">Samsung</option>
+          <option value="huawei">Huawei</option>
+          <option value="xiaomi">Xiaomi</option>
+          <option value="androidtab">Android Tablets</option>
+          <option value="accessories">Accessories</option>
         </select>
       </div>
     </div>
-<p></p>
+  <p></p>
+  <p></p>
     <div class="product-cards">
-      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/ComputerParts/${product._id}`" class="product-card-link">
+      <router-link v-for="product in filteredProducts" :key="product._id" :to="`/android/${product._id}`" class="product-card-link">
         <div class="product-card">
           <img :src="product.image" style="width: 200px; height: 200px" />
           <p style="font-size: 20px; font-weight: 500; white-space: nowrap">
@@ -75,7 +74,7 @@
     const response = await fetch('http://localhost:3000/api/products');
     const data: Product[] = await response.json();
     products.value = data;
-    const desiredCategories = ['CPU', 'GPU', 'PSU', 'Motherboard', 'RAM', 'Case', 'Other'];
+    const desiredCategories = ['samsung', 'huawei', 'xiaomi', 'androidtab', 'accessories'];
     products.value = data.filter(product => desiredCategories.includes(product.category));
   } catch (error) {
     console.error('Error:', error);
@@ -99,8 +98,8 @@
   </script>
   
   <style scoped>
-
-.price-tag {
+  
+  .price-tag {
   background-color: #f1eeee;  
   color: rgb(0, 0, 0);               
   padding: 5px 10px;          
@@ -109,7 +108,7 @@
   margin-bottom: 10px;         
   font-size: 16px;            
 }
-  
+
   .product-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 

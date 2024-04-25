@@ -1,18 +1,15 @@
 <template>
-    <div>
+    <!-- <div>
       <div class="header">
         <h2>Not quite what you're looking for?</h2>
         <p>Head over to our sidebar menu in the top left of the page for a more extensive product catalog.</p>
       </div>
-    </div>
-  </template>
+    </div> -->
+</template>
   
-  <script setup lang="ts">
-  import Card from "primevue/card";
-  import { useI18n } from "vue-i18n";
+<script setup lang="ts">
   
-  const { t } = useI18n();
-  </script>
+</script>
   
   <style scoped>
   .header {

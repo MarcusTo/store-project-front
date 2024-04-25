@@ -10,7 +10,8 @@ import PrimeVue from "primevue/config";
 import SelectButton from "primevue/selectbutton";
 import StripeElement from './components/StripeElement.vue'
 import StripeElements from './components/StripeElements.vue'
-
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
 export {
     createElement,
@@ -30,6 +31,7 @@ app.use(router);
 
 app.use(router);
 app.use(i18n)
+app.use(Toast)
 app.mount('#app');
 	
 app.use(createPinia())
