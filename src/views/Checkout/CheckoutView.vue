@@ -110,7 +110,7 @@ const goBack = () => {
   router.back();
 };
 
-let name = "John Doe";
+let name = ref("John Doe");
 let mail = ref("johndoe@example.com");
 let phoneNumber = ref("1234567890");
 let address = ref("123 Main St, Anytown, USA");
@@ -171,7 +171,8 @@ const generateInvoice = (order) => {
   `).join('');
 
   const invoiceHTML = `
-    <h1>Invoice</h1>
+    <h1>Arve</h1>
+    <hr/>
     <p>Date: ${formattedDate}</p>
     <p>Name: ${order.name}</p>
     <p>Email: ${order.mail}</p>
@@ -196,7 +197,7 @@ const generateInvoice = (order) => {
   // Convert the HTML string to a PDF
   const opt = {
     margin:       1,
-    filename:     'invoice.pdf',
+    filename:     `arve_${formattedDate}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
     html2canvas:  { scale: 2 },
     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
