@@ -95,6 +95,7 @@ import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
 import { toRaw } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
+import { jsPDF } from "jspdf";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
@@ -134,6 +135,35 @@ onMounted(async () => {
   cardElement.mount("#card-element");
 });
 
+const generateInvoice = (order) => {
+  const doc = new jsPDF();
+
+  doc.setFontSize(20);
+  doc.text("Invoice", 15, 15);
+
+  doc.setFontSize(14);
+  doc.text(`Name: ${order.name}`, 15, 30);
+  doc.text(`Email: ${order.mail}`, 15, 40);
+  doc.text(`Phone Number: ${order.phoneNumber}`, 15, 50);
+  doc.text(`Address: ${order.address}`, 15, 60);
+  doc.text(`Total Price: ${order.totalPrice}`, 15, 70);
+
+  const date = new Date();
+
+  const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+  let y = 80;
+  order.cartItems.forEach((item, index) => {
+    doc.text(`Item ${index + 1}: ${item.name}`, 15, y);
+    doc.text(`Quantity: ${item.quantity}`, 15, y + 10);
+    doc.text(`Price: ${item.price}`, 15, y + 20);
+    y += 30;
+  });
+
+  doc.save(`arve_${formattedDate}.pdf`);
+};
+
+
 const handlePayment = async () => {
   const { paymentMethod, error } = await stripe.createPaymentMethod({
     type: "card",
@@ -166,6 +196,7 @@ const handlePayment = async () => {
         order
       );
       console.log(response.data);
+      generateInvoice(order);
       toast.success('Invoice created successfully!');
     } catch (error) {
       console.log("Error sending payment method ID to server:", error);
