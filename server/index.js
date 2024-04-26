@@ -10,8 +10,8 @@ const authRoute = require("./routes/auth.js");
 const cartRoute = require("./routes/cart.routes.js");
 const invoiceRoute = require("./routes/invoice.routes.js");
 const stripeRoute = require("./routes/stripe.js");
+const emailRoute = require("./routes/email.routes.js");
 
-// middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
@@ -22,6 +22,7 @@ app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
 app.use("/api/invoices", invoiceRoute);
 app.use("/api/checkout", stripeRoute);
+app.use("/api/email", emailRoute);
 
 app.post('/', (req, res) => {
   const requestData = req.body; 

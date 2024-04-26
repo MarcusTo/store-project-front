@@ -96,6 +96,7 @@ import { useI18n } from "vue-i18n";
 import { toRaw } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
 import { jsPDF } from "jspdf";
+import html2pdf from 'html2pdf.js';
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
@@ -109,12 +110,12 @@ const goBack = () => {
   router.back();
 };
 
-let name = ref("");
-let mail = ref("");
-let phoneNumber = ref("");
-let address = ref("");
-let info = ref("");
-let postalCode = ref("");
+let name = "John Doe";
+let mail = ref("johndoe@example.com");
+let phoneNumber = ref("1234567890");
+let address = ref("123 Main St, Anytown, USA");
+let info = ref("Additional information here");
+let postalCode = ref("75404");
 
 const cart = useCartStore();
 const totalPrice = computed(() => {
@@ -139,9 +140,17 @@ const generateInvoice = (order) => {
   const doc = new jsPDF();
 
   doc.setFontSize(20);
-  doc.text("Invoice", 15, 15);
+  doc.setTextColor(40);
+
+  // Add a title and a line below it
+  doc.text("ARVE", 15, 15);
+  doc.setLineWidth(0.5);
+  doc.line(15, 18, 200, 18);
 
   doc.setFontSize(14);
+  doc.setTextColor(100);
+
+  // Add customer details
   doc.text(`Name: ${order.name}`, 15, 30);
   doc.text(`Email: ${order.mail}`, 15, 40);
   doc.text(`Phone Number: ${order.phoneNumber}`, 15, 50);
@@ -149,18 +158,51 @@ const generateInvoice = (order) => {
   doc.text(`Total Price: ${order.totalPrice}`, 15, 70);
 
   const date = new Date();
-
   const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-  let y = 80;
-  order.cartItems.forEach((item, index) => {
-    doc.text(`Item ${index + 1}: ${item.name}`, 15, y);
-    doc.text(`Quantity: ${item.quantity}`, 15, y + 10);
-    doc.text(`Price: ${item.price}`, 15, y + 20);
-    y += 30;
-  });
+  // Prepare the data for the table
+  const tableData = order.cartItems.map((item, index) => `
+    <tr>
+      <td>${index + 1}</td>
+      <td>${item.name}</td>
+      <td>${item.quantity}</td>
+      <td>${item.price}</td>
+    </tr>
+  `).join('');
 
-  doc.save(`arve_${formattedDate}.pdf`);
+  const invoiceHTML = `
+    <h1>Invoice</h1>
+    <p>Date: ${formattedDate}</p>
+    <p>Name: ${order.name}</p>
+    <p>Email: ${order.mail}</p>
+    <p>Phone Number: ${order.phoneNumber}</p>
+    <p>Address: ${order.address}</p>
+    <p>Total Price: ${order.totalPrice}</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Item Number</th>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${tableData}
+      </tbody>
+    </table>
+  `;
+
+  // Convert the HTML string to a PDF
+  const opt = {
+    margin:       1,
+    filename:     'invoice.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(invoiceHTML).save();
 };
 
 
