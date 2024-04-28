@@ -61,18 +61,18 @@ export default {
   }
   </script>
   
-  <style scoped>
+<style scoped>
 
 .slide-fade-enter-active, .slide-fade-leave-active {
-  transition: opacity 1.2s ease, transform 1.2s ease;
+  transition: opacity 1.2s ease;
 }
 
-.slide-fade-enter {
+.slide-fade-enter, .slide-fade-leave-to {
   opacity: 0;
 }
 
-.slide-fade-leave-to {
-    opacity: 0;
+.slide-fade-enter-to, .slide-fade-leave {
+  opacity: 1;
 }
   
   .card-container {

@@ -4,8 +4,6 @@
       <div class="services-content">
          <h1>Explore Our Tech Services</h1>
          <br>
-         <br>
-         <br>
          <div class="services-container">
             <ServiceCard
                title="Phone Revival"
@@ -63,11 +61,15 @@
             </ServiceCard>
          </div>
       </div>
+         <div>
+            <ServiceCardComp></ServiceCardComp>
+         </div>
       <FooterComp></FooterComp>
    </div>
 </template>
 <script>
    import { ref } from "vue";
+   import ServiceCardComp from "@/components/ServiceCardComp.vue";
    import NavBarComp from "@/components/NavBarComp.vue";
    import ServiceCard from "@/components/ServiceCard.vue";
    import FooterComp from "@/components/FooterComp.vue";
@@ -77,6 +79,7 @@
        NavBarComp,
        ServiceCard,
        FooterComp,
+       ServiceCardComp
      },
    };
 </script>

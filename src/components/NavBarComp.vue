@@ -18,6 +18,7 @@
         </div>
         <div class="sidebar-content">
           <p></p>
+          <h1>Our products:</h1>
           <div class="button-card1">
             <div @click="toggleProductsDropdown" class="sidebar-link dropdown">
               <i class="pi pi-tags" style="margin-right: -110px;"></i><span>Products</span>
@@ -298,6 +299,7 @@
             </div>
           </div>
           <!-- Siia alla saab linke juurde lisada  -->
+          <h1>Language:</h1>
           <div class="button-card1">
             <div @click="toggleLanguageDropdown" class="sidebar-link dropdown">
               <i class="pi pi-language" style="margin-right: -100px;"></i>Language
@@ -331,6 +333,7 @@
               </div>
             </div>
           </div>
+          <h1>Other:</h1>
           <div class="button-card1">
             <div class="product-database-link-container">
               <RouterLink
@@ -606,6 +609,11 @@ export default defineComponent({
   flex-direction: column;
 }
 
+
+/*Sidebar*/
+
+
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -687,6 +695,13 @@ export default defineComponent({
   transition: transform 0.3s ease;
   border-radius: 15px;
 }
+
+.sidebar-category-header {
+  
+}
+
+/*End of Sidebar*/
+
 
 .back-button {
   position: absolute;

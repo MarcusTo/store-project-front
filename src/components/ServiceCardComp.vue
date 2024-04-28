@@ -4,11 +4,6 @@
       <h2 style="display: flex; justify-content: center; align-items: center">
         {{ t("warranty.service") }}
       </h2>
-      <router-link to="/services" style="display: flex; justify-content:center; align-items: center;">
-        <p label="link">
-          {{ t("warranty.more") }}
-        </p>
-      </router-link>
       <div class="card">
         <Card>
           <template #content>
@@ -47,11 +42,11 @@ const { t } = useI18n();
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff89;
+  background-color: inherit;
   border-radius: 24px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0);
   padding: 1rem;
-  width: 80%; 
+  width: 55%; 
   margin: auto;
 }
 .card {
