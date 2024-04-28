@@ -357,7 +357,7 @@
         <ul class="nav-links">
           <li>
             <RouterLink to="/services">
-              {{ $t("navbar.repairs") }}
+              {{ $t("Services") }}
             </RouterLink>
           </li>
         </ul>

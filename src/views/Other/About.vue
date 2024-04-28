@@ -1,15 +1,14 @@
 <template>
   <NavBarComp />
-  <h2 style="text-align: center; font-size: 32px; margin-top: 32px;">Kontakt</h2>
   <div class="about-card-container">
     <div class="about-card">
       <div class="info">
-        <h2>{{ t("Contact us") }}</h2>
+        <h2>{{ t("About us") }}</h2>
         <p><i class="pi pi-home"></i> {{ t("Sõpruse puiestee 182") }}</p>
         <p><i class="pi pi-phone"></i> {{ t("+372 5891 0000") }}</p>
         <p><i class="pi pi-envelope"></i> {{ t("pood@pood.ee") }}</p>
-        <p><i class="pi pi-calendar"></i> {{ t("Monday to Friday 09:00 - 17:00") }}</p>
-      <div class="social-link" style="margin-right: 10px;">
+        <p><i class="pi pi-calendar"></i> {{ t("Monday to Friday 09:00 - 21:00") }}</p>
+      <div class="social-link">
         <i class="pi pi-twitter" style="margin-right: 10px;"></i>
         <i class="pi pi-discord" style="margin-right: 10px;"></i>
         <i class="pi pi-facebook" style="margin-right: 10px;"></i>
@@ -21,14 +20,12 @@
       <div id="map" class="map"></div>
     </div>
   </div>
-  <FooterComp/>
 </template>
 
 <script setup lang="ts">
 import "leaflet/dist/leaflet.css";
 import { onMounted } from "vue";
 import NavBarComp from "@/components/NavBarComp.vue";
-import FooterComp from "@/components/FooterComp.vue";
 import { useI18n } from "vue-i18n";
 import L from 'leaflet';
 

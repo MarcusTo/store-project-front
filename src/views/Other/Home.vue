@@ -1,8 +1,7 @@
 <template>
   <NavBarComp />
   <hr/>
-  <MessageComp />
-  <hr/>
+  <TechShopCard/>
   <ProductCardComp/>
   <hr/>
   <CardComp/>
@@ -13,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import MessageComp from "@/components/MessageComp.vue";
 import NavBarComp from "@/components/NavBarComp.vue";
+import TechShopCard from "@/components/TechShopCard.vue";
 import CardComp from "@/components/CardComp.vue";
 import ServiceCardComp from "@/components/ServiceCardComp.vue";
 import ProductCardComp from "@/components/ProductCardComp.vue";
