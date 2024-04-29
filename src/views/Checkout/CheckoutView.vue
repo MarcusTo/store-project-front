@@ -96,11 +96,10 @@ import { useI18n } from "vue-i18n";
 import { toRaw } from "vue";
 import { loadStripe } from "@stripe/stripe-js";
 import { jsPDF } from "jspdf";
-import html2pdf from 'html2pdf.js';
+import html2pdf from "html2pdf.js";
 import axios from "axios";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
-
 
 const toast = useToast();
 
@@ -158,54 +157,74 @@ const generateInvoice = (order) => {
   doc.text(`Total Price: ${order.totalPrice}`, 15, 70);
 
   const date = new Date();
-  const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const formattedDate = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
 
   // Prepare the data for the table
-  const tableData = order.cartItems.map((item, index) => `
-    <tr>
-      <td>${index + 1}</td>
-      <td>${item.name}</td>
-      <td>${item.quantity}</td>
-      <td>${item.price}</td>
-    </tr>
-  `).join('');
+  const tableData = order.cartItems
+    .map(
+      (item, index) => `
+<tr>
+  <td style="padding: 20px;">${index + 1}</td>
+  <td style="padding: 20px;">${item.name}</td>
+  <td style="padding: 20px;">${item.quantity}</td>
+  <td style="padding: 20px;">${item.price} €</td>
+</tr>
+  `
+    )
+    .join("");
 
   const invoiceHTML = `
-    <h1>Arve</h1>
-    <hr/>
-    <p>Date: ${formattedDate}</p>
-    <p>Name: ${order.name}</p>
-    <p>Email: ${order.mail}</p>
-    <p>Phone Number: ${order.phoneNumber}</p>
-    <p>Address: ${order.address}</p>
-    <p>Total Price: ${order.totalPrice}</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Item Number</th>
-          <th>Item Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${tableData}
-      </tbody>
-    </table>
-  `;
+  <table style="width: 100%;">
+    <tr>
+      <td style="width: 50%;">
+        <h1>Arve</h1>
+      </td>
+      <td style="width: 50%; text-align: right; font-size:14px; margin: 0.5em 0;">
+        <p>SWEDBANK AS</p>
+        <p>Sõpruse pst 182, 13424 Tallinn</p>
+        <p>EE000000000000000000</p>
+        <p>ARVUTIPOOD OÜ</p>
+      </td>
+    </tr>
+  </table>
+  <hr/>
+  <p>Kuupäev: ${formattedDate}</p>
+  <p>Nimi: ${order.name}</p>
+  <p>E-mail: ${order.mail}</p>
+  <p>Telefoninumber: ${order.phoneNumber}</p>
+  <p>Aadress: ${order.address}</p>
+  <hr/>
+  <div style="display: flex; flex-direction: column; align-items: flex-end;">
+  <table>
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Nimi</th>
+        <th>Kogus</th>
+        <th>Hind</th>
+      </tr>
+    </thead>
+    <tbody style="margin-right:8px;">
+      ${tableData}
+    </tbody>
+  </table>
+  <hr style="width: 100%; border: none; border-top: 1px solid black;"/>
+  <p style="font-weight:bold;">KOKKU EUR: ${order.totalPrice} €</p>
+  </div>
+`;
 
-  // Convert the HTML string to a PDF
   const opt = {
-    margin:       1,
-    filename:     `arve_${formattedDate}.pdf`,
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    margin: 1,
+    filename: `arve_${formattedDate}.pdf`,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
   };
 
   html2pdf().set(opt).from(invoiceHTML).save();
 };
-
 
 const handlePayment = async () => {
   const { paymentMethod, error } = await stripe.createPaymentMethod({
@@ -240,10 +259,10 @@ const handlePayment = async () => {
       );
       console.log(response.data);
       generateInvoice(order);
-      toast.success('Invoice created successfully!');
+      toast.success("Invoice created successfully!");
     } catch (error) {
       console.log("Error sending payment method ID to server:", error);
-      toast.error('Error creating an invoice!');
+      toast.error("Error creating an invoice!");
     }
   }
 };
