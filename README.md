@@ -104,7 +104,7 @@ Make sure you have the following installed:
     npm run dev
     ```
      
-5. Open your browser and visit `http://localhost:8080/5173` to view the website.
+5. Open your browser and visit `http://localhost:5173` to view the front-end of the website and `http://localhost:3000`for the back-end database of the website.
 ## ERD Diagram
 
 [ERD Diagram](https://lucid.app/lucidchart/94fc75a8-376e-4b6c-a7e4-be09b4ad5262/edit?beaconFlowId=C1E2FAEE5B2DC0FF&page=0_0&invitationId=inv_906ba416-a3d9-43cf-a15e-069f24c32c5a#)
