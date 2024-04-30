@@ -22,7 +22,7 @@
         <h2>Marcus Toman</h2>
         <p>Tegija</p>
         <a href="mailto:info@pood.ee" style="color: #0070c9">Info@pood.ee</a>
-        <a href="telto:5891 0000" style="color: #0070c9; margin: 0 5px; display: block">+372 5891 0000</a> 
+        <a href="telto:5385 5501" style="color: #0070c9; margin: 0 5px; display: block">+372 5385 5501</a> 
       </div>
     </div>
     <div class="card">

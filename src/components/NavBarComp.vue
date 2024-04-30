@@ -62,7 +62,7 @@
                 <RouterLink
                   to="/apple/mac?category=mac"
                   class="sidebar-link"
-                  @click="() => closeMenu('/apple/mac')"
+                  @click="() => closeMenu('/apple/mac?category=mac')"
                   >Mac</RouterLink
                 >
                 <RouterLink
