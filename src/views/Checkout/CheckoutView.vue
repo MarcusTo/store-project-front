@@ -75,6 +75,42 @@
       </div>
     </div>
   </form>
+
+  <!-- Packaging and Delivery Options -->
+  <div class="options-wrapper">
+    <div class="option-card">
+      <h3>Packaging Options</h3>
+      <div class="button-container">
+        <Button :class="{'active': selectedOption === 'General packaging'}" class="option-button" @click="selectOption('General packaging')">
+          <i class="pi pi-box"></i> General packaging
+        </Button>
+        <Button :class="{'active': selectedOption === 'Eco Friendly packaging'}" class="option-button" @click="selectOption('Eco Friendly packaging')">
+          <i class="pi pi-globe"></i> Eco Friendly packaging
+        </Button>
+      </div>
+    </div>
+    <div class="option-card">
+      <h3>Delivery Options</h3>
+      <div class="button-container">
+        <Button :class="{'active': selectedOption === 'Pick-up myself'}" class="option-button" @click="selectOption('Pick-up myself')">
+          <i class="pi pi-walking"></i> Pick-up myself
+        </Button>
+        <Button :class="{'active': selectedOption === 'Delivery to door'}" class="option-button" @click="selectOption('Delivery to door')">
+          <i class="pi pi-car"></i> Delivery to door
+        </Button>
+        <Button :class="{'active': selectedOption === 'Parcel machine - General'}" class="option-button" @click="selectOption('Parcel machine - General')">
+          <i class="pi pi-inbox"></i> Parcel machine - General
+        </Button>
+        <Button :class="{'active': selectedOption === 'Parcel machine - Carbon Neutral'}" class="option-button" @click="selectOption('Parcel machine - Carbon Neutral')">
+          <i class="pi pi-inbox"></i> Parcel machine - Carbon Neutral
+        </Button>
+        <Button :class="{'active': selectedOption === '100% Carbon neutral courier'}" class="option-button" @click="selectOption('100% Carbon neutral courier')">
+          <i class="pi pi-home"></i> 100% Carbon neutral courier
+        </Button>
+      </div>
+    </div>
+  </div>
+  
   <div class="total-price">
     <h2>Total Price: €{{ totalPrice.toFixed(2) }}</h2>
   </div>
@@ -141,7 +177,6 @@ const generateInvoice = (order) => {
   doc.setFontSize(20);
   doc.setTextColor(40);
 
-  // Add a title and a line below it
   doc.text("ARVE", 15, 15);
   doc.setLineWidth(0.5);
   doc.line(15, 18, 200, 18);
@@ -149,7 +184,6 @@ const generateInvoice = (order) => {
   doc.setFontSize(14);
   doc.setTextColor(100);
 
-  // Add customer details
   doc.text(`Name: ${order.name}`, 15, 30);
   doc.text(`Email: ${order.mail}`, 15, 40);
   doc.text(`Phone Number: ${order.phoneNumber}`, 15, 50);
@@ -268,6 +302,11 @@ const handlePayment = async () => {
 };
 
 const { t } = useI18n();
+const selectedOption = ref("");
+
+const selectOption = (option) => {
+  selectedOption.value = option;
+};
 </script>
 
 <style scoped>
@@ -362,5 +401,46 @@ button > span:hover {
   background-color: #ffff;
   border: 5px solid #ccc;
   border-radius: 10px;
+}
+
+.options-wrapper {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.option-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  width: 300px;
+}
+
+.option-button {
+  width: 250px;
+  background-color: #f0f0f0;
+  color: #0070c9;
+  border: 1px solid #0070c9;
+  border-radius: 25px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.option-button.active {
+  background-color: #0070c9;
+  color: #fff;
+}
+
+.option-button:hover {
+  background-color: #0070c9;
+  color: #fff;
 }
 </style>

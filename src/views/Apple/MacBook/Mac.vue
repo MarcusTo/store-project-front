@@ -225,4 +225,3 @@ return products.value.filter(product => {
   margin-right: 40px;
 }
 </style>
-

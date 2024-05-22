@@ -20,7 +20,7 @@
       <img src="/img/other/team-member.jpeg" />
       <div class="card-body" style="text-align: center;">
         <h2>Marcus Toman</h2>
-        <p>Tegija</p>
+        <p>Arendaja</p>
         <a href="mailto:info@pood.ee" style="color: #0070c9">Info@pood.ee</a>
         <a href="telto:5385 5501" style="color: #0070c9; margin: 0 5px; display: block">+372 5385 5501</a> 
       </div>
@@ -29,7 +29,7 @@
       <img src="/img/other/team-member.jpeg"/>
       <div class="card-body" style="text-align: center;">
         <h2>Rasmus Jalakas</h2>
-        <p>Tegija</p>
+        <p>Arendaja</p>
         <a href="mailto:info@pood.ee" style="color: #0070c9">Info@pood.ee</a>
         <a href="telto:5891 0000" style="color: #0070c9; margin: 0 5px; display: block">+372 5891 0000</a>  
     </div>
