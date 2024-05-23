@@ -76,36 +76,40 @@
     </div>
   </form>
 
-  <!-- Packaging and Delivery Options -->
   <div class="options-wrapper">
-    <div class="option-card">
-      <h3>Packaging Options</h3>
-      <div class="button-container">
-        <Button :class="{'active': selectedOption === 'General packaging'}" class="option-button" @click="selectOption('General packaging')">
-          <i class="pi pi-box"></i> General packaging
-        </Button>
-        <Button :class="{'active': selectedOption === 'Eco Friendly packaging'}" class="option-button" @click="selectOption('Eco Friendly packaging')">
-          <i class="pi pi-globe"></i> Eco Friendly packaging
-        </Button>
-      </div>
-    </div>
     <div class="option-card">
       <h3>Delivery Options</h3>
       <div class="button-container">
-        <Button :class="{'active': selectedOption === 'Pick-up myself'}" class="option-button" @click="selectOption('Pick-up myself')">
+        <Button
+          :class="{'active': selectedOption.delivery === 'Pick-up myself'}"
+          class="option-button"
+          @click="selectOption('delivery', 'Pick-up myself')"
+        >
           <i class="pi pi-walking"></i> Pick-up myself
         </Button>
-        <Button :class="{'active': selectedOption === 'Delivery to door'}" class="option-button" @click="selectOption('Delivery to door')">
+        <Button
+          :class="{'active': selectedOption.delivery === 'Delivery to door'}"
+          class="option-button"
+          @click="selectOption('delivery', 'Delivery to door')"
+        >
           <i class="pi pi-car"></i> Delivery to door
         </Button>
-        <Button :class="{'active': selectedOption === 'Parcel machine - General'}" class="option-button" @click="selectOption('Parcel machine - General')">
-          <i class="pi pi-inbox"></i> Parcel machine - General
+      </div>
+      <h3>Packaging Options</h3>
+      <div class="button-container">
+        <Button
+          :class="{'active': selectedOption.packaging === 'General packaging'}"
+          class="option-button"
+          @click="selectOption('packaging', 'General packaging')"
+        >
+          <i class="pi pi-box"></i> General packaging
         </Button>
-        <Button :class="{'active': selectedOption === 'Parcel machine - Carbon Neutral'}" class="option-button" @click="selectOption('Parcel machine - Carbon Neutral')">
-          <i class="pi pi-inbox"></i> Parcel machine - Carbon Neutral
-        </Button>
-        <Button :class="{'active': selectedOption === '100% Carbon neutral courier'}" class="option-button" @click="selectOption('100% Carbon neutral courier')">
-          <i class="pi pi-home"></i> 100% Carbon neutral courier
+        <Button
+          :class="{'active': selectedOption.packaging === 'Eco Friendly packaging'}"
+          class="option-button"
+          @click="selectOption('packaging', 'Eco Friendly packaging')"
+        >
+          <i class="pi pi-globe"></i> Eco Friendly packaging
         </Button>
       </div>
     </div>
@@ -137,14 +141,17 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
+// Toast for notifications
 const toast = useToast();
-
+// Router for navigation
 const router = useRouter();
 
+// Function to go back to the previous page
 const goBack = () => {
   router.back();
 };
 
+// Form fields
 let name = ref("John Doe");
 let mail = ref("johndoe@example.com");
 let phoneNumber = ref("1234567890");
@@ -152,6 +159,7 @@ let address = ref("123 Main St, Anytown, USA");
 let info = ref("Additional information here");
 let postalCode = ref("75404");
 
+// Cart store and computed total price
 const cart = useCartStore();
 const totalPrice = computed(() => {
   return cart.cartItems.reduce(
@@ -160,6 +168,7 @@ const totalPrice = computed(() => {
   );
 });
 
+// Stripe payment integration
 let stripe, elements, cardElement;
 
 onMounted(async () => {
@@ -171,6 +180,7 @@ onMounted(async () => {
   cardElement.mount("#card-element");
 });
 
+// Function to generate invoice PDF
 const generateInvoice = (order) => {
   const doc = new jsPDF();
 
@@ -191,11 +201,8 @@ const generateInvoice = (order) => {
   doc.text(`Total Price: ${order.totalPrice}`, 15, 70);
 
   const date = new Date();
-  const formattedDate = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()}`;
+  const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
-  // Prepare the data for the table
   const tableData = order.cartItems
     .map(
       (item, index) => `
@@ -205,7 +212,7 @@ const generateInvoice = (order) => {
   <td style="padding: 20px;">${item.quantity}</td>
   <td style="padding: 20px;">${item.price} €</td>
 </tr>
-  `
+`
     )
     .join("");
 
@@ -260,6 +267,7 @@ const generateInvoice = (order) => {
   html2pdf().set(opt).from(invoiceHTML).save();
 };
 
+// Function to handle payment processing
 const handlePayment = async () => {
   const { paymentMethod, error } = await stripe.createPaymentMethod({
     type: "card",
@@ -301,11 +309,16 @@ const handlePayment = async () => {
   }
 };
 
+// i18n for translations
 const { t } = useI18n();
-const selectedOption = ref("");
+const selectedOption = ref({
+  delivery: "",
+  packaging: ""
+});
 
-const selectOption = (option) => {
-  selectedOption.value = option;
+// Function to select an option for delivery or packaging
+const selectOption = (type, option) => {
+  selectedOption.value[type] = option;
 };
 </script>
 
