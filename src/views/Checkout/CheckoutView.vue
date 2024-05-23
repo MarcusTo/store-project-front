@@ -76,7 +76,6 @@
     </div>
   </form>
 
-  <!-- Packaging and Delivery Options -->
   <div class="options-wrapper">
     <div class="option-card">
       <h3>Packaging Options</h3>
@@ -95,14 +94,8 @@
         <Button :class="{'active': selectedOption === 'Pick-up myself'}" class="option-button" @click="selectOption('Pick-up myself')">
           <i class="pi pi-walking"></i> Pick-up myself
         </Button>
-        <Button :class="{'active': selectedOption === 'Delivery to door'}" class="option-button" @click="selectOption('Delivery to door')">
-          <i class="pi pi-car"></i> Delivery to door
-        </Button>
         <Button :class="{'active': selectedOption === 'Parcel machine - General'}" class="option-button" @click="selectOption('Parcel machine - General')">
-          <i class="pi pi-inbox"></i> Parcel machine - General
-        </Button>
-        <Button :class="{'active': selectedOption === 'Parcel machine - Carbon Neutral'}" class="option-button" @click="selectOption('Parcel machine - Carbon Neutral')">
-          <i class="pi pi-inbox"></i> Parcel machine - Carbon Neutral
+          <i class="pi pi-inbox"></i> Parcel machine 
         </Button>
         <Button :class="{'active': selectedOption === '100% Carbon neutral courier'}" class="option-button" @click="selectOption('100% Carbon neutral courier')">
           <i class="pi pi-home"></i> 100% Carbon neutral courier
@@ -195,7 +188,6 @@ const generateInvoice = (order) => {
     date.getMonth() + 1
   }-${date.getDate()}`;
 
-  // Prepare the data for the table
   const tableData = order.cartItems
     .map(
       (item, index) => `
@@ -280,7 +272,7 @@ const handlePayment = async () => {
       phoneNumber: phoneNumber.value,
       address: address.value,
       info: info.value,
-      cartItems: cart.cartItems, // Changed from products to cartItems
+      cartItems: cart.cartItems,
       totalPrice: totalPrice.value,
       postal_code: postalCode.value,
       paymentMethodId: paymentMethod.id,
