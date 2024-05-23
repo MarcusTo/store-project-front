@@ -68,6 +68,16 @@
             v-model="info"
             placeholder="Additional information"
           />
+          <select v-model="selectedDeliveryOption" class="custom-select">
+            <option disabled value="">Select Delivery Option</option>
+            <option>Pick-up myself</option>
+            <option>Delivery to door</option>
+          </select>
+          <select v-model="selectedPackagingOption" class="custom-select">
+            <option disabled value="">Select Packaging Option</option>
+            <option>General packaging</option>
+            <option>Eco Friendly packaging</option>
+          </select>
         </div>
         <div class="payment-info">
           <div id="card-element" />
@@ -78,36 +88,48 @@
 
   <div class="options-wrapper">
     <div class="option-card">
+      <h3>Delivery Options</h3>
+      <div class="button-container">
+        <Button
+          :class="{ active: selectedOption.delivery === 'Pick-up myself' }"
+          class="option-button"
+          @click="selectOption('delivery', 'Pick-up myself')"
+        >
+          <i class="pi pi-walking"></i> Pick-up myself
+        </Button>
+        <Button
+          :class="{ active: selectedOption.delivery === 'Delivery to door' }"
+          class="option-button"
+          @click="selectOption('delivery', 'Delivery to door')"
+        >
+          <i class="pi pi-car"></i> Delivery to door
+        </Button>
+      </div>
       <h3>Packaging Options</h3>
       <div class="button-container">
-        <Button :class="{'active': selectedOption === 'General packaging'}" class="option-button" @click="selectOption('General packaging')">
+        <Button
+          :class="{ active: selectedOption.packaging === 'General packaging' }"
+          class="option-button"
+          @click="selectOption('packaging', 'General packaging')"
+        >
           <i class="pi pi-box"></i> General packaging
         </Button>
-        <Button :class="{'active': selectedOption === 'Eco Friendly packaging'}" class="option-button" @click="selectOption('Eco Friendly packaging')">
+        <Button
+          :class="{
+            active: selectedOption.packaging === 'Eco Friendly packaging',
+          }"
+          class="option-button"
+          @click="selectOption('packaging', 'Eco Friendly packaging')"
+        >
           <i class="pi pi-globe"></i> Eco Friendly packaging
         </Button>
       </div>
     </div>
-    <div class="option-card">
-      <h3>Delivery Options</h3>
-      <div class="button-container">
-        <Button :class="{'active': selectedOption === 'Pick-up myself'}" class="option-button" @click="selectOption('Pick-up myself')">
-          <i class="pi pi-walking"></i> Pick-up myself
-        </Button>
-        <Button :class="{'active': selectedOption === 'Parcel machine - General'}" class="option-button" @click="selectOption('Parcel machine - General')">
-          <i class="pi pi-inbox"></i> Parcel machine 
-        </Button>
-        <Button :class="{'active': selectedOption === '100% Carbon neutral courier'}" class="option-button" @click="selectOption('100% Carbon neutral courier')">
-          <i class="pi pi-home"></i> 100% Carbon neutral courier
-        </Button>
-      </div>
-    </div>
   </div>
-  
+
   <div class="total-price">
     <h2>Total Price: €{{ totalPrice.toFixed(2) }}</h2>
   </div>
-
   <div class="submit-button">
     <Button class="button" @click="handlePayment">Pay now</Button>
   </div>
@@ -144,6 +166,8 @@ let phoneNumber = ref("1234567890");
 let address = ref("123 Main St, Anytown, USA");
 let info = ref("Additional information here");
 let postalCode = ref("75404");
+let selectedPackagingOption = ref("");
+let selectedDeliveryOption = ref("");
 
 const cart = useCartStore();
 const totalPrice = computed(() => {
@@ -182,6 +206,8 @@ const generateInvoice = (order) => {
   doc.text(`Phone Number: ${order.phoneNumber}`, 15, 50);
   doc.text(`Address: ${order.address}`, 15, 60);
   doc.text(`Total Price: ${order.totalPrice}`, 15, 70);
+  doc.text(`Delivery Option: ${order.deliveryOption}`, 15, 80);
+  doc.text(`Packaging Option: ${order.packagingOption}`, 15, 90);
 
   const date = new Date();
   const formattedDate = `${date.getFullYear()}-${
@@ -221,6 +247,8 @@ const generateInvoice = (order) => {
   <p>E-mail: ${order.mail}</p>
   <p>Telefoninumber: ${order.phoneNumber}</p>
   <p>Aadress: ${order.address}</p>
+  <p>Kohaletoimetamise valik: ${order.deliveryOption}</p>
+  <p>Pakkimisvõimalus: ${order.packagingOption}</p>
   <hr/>
   <div style="display: flex; flex-direction: column; align-items: flex-end;">
   <table>
@@ -276,6 +304,8 @@ const handlePayment = async () => {
       totalPrice: totalPrice.value,
       postal_code: postalCode.value,
       paymentMethodId: paymentMethod.id,
+      deliveryOption: selectedDeliveryOption.value,
+      packagingOption: selectedPackagingOption.value,
     };
     console.log("cartItems before sending:", toRaw(cart.cartItems));
     try {
@@ -434,5 +464,19 @@ button > span:hover {
 .option-button:hover {
   background-color: #0070c9;
   color: #fff;
+}
+.custom-select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-bottom: 15px;
 }
 </style>
