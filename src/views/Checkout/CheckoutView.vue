@@ -86,47 +86,6 @@
     </div>
   </form>
 
-  <div class="options-wrapper">
-    <div class="option-card">
-      <h3>Delivery Options</h3>
-      <div class="button-container">
-        <Button
-          :class="{ active: selectedOption.delivery === 'Pick-up myself' }"
-          class="option-button"
-          @click="selectOption('delivery', 'Pick-up myself')"
-        >
-          <i class="pi pi-walking"></i> Pick-up myself
-        </Button>
-        <Button
-          :class="{ active: selectedOption.delivery === 'Delivery to door' }"
-          class="option-button"
-          @click="selectOption('delivery', 'Delivery to door')"
-        >
-          <i class="pi pi-car"></i> Delivery to door
-        </Button>
-      </div>
-      <h3>Packaging Options</h3>
-      <div class="button-container">
-        <Button
-          :class="{ active: selectedOption.packaging === 'General packaging' }"
-          class="option-button"
-          @click="selectOption('packaging', 'General packaging')"
-        >
-          <i class="pi pi-box"></i> General packaging
-        </Button>
-        <Button
-          :class="{
-            active: selectedOption.packaging === 'Eco Friendly packaging',
-          }"
-          class="option-button"
-          @click="selectOption('packaging', 'Eco Friendly packaging')"
-        >
-          <i class="pi pi-globe"></i> Eco Friendly packaging
-        </Button>
-      </div>
-    </div>
-  </div>
-
   <div class="total-price">
     <h2>Total Price: €{{ totalPrice.toFixed(2) }}</h2>
   </div>
