@@ -25,7 +25,7 @@
   <h2 class="checkout-title">
     {{ t("checkout.checkout") }}
   </h2>
-  <form>
+  <form @submit.prevent="handlePayment">
     <div class="info-container">
       <div class="user-info">
         <div class="user-title">
@@ -71,13 +71,15 @@
           <select v-model="selectedDeliveryOption" class="custom-select">
             <option disabled value="">Select Delivery Option</option>
             <option>Pick-up myself</option>
-            <option>Delivery to door</option>
+            <option>Carbon-Neutral courier (to door)</option>
+            <option>Delivery to parcel-machine</option>
           </select>
           <select v-model="selectedPackagingOption" class="custom-select">
             <option disabled value="">Select Packaging Option</option>
             <option>General packaging</option>
             <option>Eco Friendly packaging</option>
           </select>
+          <input type="text" v-model="honeypot" style="display: none;">
         </div>
         <div class="payment-info">
           <div id="card-element" />
@@ -85,47 +87,6 @@
       </div>
     </div>
   </form>
-
-  <div class="options-wrapper">
-    <div class="option-card">
-      <h3>Delivery Options</h3>
-      <div class="button-container">
-        <Button
-          :class="{ active: selectedOption.delivery === 'Pick-up myself' }"
-          class="option-button"
-          @click="selectOption('delivery', 'Pick-up myself')"
-        >
-          <i class="pi pi-walking"></i> Pick-up myself
-        </Button>
-        <Button
-          :class="{ active: selectedOption.delivery === 'Delivery to door' }"
-          class="option-button"
-          @click="selectOption('delivery', 'Delivery to door')"
-        >
-          <i class="pi pi-car"></i> Delivery to door
-        </Button>
-      </div>
-      <h3>Packaging Options</h3>
-      <div class="button-container">
-        <Button
-          :class="{ active: selectedOption.packaging === 'General packaging' }"
-          class="option-button"
-          @click="selectOption('packaging', 'General packaging')"
-        >
-          <i class="pi pi-box"></i> General packaging
-        </Button>
-        <Button
-          :class="{
-            active: selectedOption.packaging === 'Eco Friendly packaging',
-          }"
-          class="option-button"
-          @click="selectOption('packaging', 'Eco Friendly packaging')"
-        >
-          <i class="pi pi-globe"></i> Eco Friendly packaging
-        </Button>
-      </div>
-    </div>
-  </div>
 
   <div class="total-price">
     <h2>Total Price: €{{ totalPrice.toFixed(2) }}</h2>
@@ -160,14 +121,15 @@ const goBack = () => {
   router.back();
 };
 
-let name = ref("John Doe");
-let mail = ref("johndoe@example.com");
-let phoneNumber = ref("1234567890");
-let address = ref("123 Main St, Anytown, USA");
-let info = ref("Additional information here");
-let postalCode = ref("75404");
+let name = ref("Rasmus Jalakas");
+let mail = ref("rasmus.jalakas0@gmail.com");
+let phoneNumber = ref("+372 58910000");
+let address = ref("Sõpruse pst 182, 13424 Tallinn");
+let info = ref("Hoidke pakki hoolega!");
+let postalCode = ref("13424");
 let selectedPackagingOption = ref("");
 let selectedDeliveryOption = ref("");
+let honeypot = ref(""); // Honeypot field
 
 const cart = useCartStore();
 const totalPrice = computed(() => {
@@ -194,7 +156,7 @@ const generateInvoice = (order) => {
   doc.setFontSize(20);
   doc.setTextColor(40);
 
-  doc.text("ARVE", 15, 15);
+  doc.text("INVOICE", 15, 15);
   doc.setLineWidth(0.5);
   doc.line(15, 18, 200, 18);
 
@@ -231,7 +193,7 @@ const generateInvoice = (order) => {
   <table style="width: 100%;">
     <tr>
       <td style="width: 50%;">
-        <h1>Arve</h1>
+        <h1>Invoice</h1>
       </td>
       <td style="width: 50%; text-align: right; font-size:14px; margin: 0.5em 0;">
         <p>SWEDBANK AS</p>
@@ -242,22 +204,22 @@ const generateInvoice = (order) => {
     </tr>
   </table>
   <hr/>
-  <p>Kuupäev: ${formattedDate}</p>
-  <p>Nimi: ${order.name}</p>
+  <p>Date: ${formattedDate}</p>
+  <p>Client: ${order.name}</p>
   <p>E-mail: ${order.mail}</p>
-  <p>Telefoninumber: ${order.phoneNumber}</p>
-  <p>Aadress: ${order.address}</p>
-  <p>Kohaletoimetamise valik: ${order.deliveryOption}</p>
-  <p>Pakkimisvõimalus: ${order.packagingOption}</p>
+  <p>Phone number: ${order.phoneNumber}</p>
+  <p>Address: ${order.address}</p>
+  <p>Delivery option: ${order.deliveryOption}</p>
+  <p>Packaging option: ${order.packagingOption}</p>
   <hr/>
   <div style="display: flex; flex-direction: column; align-items: flex-end;">
   <table>
     <thead>
       <tr>
-        <th>Number</th>
-        <th>Nimi</th>
-        <th>Kogus</th>
-        <th>Hind</th>
+        <th>Product number</th>
+        <th>Product name</th>
+        <th>Amount</th>
+        <th>Price</th>
       </tr>
     </thead>
     <tbody style="margin-right:8px;">
@@ -265,13 +227,13 @@ const generateInvoice = (order) => {
     </tbody>
   </table>
   <hr style="width: 100%; border: none; border-top: 1px solid black;"/>
-  <p style="font-weight:bold;">KOKKU EUR: ${order.totalPrice} €</p>
+  <p style="font-weight:bold;">TOTAL EUR: ${order.totalPrice} €</p>
   </div>
 `;
 
   const opt = {
     margin: 1,
-    filename: `arve_${formattedDate}.pdf`,
+    filename: `invoice_${formattedDate}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
@@ -281,6 +243,12 @@ const generateInvoice = (order) => {
 };
 
 const handlePayment = async () => {
+  if (honeypot.value) {
+    console.log("Bot detected");
+    toast.error("Spam detected!");
+    return;
+  }
+
   const { paymentMethod, error } = await stripe.createPaymentMethod({
     type: "card",
     card: cardElement,
@@ -337,7 +305,6 @@ const selectOption = (option) => {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 5px;
 }
 .payment-info {
   margin-top: 24px;
@@ -475,8 +442,9 @@ button > span:hover {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+  gap: 0.1px;
+  border-radius: 0.5rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  margin-bottom: 15px;
+  margin-bottom: 1px;
 }
 </style>
